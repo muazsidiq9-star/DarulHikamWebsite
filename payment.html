@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="google" content="notranslate">
+  <title>Payment - Dar Al-Ulum Wal Hikam Arabic And Islamic Institute</title>
+  <link rel="stylesheet" href="master.css">
+  <link rel="stylesheet" href="payment.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="master-nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Dar Al-Ulum Logo"> Dar Al-Ulum
+      </a>
+      <div class="hamburger">&#9776;</div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="courses.html">Courses</a>
+        <a href="register.html">Register</a>
+        <a href="students-dashboard.html">Dashboard</a>
+        <a href="payment.html" class="active page-indicator">Payment</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="payment-header" style="background-image: url('background-payment.jpg');">
+    <div class="header-overlay">
+      <img src="logo.png" alt="Dar Al-Ulum Logo" class="header-logo">
+      <h1>Make a Payment</h1>
+      <p>Securely pay for your courses and track your payment history</p>
+    </div>
+  </header>
+
+  <!-- Toast for copy notification -->
+  <div id="copy-toast">Copied to clipboard</div>
+
+  <!-- ================= PAYMENT METHODS ================= -->
+  <section class="payment-details">
+
+    <div class="register-form">
+      <p class="register-note">Make your payment and ensure to fill the form bellow with payment details.</p>
+    </div>
+
+    <!-- Sterling Bank -->
+    <div class="payment-card">
+      <div class="payment-card-header">
+        <img src="Sterling.png" alt="Sterling Bank Logo">
+        <span>Sterling Bank Transfer</span>
+      </div>
+      <div class="payment-detail">
+        <span>Account Name</span>
+        <span>Mauzu Hassan</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Mauzu Hassan')"></i>
+      </div>
+      <div class="payment-detail">
+        <span>Account Number</span>
+        <span>0121143876</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('0121143876')"></i>
+      </div>
+      <div class="payment-detail">
+        <span>Bank</span>
+        <span>Sterling Bank</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Sterling Bank')"></i>
+      </div>
+      <p class="payment-note">Use your full name as payment narration.</p>
+    </div>
+
+    <!-- GTBank -->
+    <div class="payment-card">
+      <div class="payment-card-header">
+        <img src="gtbank.png" alt="GTBank Logo">
+        <span>GTBank Transfer</span>
+      </div>
+      <div class="payment-detail">
+        <span>Account Name</span>
+        <span>Mauzu Hassan</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Mauzu Hassan')"></i>
+      </div>
+      <div class="payment-detail">
+        <span>Account Number</span>
+        <span>0226779817</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('0226779817')"></i>
+      </div>
+      <div class="payment-detail">
+        <span>Bank</span>
+        <span>GTBank</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('GTBank')"></i>
+      </div>
+      <p class="payment-note">After payment, keep your receipt for confirmation.</p>
+    </div>
+
+    <!-- Opay Bank -->
+    <div class="payment-card">
+      <div class="payment-card-header">
+        <img src="opay.png" alt="Opay Bank Logo">
+        <span>Opay Bank Transfer</span>
+      </div>
+      <div class="payment-detail">
+        <span>Account Name</span>
+        <span>Mauzu Hassan</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Mauzu Hassan')"></i>
+    </div>
+
+      <div class="payment-detail">
+        <span>Account Number</span>
+        <span>8168722390</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('8168722390')"></i>
+      </div>
+      <div class="payment-detail">
+        <span>Bank</span>
+        <span>Opay Bank</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Opay Bank')"></i>
+      </div>
+      <p class="payment-note">After payment, keep your receipt for confirmation.</p>
+    </div>
+    
+     <!-- Clear Junction Limited -->
+    <div class="payment-card">
+      <div class="payment-card-header">
+        <img src="limited.png" alt="Clear Junction Limited Bank Logo">
+        <span>Grey EUR Account (Clear Junction Limited Bank) Transfer</span>
+      </div>
+      <div class="payment-detail">
+        <span>Account Name</span>
+        <span>Mauzu Hassan</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Mauzu Hassan')"></i>
+    </div>
+
+      <div class="payment-detail">
+        <span>Account Number</span>
+        <span>69310930</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('69310930')"></i>
+      </div>
+      <div class="payment-detail">
+        <span>Bank</span>
+        <span>Clear Junction Limited Bank</span>
+        <i class="fa-solid fa-copy copy-icon" onclick="copyText('Clear Junction Limited Bank')"></i>
+      </div>
+      <div class="payment-warning">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  <span>For international (foreign currency) payments only.</span>
+</div>
+    </div>
+    
+    <!-- nbkc Bank (Grey USD Account) -->
+    <div class="payment-card">
+  <div class="payment-card-header">
+    <img src="usd.png" alt="USD Bank Logo">
+    <span>Grey USD Account (nbkc bank) Transfer</span>
+  </div>
+
+  <div class="payment-detail">
+    <span>Account Name</span>
+    <span>Mauzu Hassan</span>
+    <i class="fa-solid fa-copy copy-icon" onclick="copyText('Mauzu Hassan')"></i>
+  </div>
+
+  <div class="payment-detail">
+    <span>Account Number</span>
+    <span>218977608939</span>
+    <i class="fa-solid fa-copy copy-icon" onclick="copyText('218977608939')"></i>
+  </div>
+
+  <div class="payment-detail">
+    <span>Bank</span>
+    <span>nbkc Bank</span>
+    <i class="fa-solid fa-copy copy-icon" onclick="copyText('nbkc Bank')"></i>
+  </div>
+
+  <div class="payment-warning">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  <span>For international (foreign currency) payments only.</span>
+</div>
+</div>
+
+    <!-- Selar Online Payment -->
+    <div class="payment-card selar-card">
+      <div class="payment-card-header">
+        <img src="selar.png" alt="Selar Logo" class="selar-logo">
+        <span>Pay Online via Selar</span>
+      </div>
+      <div class="payment-detail">
+        <span>Secure Online Payment</span>
+        <span>Click the button below to pay</span>
+      </div>
+      <button type="button" class="selar-btn">Pay with Selar</button>
+      <p class="payment-note">After payment, keep your receipt for confirmation.</p>
+    </div>
+  </section>
+
+  <!-- ================= PAYMENT FORM ================= -->
+  <section class="payment-form-section">
+    <form class="payment-form">
+      <h2>Level Payment Form</h2>
+
+      <div class="form-group">
+        <label for="student-name">Full Name</label>
+        <input type="text" id="student-name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="student-email">Email</label>
+        <input type="text" id="student-email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="level-arabic">Select Level</label>
+        <select id="level-arabic" required>
+          <option value="">-- Choose Level --</option>
+          <option>Can read the Qur'an only</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="payment-method">Payment Method (Bank Sent to)</label>
+        <input type="text" id="payment-method" required>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount (₦)</label>
+        <input type="number" id="amount" required>
+      </div>
+
+      <div>
+        <label>Date</label>
+        <input type="date" id="payment-date">
+      </div>
+
+
+      <div class="form-group">
+        <label for="payment-month">Select Month</label>
+        <select id="month" required>
+  <option value="">Select Month</option>
+  <option value="January">January</option>
+  <option value="February">February</option>
+  <option value="March">March</option>
+  <option value="April">April</option>
+  <option value="May">May</option>
+  <option value="June">June</option>
+  <option value="July">July</option>
+  <option value="August">August</option>
+  <option value="September">September</option>
+  <option value="October">October</option>
+  <option value="November">November</option>
+  <option value="December">December</option>
+</select>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="submit-btn">Pay Now <span class="arrow">➔</span></button>
+      </div>
+
+      <p class="success-msg">Payment submitted successfully!</p>
+      <p class="error-msg">Please fill all fields correctly.</p>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
+    <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
+    <p>© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.</p>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank">
+  <img src="whatsapp-icon.png" alt="WhatsApp">
+</a>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="payment.js" defer></script>
+  <script src="translate.js"></script>
+</body>
+</html>

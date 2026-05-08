@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="google" content="notranslate">
+  <title>Test/Exam Welcome - Dar Al-Ulum</title>
+  <link rel="stylesheet" href="master.css">
+  <link rel="stylesheet" href="test-welcome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
+<body>
+
+<!-- Navigation -->
+<nav class="master-nav">
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Dar Al-Ulum Logo"> Dar Al-Ulum
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="students-dashboard.html">Student Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Header / Welcome Section -->
+ <div class="page-content">
+<header class="hall-header">
+  <h1 id="examTitle">Loading Test/Exam...</h1>
+  <p id="examMessage">Please wait while we fetch your upcoming test/exam details.</p>
+</header>
+
+<!-- Info Section -->
+<section class="exam-info" id="examInfo">
+  <!-- JS injects level, course, type, duration here -->
+</section>
+
+<!-- Attempt Button -->
+<div style="text-align:center; margin:2rem 0;">
+  <button id="attemptBtn" class="btn-primary" disabled>Loading...</button>
+</div>
+</div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank">
+  <img src="whatsapp-icon.png" alt="WhatsApp">
+</a>
+
+<footer>
+  <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
+  <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
+  <p>© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<!-- Your script -->
+<script>
+  const SUPABASE_URL = "https://ymxuwahcogzbbohdbpgg.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_oAh_xPW62nDFS9JGh5CUcA_mnHC4t3w";
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const matric = sessionStorage.getItem("matric");
+
+  async function fetchUpcomingExam() {
+    if (!matric) {
+      alert("Student login required");
+      window.location.href = "login.html";
+      return;
+    }
+
+    try {
+      // 1️⃣ Get student level
+      const { data: student, error: studentErr } = await sb
+        .from("students")
+        .select("level_arabic")
+        .eq("matric_number", matric)
+        .single();
+      if (studentErr) throw studentErr;
+      const level = student.level_arabic;
+
+      // 2️⃣ Get all assessments for their level
+      const { data: exams, error: examsErr } = await sb
+        .from("assessments")
+        .select("*")
+        .eq("level_arabic", level)
+        .order("start_time", { ascending: true });
+
+      if (examsErr) throw examsErr;
+
+      if (!exams || exams.length === 0) {
+        document.getElementById("examTitle").textContent = "No Test / Exam";
+        document.getElementById("examMessage").textContent =
+          "There is no scheduled test or exam at the moment.";
+        return;
+      }
+
+      const now = new Date();
+
+      // 🔎 Pick exam based on priority
+      let exam =
+        exams.find(e => new Date(e.start_time) <= now && new Date(e.end_time) >= now && e.is_active === true) ||
+        exams.find(e => new Date(e.start_time) > now) ||
+        exams.find(e => new Date(e.start_time) <= now && new Date(e.end_time) >= now && e.is_active === false) ||
+        null;
+
+      if (!exam) {
+        document.getElementById("examTitle").textContent = "No Active Test / Exam";
+        document.getElementById("examMessage").textContent = "Please check back later.";
+        return;
+      }
+
+      // ✅ Save expected type for test-hall page
+      sessionStorage.setItem("expectedAssessmentType", exam.type.toLowerCase());
+
+      const examInfoEl = document.getElementById("examInfo");
+      const startTime = new Date(exam.start_time);
+      const endTime = new Date(exam.end_time);
+
+      examInfoEl.innerHTML = `
+        <p><strong>Level:</strong> ${exam.level_arabic}</p>
+        <p><strong>Semester:</strong> ${exam.semester}</p>
+        <p><strong>Course:</strong> ${exam.course}</p>
+        <p><strong>Type:</strong> ${exam.type}</p>
+        <p><strong>Duration:</strong> ${exam.duration_minutes} minutes</p>
+        <p><strong>Status:</strong> ${exam.status}</p>
+        <p><strong>Start Time:</strong> ${startTime.toLocaleString()}</p>
+        <p><strong>End Time:</strong> ${endTime.toLocaleString()}</p>
+      `;
+
+      const btn = document.getElementById("attemptBtn");
+
+      if (now >= startTime && now <= endTime && exam.is_active === true) {
+        document.getElementById("examTitle").textContent = `Ongoing ${exam.type}`;
+        document.getElementById("examMessage").textContent =
+          "Your assessment is currently ongoing. Click below to begin.";
+        btn.disabled = false;
+        btn.textContent = "Attempt Test/Exam";
+      } else if (now < startTime) {
+        document.getElementById("examTitle").textContent = `Upcoming ${exam.type}`;
+        document.getElementById("examMessage").textContent =
+          `Scheduled to start on ${startTime.toLocaleString()}.`;
+        btn.disabled = true;
+        btn.textContent = "Not Yet Available";
+      } else if (now >= startTime && exam.is_active === false) {
+        document.getElementById("examTitle").textContent = `${exam.type} Not Yet Activated`;
+        document.getElementById("examMessage").textContent =
+          "Please wait for your instructor to activate this assessment.";
+        btn.disabled = true;
+        btn.textContent = "Waiting Activation";
+      } else if (now > endTime) {
+        document.getElementById("examTitle").textContent = `${exam.type} Ended`;
+        document.getElementById("examMessage").textContent =
+          "This assessment has ended.";
+        btn.disabled = true;
+        btn.textContent = "Closed";
+      }
+
+      btn.onclick = async () => {
+        if (btn.disabled) return;
+
+        btn.innerHTML = `<span class="spinner" style="margin-right:5px;display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top:2px solid transparent;border-radius:50%;animation:spin 1s linear infinite;"></span> Loading...`;
+        btn.disabled = true;
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        sessionStorage.setItem("examId", exam.id);
+        window.location.href = "test-hall.html";
+      };
+    } catch (err) {
+      console.error(err);
+      document.getElementById("examTitle").textContent = "Error fetching exam.";
+      document.getElementById("examMessage").textContent = "Please try again later.";
+    }
+  }
+
+  fetchUpcomingExam();
+</script>
+<script>
+  // ===== Hamburger Menu =====
+  function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    nav.classList.toggle("show");
+  }
+  document.addEventListener("click", function(e) {
+    const nav = document.getElementById("navLinks");
+    const hamburger = document.querySelector(".hamburger");
+    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+      nav.classList.remove("show");
+    }
+  });
+</script>
+<script src="translate.js"></script>
+</body>
+</html>

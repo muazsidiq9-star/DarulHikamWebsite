@@ -1,0 +1,223 @@
+/* ================= GLOBAL ================= */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* ================= HEADER ================= */
+.indiv-course-header {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 160px 30px 180px;
+  background-size: cover;
+  background-position: center;
+}
+.header-overlay {
+  background: rgba(0,0,0,0.45);
+  padding: 40px 20px;
+  display: inline-block;
+  border-radius: 14px;
+}
+.header-overlay h1 { font-size: 32px; font-weight: 800; margin-bottom: 15px; }
+.header-overlay p { font-size: 18px; margin-bottom: 20px; }
+.register-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #1a73e8;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.register-btn:hover { background-color: #1558b0; }
+
+/* ================= COURSE CONTENT ================= */
+.course-content-section {
+  max-width: 900px;
+  margin: -40px auto 60px; /* pulls up slightly below header */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 20px;
+}
+/* ===== INTRO CARD ===== */
+.intro-card {
+  background: var(--card-color);
+  max-width: 850px;
+  margin: 50px auto 40px auto; /* centers below header */
+  padding: 30px 35px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  position: relative;
+  animation: floatIntro 3s ease-in-out infinite;
+  text-align: justify;  /* makes the text neat */
+  line-height: 1.8;
+}
+
+.intro-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  background-color: #1a73e8;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+.module-card {
+  background: var(--card-color);
+  max-width: 700px;
+  margin: 20px auto; /* centers the card horizontally */
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.module-card h2 {
+  text-align: center; /* module titles centered */
+  color: #1a73e8;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.module-card p {
+  text-align: left; /* module descriptions left-aligned */
+  line-height: 1.7;
+  color: var(--text-color);
+  font-size: 15px;
+}
+
+/* ================= FLOAT ANIMATION ================= */
+@keyframes floatCard {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* ================= FADE-IN ================= */
+.fade-in { opacity: 0; transform: translateY(25px); transition: opacity 0.8s, transform 0.8s; }
+.fade-in.show { opacity: 1; transform: translateY(0); }
+/* Intro card */
+.intro-card {
+  max-width: 900px;
+  margin: -60px auto 50px; /* pulls it up onto the header */
+  background: var(--card-color);
+  padding: 30px 35px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 5;
+  animation: floatCard 4s ease-in-out infinite;
+  text-align: justify;
+}
+
+/* dancing effect */
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.course-content-section {
+  background: var(--bg-color);
+  padding: 40px 20px 80px;
+}
+.content-card {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  background: var(--card-color);
+  padding: 28px 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  position: relative;
+}
+
+/* Module titles centered */
+.content-card h2 {
+  text-align: center;
+  color: #004572;
+  margin-bottom: 12px;
+}
+
+/* Descriptions left-aligned */
+.content-card p {
+  text-align: left;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background-color: #1a73e8;
+  color: white;
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 14px;
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  width: 55px;
+  height: 55px;
+  background-color: #25D366;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  z-index: 9999;
+
+  cursor: grab;
+}
+
+.whatsapp-float img {
+  width: 28px;
+  height: 28px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* FORCE module visibility */
+.course-content-section {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.content-card {
+  display: block;
+  opacity: 1;
+  position: relative;
+}
