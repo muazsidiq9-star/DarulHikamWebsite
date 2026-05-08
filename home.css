@@ -67,12 +67,12 @@ html, body {
 /* MAIN TITLE */
 .home-header h1 {
   color: #fff;
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(1.25rem, 5vw, 3rem);
   line-height: 1.2;
   font-weight: 700;
 
   max-width: 900px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 /* SUBTITLE */
@@ -81,7 +81,7 @@ html, body {
   font-size: clamp(1.1rem, 3vw, 1.8rem);
   font-weight: 600;
 
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 /* DESCRIPTION */
@@ -295,6 +295,7 @@ section {
 .testimonial-card {
   background: var(--card-color);
   padding: 28px 26px;
+  align-items: center;
   border-radius: 16px;
   box-shadow: 0 12px 28px rgba(75, 14, 241, 0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;

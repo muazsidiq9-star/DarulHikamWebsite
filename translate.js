@@ -729,6 +729,12 @@ const DICT = {
   "- Omar, UAE": "- عمر، الإمارات",
   "\"The community and support kept me motivated to keep learning.\"": "«المجتمع والدعم أبقاني متحمسًا للاستمرار في التعلم.»",
   "- Fatima, Egypt": "- فاطمة، مصر",
+  // NEW TESTIMONIAL
+"\"The Qur'an and Arabic lessons are well-structured and easy to follow. I now feel more confident understanding Islamic texts.\"":
+"«دروس القرآن واللغة العربية منظمة وسهلة المتابعة. أشعر الآن بثقة أكبر في فهم النصوص الإسلامية.»",
+
+"- Ahmad, United Kingdom":
+"- أحمد، المملكة المتحدة",
 
   // CALL TO ACTION
   "Ready to Start Your Arabic Journey?": "هل أنت مستعد لبدء رحلتك في تعتم العربية والإسلامية؟",
