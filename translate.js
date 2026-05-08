@@ -469,15 +469,51 @@ const DICT = {
 "Register": "تسجيل",
 
 // ======= STUDENT DASHBOARD / RESOURCES PAGE =======
-"📚 Learning Resources": "📚 الموارد التعليمية",
-"Access PDFs, videos, and other study materials for your courses": "الوصول إلى ملفات PDF والفيديو ومواد الدراسة الأخرى لدوراتك",
-"Open PDF": "افتح ملف PDF",
-"Download": "تحميل",
-"Watch": "مشاهدة",
-"Email: daralulumwalhikam20@gmail.com": "البريد الإلكتروني: daralulumwalhikam20@gmail.com",
-"Phone: +2348110705054": "الهاتف: +2348110705054",
-"© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online.": "© 2022 معهد دار العلوم والحكم للدراسات العربية والإسلامية عبر الإنترنت..",
-"All rights reserved.": "جميع الحقوق محفوظة.",
+
+  "📚 Learning Resources": "📚 الموارد التعليمية",
+  "Access PDFs, videos, and other study materials for your courses":
+    "الوصول إلى ملفات PDF والفيديوهات والمواد الدراسية الخاصة بك",
+
+  "📚 Open Full Library": "📚 فتح المكتبة الكاملة",
+
+  "All Categories": "كل التصنيفات",
+  "Madinah": "المدينة",
+  "Tafseer": "التفسير",
+  "Hadeeth": "الحديث",
+  "Nahw": "النحو",
+  "Sarf": "الصرف",
+  "Qira'ah": "القراءة",
+  "Writing": "الكتابة",
+  "Fiqh": "الفقه",
+  "Tawheed": "التوحيد",
+  "Adab": "الأدب",
+  "Balaghah": "البلاغة",
+  "Taareekh": "التاريخ",
+  "Other": "أخرى",
+
+  "📘 Madinah Arabic Reader": "📘 سلسلة المدينة",
+  "📘 Tafseer": "📘 التفسير",
+  "📘 Hadeeth": "📘 الحديث",
+  "📘 Sarf": "📘 الصرف",
+  "📘 Nahw": "📘 النحو",
+  "📘 Qira'ah": "📘 القراءة",
+  "📘 Ta'beer": "📘 التعبير",
+  "📘 Writing / Kitaabah": "📘 الكتابة",
+  "📘 Fiqh": "📘 الفقه",
+  "📘 Tawheed": "📘 التوحيد",
+  "📘 Adab": "📘 الأدب",
+  "📘 Balaghah": "📘 البلاغة",
+  "📘 Taareekh": "📘 التاريخ",
+  "📘 Classical Arabic Books": "📘 كتب العربية الكلاسيكية",
+  "🎥 Videos": "🎥 الفيديوهات",
+
+  "Open PDF": "فتح الملف",
+  "Watch": "مشاهدة",
+
+  "🔍 Search books (e.g. Nahw, Tafseer, Sarf...)":
+    "🔍 ابحث عن الكتب (مثل: النحو، التفسير، الصرف...)",
+
+  "Conversational Arabic Video": "فيديو المحادثة العربية",
 
 // ======= SCHEDULE PAGE =======
 "Class Schedule": "جدول الحصص",

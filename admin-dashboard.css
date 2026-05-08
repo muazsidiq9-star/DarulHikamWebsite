@@ -1013,3 +1013,179 @@ html, body {
     font-size: 0.85rem;
   }
 }
+
+/* =========================
+   HERO HEADER
+========================= */
+
+.home-header {
+  position: relative;
+
+  height: 85vh;
+  min-height: 600px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VIDEO */
+.hero-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: -1;
+}
+
+/* OVERLAY */
+.header-overlay {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 20px;
+
+  background: rgba(0,0,0,0.30);
+
+  width: 100%;
+  height: 100%;
+}
+
+/* TEXT */
+.home-header h1,
+.home-header h2,
+.home-header p {
+  color: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .home-header {
+    height: 45vh;
+    min-height: unset;
+
+    background: url('mobile-hero.jpg') center/cover no-repeat;
+  }
+
+  .hero-video {
+    display: none;
+  }
+}
+
+.home-header {
+  position: relative;
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+/* VIDEO */
+.hero-video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* CONTENT */
+.hero-content {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: white;
+  text-align: center;
+
+  z-index: 5;
+}
+
+.home-header::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: white;
+  text-align: center;
+
+  z-index: 2;
+}
+
+/* HERO HEADER */
+.home-header {
+  position: relative;
+  height: 85vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VIDEO */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* OVERLAY */
+.header-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  background: rgba(0,0,0,0.35);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGO */
+.header-logo {
+  width: 70px;
+  margin-bottom: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .home-header {
+    height: 45vh;
+  }
+}

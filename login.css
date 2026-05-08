@@ -128,7 +128,7 @@ select:focus {
 .toggle-password {
   position: absolute;
   inset-inline-end: 14px; /* instead of right */
-  top: 40px;
+  top: 43px;
   cursor: pointer;
   color: var(--text-color);
   transition: 0.2s;
