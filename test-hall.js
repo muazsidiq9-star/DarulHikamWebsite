@@ -592,6 +592,13 @@ document.getElementById('goDashboardBtn').onclick = () => {
     window.location.href = "students-dashboard.html";
 };
 
+document.getElementById('closeReviewModal').addEventListener('click', () => {
+    reviewModal.style.display = 'none';
+});
+
+document.getElementById('backToExamBtn').addEventListener('click', () => {
+    reviewModal.style.display = 'none';
+});
 document.getElementById('logoutBtn').onclick = () => {
     sessionStorage.clear();
     window.location.href = "login.html";

@@ -342,3 +342,133 @@ footer p {
   50%  { opacity: 0.4; }
   100% { opacity: 1; }
 }
+
+/* ================= RESPONSIVE (TABLET + MOBILE) ================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .hall-header {
+        padding: 40px 20px;
+        height: auto;
+    }
+
+    .hall-header h1 {
+        font-size: 1.5em;
+    }
+
+    #questionsContainer {
+        padding: 15px;
+    }
+}
+
+/* Phones */
+@media (max-width: 768px) {
+
+    body, html {
+        font-size: 15px;
+    }
+
+    .hall-header {
+        padding: 25px 15px;
+        height: auto;
+    }
+
+    .hall-header h1 {
+        font-size: 1.3em;
+    }
+
+    #timer {
+        font-size: 1rem;
+    }
+
+    /* Progress bars */
+    #countdownBarContainer,
+    #progressBarContainer {
+        height: 12px;
+    }
+
+    /* Questions container */
+    #questionsContainer {
+        padding: 12px;
+        margin: 10px auto;
+    }
+
+    #questionsContainer p {
+        font-size: 1rem;
+    }
+
+    /* Options become more touch-friendly */
+    #questionsContainer label {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    #questionsContainer textarea {
+        font-size: 0.95rem;
+    }
+
+    /* Navigation buttons */
+    .question-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 15px;
+    }
+
+    .btn-nav {
+        width: 100%;
+        font-size: 1rem;
+        padding: 14px;
+    }
+
+    /* Modal adjustments */
+    #reviewModal .modal-content {
+        width: 95%;
+        height: 85vh;
+        padding: 16px;
+    }
+
+    #reviewList li {
+        font-size: 0.95rem;
+    }
+
+    /* Completion modal */
+    #completionModal .modal-content {
+        width: 92%;
+        padding: 20px;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .whatsapp-float img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+    .hall-header h1 {
+        font-size: 1.1em;
+    }
+
+    #questionsContainer p {
+        font-size: 0.95rem;
+    }
+
+    .btn-nav {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
+    #reviewModal h2 {
+        font-size: 1.1rem;
+    }
+}
