@@ -458,169 +458,15 @@ section {
 }
 
 /* =========================
-   HERO HEADER
+   HERO HEADER (CLEAN)
 ========================= */
 
 .home-header {
   position: relative;
-
   height: 85vh;
-  min-height: 600px;
-
+  min-height: 520px;
   overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* VIDEO */
-.hero-video {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  z-index: -1;
-}
-
-/* OVERLAY */
-.header-overlay {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 20px;
-
-  background: rgba(0,0,0,0.30);
-
-  width: 100%;
-  height: 100%;
-}
-
-/* TEXT */
-.home-header h1,
-.home-header h2,
-.home-header p {
-  color: white;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .home-header {
-    height: 45vh;
-    min-height: unset;
-
-    background: url('mobile-hero.jpg') center/cover no-repeat;
-  }
-
-  .hero-video {
-    display: none;
-  }
-}
-
-.home-header {
-  position: relative;
-  min-height: 50vh;
-  overflow: hidden;
-}
-
-/* VIDEO */
-.hero-video {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-/* CONTENT */
-.hero-content {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  color: white;
-  text-align: center;
-
-  z-index: 5;
-}
-
-.home-header::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background: rgba(0,0,0,0.45);
-
-  z-index: 1;
-}
-
-.hero-content {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  color: white;
-  text-align: center;
-
-  z-index: 2;
-}
-
-/* =========================
-   CTA BUTTON GROUP (HOME HERO)
-========================= */
-
-.cta-group {
-  display: flex;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-/* desktop stays side by side */
-.cta-group .cta-btn {
-  min-width: 140px;
-}
-
-/* MOBILE FIX */
-@media (max-width: 768px) {
-
-  .cta-group {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .cta-group .cta-btn {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-    min-width: 120px;
-  }
-}
-
-/* HERO HEADER */
-.home-header {
-  position: relative;
-  height: 85vh;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -636,31 +482,117 @@ section {
   z-index: 0;
 }
 
-/* OVERLAY */
+/* DARK OVERLAY */
+.home-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
+/* CONTENT */
 .header-overlay {
   position: relative;
   z-index: 2;
+
   text-align: center;
   color: white;
+
   padding: 20px;
-  background: rgba(0,0,0,0.35);
-  width: 100%;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 /* LOGO */
 .header-logo {
-  width: 70px;
-  margin-bottom: 20px;
+  width: 80px;
+  margin-bottom: 15px;
 }
 
-/* MOBILE */
+/* TEXT */
+.home-header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.home-header p {
+  font-size: 1rem;
+  max-width: 500px;
+}
+
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
   .home-header {
-    height: 45vh;
+    height: 55vh;
+    min-height: 350px;
+  }
+
+  .header-logo {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+
+  .home-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .home-header p {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+
+  .hero-video {
+    display: none; /* optional: improves performance */
+  }
+
+  .home-header {
+    background: url('mobile-hero.jpg') center/cover no-repeat;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 768px) {
+
+  .home-header {
+    height: 55vh;
+    min-height: 350px;
+  }
+
+  /* KEEP VIDEO BUT CONTROL IT */
+  .hero-video {
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.1); /* slight zoom so it fills better */
+  }
+
+  /* optional fallback overlay clarity */
+  .home-header::before {
+    background: rgba(0,0,0,0.55);
+  }
+
+  .header-logo {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+
+  .home-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .home-header p {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-video {
+    filter: brightness(0.85) contrast(1.1);
   }
 }
