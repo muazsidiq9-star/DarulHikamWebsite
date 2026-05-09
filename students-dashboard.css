@@ -514,12 +514,12 @@ footer {
 
 /* TEXT */
 .home-header h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
 .home-header p {
-  font-size: 1rem;
+  font-size: 1.25rem;
   max-width: 500px;
 }
 
@@ -527,17 +527,17 @@ footer {
 @media (max-width: 768px) {
 
   .home-header {
-    height: 55vh;
-    min-height: 350px;
+    height: 40vh;
+    min-height: 340px;
   }
 
   .header-logo {
-    width: 60px;
+    width: 70px;
     margin-bottom: 10px;
   }
 
   .home-header h1 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 
   .home-header p {
@@ -558,8 +558,8 @@ footer {
 @media (max-width: 768px) {
 
   .home-header {
-    height: 55vh;
-    min-height: 350px;
+    height: 40vh;
+    min-height: 340px;
   }
 
   /* KEEP VIDEO BUT CONTROL IT */
@@ -576,12 +576,12 @@ footer {
   }
 
   .header-logo {
-    width: 60px;
+    width: 70px;
     margin-bottom: 10px;
   }
 
   .home-header h1 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 
   .home-header p {
