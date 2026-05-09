@@ -450,6 +450,12 @@ tr.innerHTML = `
 <td>
   ${s.admission_approved ? '' : `<button class="btn-approve" onclick="approveStudent('${s.id}')">Approve</button>`}
 </td>
+<td>
+  <button class="btn btn-small"
+    onclick='sendSingleEmail(${JSON.stringify(s)})'>
+    Send Email
+  </button>
+</td>
   <td><button class="btn btn-edit" onclick="editStudent('${s.id}')">Edit</button></td>
   <td><button class="btn btn-delete" onclick="deleteStudent('${s.id}')">Delete</button></td>
 `;
@@ -1784,7 +1790,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const { data: students, error } = await db
         .from("students")
         .select("id, email, matric_number, fullname")
-        .eq("welcome_email_sent", false);
+        .or("welcome_email_sent.is.false,welcome_email_sent.is.null")
 
       if (error) {
         console.error(error);
@@ -1809,24 +1815,25 @@ updateEmailProgress(sent, failed, students.length);
     console.log("Sending email to:", student.email);
 
     const response = await fetch(
-      "https://cjrpjekmqrckozrbtwps.supabase.co/functions/v1/send-welcome-email",
-      {
-        method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-         "apikey": SUPABASE_ANON_KEY,
-         "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-      },
-        
-        body: JSON.stringify({
-          email: student.email,
-          matricNumber: student.matric_number,
-          fullName: student.fullname,
-        }),
-      }
-    );
-
-    if (!response.ok) throw new Error("Email failed");
+  "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/send-welcome-email",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_PUBLISHABLE_KEY
+    },
+    body: JSON.stringify({
+      email: student.email,
+      fullName: student.fullname,
+      matricNumber: student.matric_number
+    })
+  }
+);
+    if (!response.ok) {
+  const errData = await response.json();
+  console.error("Function error:", errData);
+  throw new Error(errData.error || errData.message || "Email failed");
+}
 
     await db
       .from("students")
@@ -1862,7 +1869,41 @@ updateEmailProgress(sent, failed, students.length);
   });
 });
 
+async function sendSingleEmail(student) {
+  try {
+    const response = await fetch(
+      "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/send-welcome-email",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_PUBLISHABLE_KEY
+        },
+        body: JSON.stringify({
+          email: student.email,
+          fullName: student.fullname,
+          matricNumber: student.matric_number
+        })
+      }
+    );
 
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.message || "Email failed");
+    }
+
+    await db
+      .from("students")
+      .update({ welcome_email_sent: true })
+      .eq("id", student.id);
+
+    alert(`Email sent to ${student.fullname}`);
+
+  } catch (err) {
+    console.error(err);
+    alert(`Failed to send email to ${student.fullname}`);
+  }
+}
 
 // ===========================
 // Logout
@@ -1883,20 +1924,61 @@ function updateEmailProgress(sent, failed, total) {
   if (!box) {
     box = document.createElement("div");
     box.id = "emailProgressBox";
-    box.style.marginTop = "40px";
-    box.style.padding = "10px";
-    box.style.border = "1px solid #ddd";
-    box.style.borderRadius = "8px";
-    box.style.background = "#f9f9f9";
-    box.style.color = "#161616";
+
+    box.style.cssText = `
+  margin-top: 40px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  color: #161616;
+  position: fixed;
+top: 80px;
+right: 20px;
+width: 280px;
+z-index: 99999;
+`;
 
     document.getElementById("sendWelcomeEmails").after(box);
   }
 
   box.innerHTML = `
-    <strong>Email Progress</strong><br>
+    <button id="closeEmailProgress"
+  style="
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    border: none;
+    background: #e74c3c;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ">
+  ×
+</button>
+    <strong>Email Progress</strong><br><br>
     ✅ Sent: ${sent}<br>
     ❌ Failed: ${failed}<br>
     📊 Total: ${total}
   `;
+  
+
+  const closeBtn = document.getElementById("closeEmailProgress");
+  if (closeBtn) {
+    closeBtn.onclick = () => box.remove();
+  }
+
+  closeBtn.onmouseover = () => {
+  closeBtn.style.background = "#c0392b";
+};
+
+closeBtn.onmouseout = () => {
+  closeBtn.style.background = "#e74c3c";
+};
 }

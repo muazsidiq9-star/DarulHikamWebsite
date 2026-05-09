@@ -43,6 +43,16 @@ let timerInterval;
 let warningShown = false;
 let testEnded = false;
 
+// ================= SHUFFLE UTIL =================
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 // ================= CHECK FEES =================
 async function checkFees() {
     const monthNames = [
@@ -81,13 +91,16 @@ async function loadActiveAssessment() {
 
     const now = new Date().toISOString();
 
-    let { data, error } = await supabaseClient
+    const studentLevel = currentStudent.level;
+
+let { data, error } = await supabaseClient
     .from('assessments')
     .select('*')
     .eq('is_active', true)
     .eq('status', 'active')
+    .eq('level_arabic', studentLevel)
     .limit(1);
-
+console.log(currentStudent);
 if (error) {
     console.error("Load assessment error:", error);
 }
@@ -114,7 +127,17 @@ const { count: finalCount } = await supabaseClient
     .eq('is_final', true);
 
 if (finalCount === 0) {
-    timeRemaining = durationMinutes * 60;
+    const savedState = localStorage.getItem(
+        `exam_state_${assessmentId}_${matricNumber}`
+    );
+
+    if (savedState) {
+        const state = JSON.parse(savedState);
+        timeRemaining = state.timeRemaining || durationMinutes * 60;
+    } else {
+        timeRemaining = durationMinutes * 60;
+    }
+
     startTimer();
 } else {
     timeRemaining = 0;
@@ -126,26 +149,29 @@ if (finalCount === 0) {
 // ================= LOAD QUESTIONS =================
 async function loadQuestions() {
     if (!assessmentId) return;
-
-    // Check if student already submitted final answers
+    
     const { count, error: checkError } = await supabaseClient
-        .from('student_answers')
-        .select('id', { count: 'exact', head: true })
-        .eq('matric_number', matricNumber)
-        .eq('assessment_id', assessmentId)
-        .eq('is_final', true);
+    .from('student_answers')
+    .select('id', { count: 'exact', head: true })
+    .eq('matric_number', matricNumber)
+    .eq('assessment_id', assessmentId)
+    .eq('is_final', true);
 
-    if (checkError) console.error('Check submission error:', checkError);
+if (checkError) console.error('Check submission error:', checkError);
 
-    if (count > 0) {
-        examMessage.textContent = 'You have already attempted this test/exam. Wait for the next schedule.';
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        reviewBtn.disabled = true;
-        finalSubmitBtn.disabled = true;
-        return;
-    }
+if (count > 0) {
+    examMessage.textContent =
+        'You have already attempted this test/exam. Wait for the next schedule.';
 
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    reviewBtn.disabled = true;
+    finalSubmitBtn.disabled = true;
+
+    return;
+}
+
+    // 1. Fetch questions FIRST
     const { data, error } = await supabaseClient
         .from('questions')
         .select('*')
@@ -158,13 +184,56 @@ async function loadQuestions() {
         return;
     }
 
-    questions = data;
-studentAnswers = {}; // 🔥 VERY IMPORTANT
-currentIndex = 0;
-renderQuestionWithProgress();
-reviewBtn.disabled = false;
-finalSubmitBtn.disabled = false;
+const { count: draftCount } = await supabaseClient
+    .from('student_answers')
+    .select('id', { count: 'exact', head: true })
+    .eq('matric_number', matricNumber)
+    .eq('assessment_id', assessmentId)
+    .eq('is_final', false);
+
+    // ================= RESTORE EXAM STATE =================
+const savedState = localStorage.getItem(
+    `exam_state_${assessmentId}_${matricNumber}`
+);
+
+let restored = false;
+
+if (savedState && draftCount > 0) {
+    const state = JSON.parse(savedState);
+
+    currentIndex = state.currentIndex || 0;
+    studentAnswers = state.studentAnswers || {};
+    timeRemaining = state.timeRemaining || durationMinutes * 60;
+
+    const orderMap = new Map();
+    data.forEach(q => orderMap.set(q.id, q));
+
+    questions = state.questionsOrder
+        ? state.questionsOrder.map(id => orderMap.get(id)).filter(Boolean)
+        : data;
+
+    restored = true;
+} else {
+    // FIRST TIME ONLY → shuffle once
+    questions = shuffleArray(data).map(q => {
+        if (q.question_type === "mcq" && Array.isArray(q.options)) {
+            q.options = shuffleArray(q.options);
+        }
+        return q;
+    });
+
+    currentIndex = 0;
+    studentAnswers = {};
 }
+
+    // 5. Render + start saving
+    renderQuestionWithProgress();
+    saveExamState();
+
+    reviewBtn.disabled = false;
+    finalSubmitBtn.disabled = false;
+}
+
 
 // ================= RENDER QUESTIONS =================
 function renderQuestion() {
@@ -192,6 +261,7 @@ function renderQuestion() {
                 }, { onConflict: ['matric_number', 'question_id'] });
 
                 if (error) console.error('Auto-save error:', error);
+                saveExamState();
             });
 
             label.appendChild(input);
@@ -224,6 +294,7 @@ function renderQuestion() {
                 }, { onConflict: ['matric_number', 'question_id'] });
 
                 if (error) console.error('Auto-save error:', error);
+                saveExamState();
             }, typingDelay);
         });
     }
@@ -247,12 +318,14 @@ prevBtn.addEventListener('click', async () => {
     await saveAnswer();
     if (currentIndex > 0) currentIndex--;
     renderQuestionWithProgress();
+    saveExamState();
 });
 
 nextBtn.addEventListener('click', async () => {
     await saveAnswer();
     if (currentIndex < questions.length - 1) currentIndex++;
     renderQuestionWithProgress();
+    saveExamState();
 });
 
 // ================= SAVE ANSWER =================
@@ -290,6 +363,21 @@ async function saveAnswer() {
 if (error) {
   console.error('Error saving answer:', error);
 }
+}
+
+function saveExamState() {
+    const state = {
+        assessmentId,
+        currentIndex,
+        timeRemaining,
+        studentAnswers,
+        questionsOrder: questions.map(q => q.id)
+    };
+
+    localStorage.setItem(
+        `exam_state_${assessmentId}_${matricNumber}`,
+        JSON.stringify(state)
+    );
 }
 
 // ================= TIMER =================
@@ -421,11 +509,18 @@ const unanswered = questions.some(q => {
 });
 
 if (unanswered) {
-    alert("You still have unanswered questions. Please review them.");
-    reviewBtn.click(); // 🔥 auto-open review modal
-    finalSubmitBtn.textContent = originalText;
-    finalSubmitBtn.disabled = false;
-    return;
+
+    const confirmSubmit = confirm(
+        "You still have unanswered questions.\n\nPress OK to submit anyway or Cancel to continue reviewing."
+    );
+
+    if (!confirmSubmit) {
+        reviewBtn.click();
+
+        finalSubmitBtn.textContent = originalText;
+        finalSubmitBtn.disabled = false;
+        return;
+    }
 }
 
         for (let qid in studentAnswers) {
@@ -445,12 +540,17 @@ if (unanswered) {
             return;
         }
 
-        testEnded = true;                 // ✅ mark test as finished
+        testEnded = true;
 
-if (timerInterval) {              // ✅ stop timer completely
+if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
 }
+
+// ✅ CLEAR SAVED EXAM STATE
+localStorage.removeItem(
+    `exam_state_${assessmentId}_${matricNumber}`
+);
 
 reviewModal.style.display = 'none';
 endTestSession();

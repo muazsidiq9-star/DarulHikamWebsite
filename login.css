@@ -130,12 +130,12 @@ select:focus {
   inset-inline-end: 14px; /* instead of right */
   top: 43px;
   cursor: pointer;
-  color: var(--text-color);
+  color: #5b05be;
   transition: 0.2s;
 }
 
 .toggle-password:hover {
-  color: #67b4f8;
+  color: #32038e;
 }
 
 /* ===============================
