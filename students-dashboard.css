@@ -28,7 +28,7 @@ body {
 }
 
 .header-overlay {
-  background: linear-gradient(135deg, rgba(10,77,146,0.7), rgba(0,0,0,0.6));
+  background: rgba(16, 97, 178, 0.4);
   width: 100%;
   height: 100%;
   text-align: center;
