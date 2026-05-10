@@ -472,3 +472,25 @@ footer p {
         font-size: 1.1rem;
     }
 }
+
+.question-text,
+.question-text *,
+label span {
+  direction: auto;
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+.question-text {
+  direction: auto;
+  unicode-bidi: plaintext;
+
+  text-align: start;
+
+  width: 100%;
+
+  margin-bottom: 15px;
+  line-height: 1.7;
+
+  font-size: 1.05rem;
+}

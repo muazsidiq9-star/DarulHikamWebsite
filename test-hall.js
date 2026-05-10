@@ -237,8 +237,10 @@ function renderQuestion() {
     const q = questions[currentIndex];
 
     questionsContainer.innerHTML = `
-      <p>${currentIndex + 1}. ${q.question_text}</p>
-    `;
+  <div class="question-text" data-no-translate="true">
+    ${currentIndex + 1}. ${q.question_text}
+  </div>
+`;
 
     if (q.question_type === 'mcq') {
 
@@ -275,7 +277,12 @@ function renderQuestion() {
             });
 
             label.appendChild(input);
-            label.insertAdjacentText('beforeend', ` ${opt}`);
+            const span = document.createElement('span');
+span.textContent = ` ${opt}`;
+span.setAttribute('dir', 'auto');
+span.dataset.noTranslate = "true";
+
+label.appendChild(span);
 
             questionsContainer.appendChild(label);
         });
@@ -324,7 +331,14 @@ function renderQuestion() {
         });
     }
 }
+const qText = document.querySelector('.question-text');
 
+if (qText) {
+  const hasArabic = /[\u0600-\u06FF]/.test(q.question_text);
+
+  qText.style.direction = hasArabic ? 'rtl' : 'ltr';
+  qText.style.textAlign = hasArabic ? 'right' : 'left';
+}
 // ================= NAVIGATION =================
 function renderQuestionWithProgress() {
     renderQuestion();
