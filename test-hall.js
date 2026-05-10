@@ -234,26 +234,47 @@ async function loadQuestions() {
 
 // ================= RENDER QUESTIONS =================
 function renderQuestion() {
+
     const q = questions[currentIndex];
 
-    questionsContainer.innerHTML = `
-  <div class="question-text" data-no-translate="true">
-    ${currentIndex + 1}. ${q.question_text}
-  </div>
-`;
+    const hasArabicQuestion =
+        /[\u0600-\u06FF]/.test(q.question_text);
 
+    questionsContainer.innerHTML = `
+        <div class="question-text"
+             data-no-translate="true"
+             dir="${hasArabicQuestion ? 'rtl' : 'ltr'}"
+             style="
+                text-align:${hasArabicQuestion ? 'right' : 'left'};
+             ">
+            ${currentIndex + 1}. ${q.question_text}
+        </div>
+    `;
+
+    // ================= MCQ =================
     if (q.question_type === 'mcq') {
 
         (q.options || []).forEach(opt => {
 
+            const hasArabicOption =
+                /[\u0600-\u06FF]/.test(opt);
+
             const label = document.createElement('label');
 
+            label.style.display = 'block';
+            label.style.marginBottom = '10px';
+            label.style.direction = hasArabicOption ? 'rtl' : 'ltr';
+            label.style.textAlign = hasArabicOption ? 'right' : 'left';
+
             const input = document.createElement('input');
+
             input.type = 'radio';
             input.name = 'answer';
             input.value = opt;
 
-            if (studentAnswers[q.id] === opt) input.checked = true;
+            if (studentAnswers[q.id] === opt) {
+                input.checked = true;
+            }
 
             input.addEventListener('change', async () => {
 
@@ -271,34 +292,41 @@ function renderQuestion() {
                         onConflict: ['matric_number', 'question_id']
                     });
 
-                if (error) console.error(t("AUTO_SAVE_ERROR"), error);
+                if (error) {
+                    console.error(t("AUTO_SAVE_ERROR"), error);
+                }
 
                 saveExamState();
             });
 
-            label.appendChild(input);
             const span = document.createElement('span');
-span.textContent = ` ${opt}`;
-span.setAttribute('dir', 'auto');
-span.dataset.noTranslate = "true";
 
-label.appendChild(span);
+            span.textContent = ` ${opt}`;
+            span.dataset.noTranslate = "true";
+
+            label.appendChild(input);
+            label.appendChild(span);
 
             questionsContainer.appendChild(label);
         });
 
-    } else {
+    }
+
+    // ================= TEXTAREA =================
+    else {
 
         const textarea = document.createElement('textarea');
 
         textarea.value = studentAnswers[q.id] || '';
         textarea.placeholder = t('TYPE_ANSWER_HERE');
+
         textarea.rows = 4;
         textarea.style.width = '100%';
 
         questionsContainer.appendChild(textarea);
 
         let typingTimer;
+
         const typingDelay = 800;
 
         textarea.addEventListener('input', () => {
@@ -323,21 +351,17 @@ label.appendChild(span);
                         onConflict: ['matric_number', 'question_id']
                     });
 
-                if (error) console.error(t("AUTO_SAVE_ERROR"), error);
+                if (error) {
+                    console.error(t("AUTO_SAVE_ERROR"), error);
+                }
 
                 saveExamState();
 
             }, typingDelay);
+
         });
+
     }
-}
-const qText = document.querySelector('.question-text');
-
-if (qText) {
-  const hasArabic = /[\u0600-\u06FF]/.test(q.question_text);
-
-  qText.style.direction = hasArabic ? 'rtl' : 'ltr';
-  qText.style.textAlign = hasArabic ? 'right' : 'left';
 }
 // ================= NAVIGATION =================
 function renderQuestionWithProgress() {

@@ -7,18 +7,18 @@
 }
 
 body, html {
-    height: 100%;
+    min-height: 100%;
     background-color: var(--bg-color);
-    display: flex;
-    flex-direction: column;
 }
 
 /* ================= HEADER ================= */
 .hall-header {
     background-color: #cfe2f7;
-    padding: 70px;
+    padding: 40px 20px;
     text-align: center;
-    height: 45%;
+
+    /* REMOVE fixed height */
+    height: auto;
 }
 
 .hall-header h1 {
@@ -59,7 +59,6 @@ body, html {
 
 /* ================= QUESTIONS ================= */
 #questionsContainer {
-    flex: 1;
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -493,4 +492,106 @@ label span {
   line-height: 1.7;
 
   font-size: 1.05rem;
+}
+
+/* =========================
+   MODAL ACTION BUTTONS
+========================= */
+
+#closeReviewModal,
+#backToExamBtn {
+  background: #dc3545;
+  color: #fff;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 10px 18px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+/* Hover */
+#closeReviewModal:hover,
+#backToExamBtn:hover {
+  background: #b02a37;
+  transform: translateY(-1px);
+}
+
+/* Active click */
+#closeReviewModal:active,
+#backToExamBtn:active {
+  transform: scale(0.97);
+}
+
+/* Close X button positioning */
+#closeReviewModal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 1rem;
+}
+
+/* Back button spacing */
+#backToExamBtn {
+  margin-top: 15px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  #closeReviewModal {
+    width: 36px;
+    height: 36px;
+
+    font-size: 0.9rem;
+  }
+
+  #backToExamBtn {
+    width: 100%;
+  }
+}
+#reviewModal .modal-content {
+  position: relative;
+}
+#closeReviewModal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #dc3545;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.hall-header {
+    margin-bottom: 10px;
 }
