@@ -1420,10 +1420,11 @@ html, body {
    GLOBAL MODAL FIX
 ========================= */
 
-/* Dark overlay */
+/* Modal overlay */
 .modal {
   position: fixed;
   inset: 0;
+
   z-index: 999999 !important;
 
   display: none;
@@ -1448,17 +1449,22 @@ html, body {
   overflow-y: auto;
 }
 
-/* Prevent ANYTHING from crossing modal */
-header,
-nav,
-.sidebar,
+/* ONLY lower problematic sections */
+.hub-header,
+.home-header,
+.password-grid,
 .password-card,
-section,
-table,
-thead,
-tbody,
-tr,
-td,
-th {
-  z-index: auto !important;
+.password1-card,
+table {
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar + hamburger stay above page */
+nav,
+.navbar,
+.nav-container,
+.hamburger {
+  position: relative;
+  z-index: 9999;
 }
