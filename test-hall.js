@@ -2,7 +2,7 @@
 const supabaseUrl = "https://ymxuwahcogzbbohdbpgg.supabase.co";
 const supabaseKey = "sb_publishable_oAh_xPW62nDFS9JGh5CUcA_mnHC4t3w";
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-console.log('Supabase loaded');
+console.log('SUPABASE_LOADED');
 
 // ================= SESSION CHECK =================
 const role = sessionStorage.getItem("role");
@@ -10,7 +10,7 @@ const matricNumber = sessionStorage.getItem("matric");
 const studentData = sessionStorage.getItem("currentStudent");
 
 if (role !== "student" || !matricNumber || !studentData) {
-  alert("Session expired. Please log in again.");
+  alert(t("SESSION_EXPIRED"));
   window.location.href = "login.html";
   throw new Error("Invalid session");
 }
@@ -59,7 +59,8 @@ async function checkFees() {
       "January","February","March","April","May","June",
       "July","August","September","October","November","December"
     ];
-    const currentMonthName = monthNames[new Date().getMonth()]; // e.g., "February"
+
+    const currentMonthName = monthNames[new Date().getMonth()];
 
     const { data, error } = await supabaseClient
       .from("payments")
@@ -70,15 +71,17 @@ async function checkFees() {
       .eq("deleted", false)
       .limit(1);
 
-    if (error) console.error("Check Fees Error:", error);
+    if (error) console.error(t("CHECK_FEES_ERROR"), error);
 
     if (!data || data.length === 0) {
-        examTitle.textContent = "Access Denied";
-        examMessage.textContent = "You have not completed payment for this month.";
+        examTitle.textContent = t("ACCESS_DENIED");
+        examMessage.textContent = t("PAYMENT_REQUIRED");
+
         prevBtn.disabled = true;
         nextBtn.disabled = true;
         reviewBtn.disabled = true;
         finalSubmitBtn.disabled = true;
+
         return false;
     }
 
@@ -89,27 +92,27 @@ async function loadActiveAssessment() {
     const hasPaid = await checkFees();
     if (!hasPaid) return;
 
-    const now = new Date().toISOString();
-
     const studentLevel = currentStudent.level;
 
-let { data, error } = await supabaseClient
-    .from('assessments')
-    .select('*')
-    .eq('is_active', true)
-    .eq('status', 'active')
-    .eq('level_arabic', studentLevel)
-    .limit(1);
-console.log(currentStudent);
-if (error) {
-    console.error("Load assessment error:", error);
-}
+    let { data, error } = await supabaseClient
+        .from('assessments')
+        .select('*')
+        .eq('is_active', true)
+        .eq('status', 'active')
+        .eq('level_arabic', studentLevel)
+        .limit(1);
 
-if (!data || data.length === 0) {
-    examTitle.textContent = "No Active Test / Exam";
-    examMessage.textContent = "Please check back later.";
-    return;
-}
+    console.log(currentStudent);
+
+    if (error) {
+        console.error(t("LOAD_ASSESSMENT_ERROR"), error);
+    }
+
+    if (!data || data.length === 0) {
+        examTitle.textContent = t("NO_ACTIVE_ASSESSMENT");
+        examMessage.textContent = t("PLEASE_CHECK_LATER");
+        return;
+    }
 
     const assessment = data[0];
     assessmentId = assessment.id;
@@ -118,60 +121,57 @@ if (!data || data.length === 0) {
     examMessage.textContent = assessment.description || '';
     durationMinutes = assessment.duration_minutes || 30;
 
-    // Only start timer if student hasn't already submitted
-const { count: finalCount } = await supabaseClient
-    .from('student_answers')
-    .select('id', { count: 'exact', head: true })
-    .eq('matric_number', matricNumber)
-    .eq('assessment_id', assessmentId)
-    .eq('is_final', true);
+    const { count: finalCount } = await supabaseClient
+        .from('student_answers')
+        .select('id', { count: 'exact', head: true })
+        .eq('matric_number', matricNumber)
+        .eq('assessment_id', assessmentId)
+        .eq('is_final', true);
 
-if (finalCount === 0) {
-    const savedState = localStorage.getItem(
-        `exam_state_${assessmentId}_${matricNumber}`
-    );
+    if (finalCount === 0) {
+        const savedState = localStorage.getItem(
+            `exam_state_${assessmentId}_${matricNumber}`
+        );
 
-    if (savedState) {
-        const state = JSON.parse(savedState);
-        timeRemaining = state.timeRemaining || durationMinutes * 60;
+        if (savedState) {
+            const state = JSON.parse(savedState);
+            timeRemaining = state.timeRemaining || durationMinutes * 60;
+        } else {
+            timeRemaining = durationMinutes * 60;
+        }
+
+        startTimer();
     } else {
-        timeRemaining = durationMinutes * 60;
+        timeRemaining = 0;
+        timeDisplay.textContent = '00:00';
+        countdownBar.style.width = '0%';
     }
-
-    startTimer();
-} else {
-    timeRemaining = 0;
-    timeDisplay.textContent = '00:00';
-    countdownBar.style.width = '0%';
-}
 }
 
 // ================= LOAD QUESTIONS =================
 async function loadQuestions() {
     if (!assessmentId) return;
-    
+
     const { count, error: checkError } = await supabaseClient
-    .from('student_answers')
-    .select('id', { count: 'exact', head: true })
-    .eq('matric_number', matricNumber)
-    .eq('assessment_id', assessmentId)
-    .eq('is_final', true);
+        .from('student_answers')
+        .select('id', { count: 'exact', head: true })
+        .eq('matric_number', matricNumber)
+        .eq('assessment_id', assessmentId)
+        .eq('is_final', true);
 
-if (checkError) console.error('Check submission error:', checkError);
+    if (checkError) console.error(t("CHECK_SUBMISSION_ERROR"), checkError);
 
-if (count > 0) {
-    examMessage.textContent =
-        'You have already attempted this test/exam. Wait for the next schedule.';
+    if (count > 0) {
+        examMessage.textContent = t("ALREADY_ATTEMPTED");
 
-    prevBtn.disabled = true;
-    nextBtn.disabled = true;
-    reviewBtn.disabled = true;
-    finalSubmitBtn.disabled = true;
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        reviewBtn.disabled = true;
+        finalSubmitBtn.disabled = true;
 
-    return;
-}
+        return;
+    }
 
-    // 1. Fetch questions FIRST
     const { data, error } = await supabaseClient
         .from('questions')
         .select('*')
@@ -180,53 +180,51 @@ if (count > 0) {
         .order('question_order', { ascending: true });
 
     if (error || !data || data.length === 0) {
-        examMessage.textContent = "No questions available.";
+        examMessage.textContent = t("NO_QUESTIONS_AVAILABLE");
         return;
     }
 
-const { count: draftCount } = await supabaseClient
-    .from('student_answers')
-    .select('id', { count: 'exact', head: true })
-    .eq('matric_number', matricNumber)
-    .eq('assessment_id', assessmentId)
-    .eq('is_final', false);
+    const { count: draftCount } = await supabaseClient
+        .from('student_answers')
+        .select('id', { count: 'exact', head: true })
+        .eq('matric_number', matricNumber)
+        .eq('assessment_id', assessmentId)
+        .eq('is_final', false);
 
     // ================= RESTORE EXAM STATE =================
-const savedState = localStorage.getItem(
-    `exam_state_${assessmentId}_${matricNumber}`
-);
+    const savedState = localStorage.getItem(
+        `exam_state_${assessmentId}_${matricNumber}`
+    );
 
-let restored = false;
+    let restored = false;
 
-if (savedState && draftCount > 0) {
-    const state = JSON.parse(savedState);
+    if (savedState && draftCount > 0) {
+        const state = JSON.parse(savedState);
 
-    currentIndex = state.currentIndex || 0;
-    studentAnswers = state.studentAnswers || {};
-    timeRemaining = state.timeRemaining || durationMinutes * 60;
+        currentIndex = state.currentIndex || 0;
+        studentAnswers = state.studentAnswers || {};
+        timeRemaining = state.timeRemaining || durationMinutes * 60;
 
-    const orderMap = new Map();
-    data.forEach(q => orderMap.set(q.id, q));
+        const orderMap = new Map();
+        data.forEach(q => orderMap.set(q.id, q));
 
-    questions = state.questionsOrder
-        ? state.questionsOrder.map(id => orderMap.get(id)).filter(Boolean)
-        : data;
+        questions = state.questionsOrder
+            ? state.questionsOrder.map(id => orderMap.get(id)).filter(Boolean)
+            : data;
 
-    restored = true;
-} else {
-    // FIRST TIME ONLY → shuffle once
-    questions = shuffleArray(data).map(q => {
-        if (q.question_type === "mcq" && Array.isArray(q.options)) {
-            q.options = shuffleArray(q.options);
-        }
-        return q;
-    });
+        restored = true;
+    } else {
+        questions = shuffleArray(data).map(q => {
+            if (q.question_type === "mcq" && Array.isArray(q.options)) {
+                q.options = shuffleArray(q.options);
+            }
+            return q;
+        });
 
-    currentIndex = 0;
-    studentAnswers = {};
-}
+        currentIndex = 0;
+        studentAnswers = {};
+    }
 
-    // 5. Render + start saving
     renderQuestionWithProgress();
     saveExamState();
 
@@ -234,67 +232,94 @@ if (savedState && draftCount > 0) {
     finalSubmitBtn.disabled = false;
 }
 
-
 // ================= RENDER QUESTIONS =================
 function renderQuestion() {
     const q = questions[currentIndex];
-    questionsContainer.innerHTML = `<p>${currentIndex + 1}. ${q.question_text}</p>`;
 
-    // MCQ options
+    questionsContainer.innerHTML = `
+      <p>${currentIndex + 1}. ${q.question_text}</p>
+    `;
+
     if (q.question_type === 'mcq') {
+
         (q.options || []).forEach(opt => {
+
             const label = document.createElement('label');
+
             const input = document.createElement('input');
             input.type = 'radio';
             input.name = 'answer';
             input.value = opt;
+
             if (studentAnswers[q.id] === opt) input.checked = true;
 
             input.addEventListener('change', async () => {
-                studentAnswers[q.id] = input.value;
-                const { error } = await supabaseClient.from('student_answers').upsert({
-                    matric_number: matricNumber,
-                    assessment_id: assessmentId,
-                    question_id: q.id,
-                    answer_text: input.value,
-                    is_final: false
-                }, { onConflict: ['matric_number', 'question_id'] });
 
-                if (error) console.error('Auto-save error:', error);
+                studentAnswers[q.id] = input.value;
+
+                const { error } = await supabaseClient
+                    .from('student_answers')
+                    .upsert({
+                        matric_number: matricNumber,
+                        assessment_id: assessmentId,
+                        question_id: q.id,
+                        answer_text: input.value,
+                        is_final: false
+                    }, {
+                        onConflict: ['matric_number', 'question_id']
+                    });
+
+                if (error) console.error(t("AUTO_SAVE_ERROR"), error);
+
                 saveExamState();
             });
 
             label.appendChild(input);
             label.insertAdjacentText('beforeend', ` ${opt}`);
+
             questionsContainer.appendChild(label);
         });
+
     } else {
-        // Free text
+
         const textarea = document.createElement('textarea');
+
         textarea.value = studentAnswers[q.id] || '';
-        textarea.placeholder = 'Type your answer here...';
+        textarea.placeholder = t('TYPE_ANSWER_HERE');
         textarea.rows = 4;
         textarea.style.width = '100%';
+
         questionsContainer.appendChild(textarea);
 
         let typingTimer;
         const typingDelay = 800;
+
         textarea.addEventListener('input', () => {
+
             clearTimeout(typingTimer);
+
             typingTimer = setTimeout(async () => {
+
                 const answer = textarea.value.trim();
+
                 studentAnswers[q.id] = answer;
 
-                const { error } = await supabaseClient.from('student_answers').upsert({
-                    matric_number: matricNumber,
-                    assessment_id: assessmentId,
-                    question_id: q.id,
-                    answer_text: answer,
-                    is_final: false
-                }, { onConflict: ['matric_number', 'question_id'] });
+                const { error } = await supabaseClient
+                    .from('student_answers')
+                    .upsert({
+                        matric_number: matricNumber,
+                        assessment_id: assessmentId,
+                        question_id: q.id,
+                        answer_text: answer,
+                        is_final: false
+                    }, {
+                        onConflict: ['matric_number', 'question_id']
+                    });
 
-                if (error) console.error('Auto-save error:', error);
+                if (error) console.error(t("AUTO_SAVE_ERROR"), error);
+
                 saveExamState();
+
             }, typingDelay);
         });
     }
@@ -304,68 +329,89 @@ function renderQuestion() {
 function renderQuestionWithProgress() {
     renderQuestion();
     updateProgressBar();
+
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === questions.length - 1;
 }
 
 function updateProgressBar() {
+
     if (!questions || questions.length === 0) return;
+
     const percent = ((currentIndex + 1) / questions.length) * 100;
+
     progressBar.style.width = `${percent}%`;
 }
 
 prevBtn.addEventListener('click', async () => {
+
     await saveAnswer();
+
     if (currentIndex > 0) currentIndex--;
+
     renderQuestionWithProgress();
+
     saveExamState();
 });
 
 nextBtn.addEventListener('click', async () => {
+
     await saveAnswer();
+
     if (currentIndex < questions.length - 1) currentIndex++;
+
     renderQuestionWithProgress();
+
     saveExamState();
 });
 
 // ================= SAVE ANSWER =================
 async function saveAnswer() {
+
     const q = questions[currentIndex];
+
     if (!q) return;
 
     let answer = '';
+
     if (q.question_type === 'mcq') {
+
         const selected = document.querySelector('input[name="answer"]:checked');
+
         answer = selected ? selected.value : '';
+
     } else {
+
         const textarea = document.querySelector('textarea');
+
         answer = textarea ? textarea.value.trim() : '';
     }
 
     studentAnswers[q.id] = answer;
 
     const { error } = await supabaseClient
-  .from('student_answers')
-  .upsert(
-    {
-      matric_number: matricNumber,
-      assessment_id: assessmentId,
-      question_id: q.id,
-      answer_text: answer,
-      is_final: false,
-      updated_at: new Date().toISOString()
-    },
-    {
-      onConflict: 'matric_number,assessment_id,question_id'
-    }
-  );
+        .from('student_answers')
+        .upsert(
+            {
+                matric_number: matricNumber,
+                assessment_id: assessmentId,
+                question_id: q.id,
+                answer_text: answer,
+                is_final: false,
+                updated_at: new Date().toISOString()
+            },
+            {
+                onConflict: 'matric_number,assessment_id,question_id'
+            }
+        );
 
-if (error) {
-  console.error('Error saving answer:', error);
-}
+    if (error) {
+        console.error(t("SAVE_ANSWER_ERROR"), error);
+    }
 }
 
 function saveExamState() {
+
     const state = {
         assessmentId,
         currentIndex,
@@ -382,181 +428,210 @@ function saveExamState() {
 
 // ================= TIMER =================
 function startTimer() {
+
     if (timerInterval) clearInterval(timerInterval);
 
-    // Initialize countdown bar
     if (countdownBar) {
+
         countdownBar.classList.remove(
             'countdown-warning-mid',
             'countdown-warning-critical'
         );
-        countdownBar.classList.add('countdown-safe'); // 🟢 safe at start
+
+        countdownBar.classList.add('countdown-safe');
     }
 
-    // Hide 2-minute warning at start
     if (timeWarning) {
         timeWarning.classList.add('hidden');
     }
 
     timerInterval = setInterval(() => {
+
         if (testEnded) {
             clearInterval(timerInterval);
             return;
         }
 
         if (timeRemaining <= 0) {
+
             clearInterval(timerInterval);
-            alert('Time is up! Your answers will be submitted automatically.');
+
+            alert(t('TIME_UP'));
+
             finalSubmit();
+
             return;
         }
 
-        // Update timer display
         const minutes = Math.floor(timeRemaining / 60);
         const seconds = timeRemaining % 60;
-        timeDisplay.textContent = `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
 
-        // Update countdown bar width
+        timeDisplay.textContent =
+            `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+
         if (countdownBar) {
+
             const percent = (timeRemaining / (durationMinutes * 60)) * 100;
+
             countdownBar.style.width = `${percent}%`;
 
-            // 🔄 Reset classes before assigning new color
             countdownBar.classList.remove(
                 'countdown-safe',
                 'countdown-warning-mid',
                 'countdown-warning-critical'
             );
 
-            // 🟢 Safe: more than 5 minutes
             if (timeRemaining > 300) {
                 countdownBar.classList.add('countdown-safe');
             }
-            // 🟠 Mid warning: 5 → 2 minutes
             else if (timeRemaining > 120) {
                 countdownBar.classList.add('countdown-warning-mid');
             }
-            // 🔴 Critical: 2 minutes or less
             else {
                 countdownBar.classList.add('countdown-warning-critical');
             }
         }
 
-        // 🔔 Show 2-minute HTML warning only once
         if (!warningShown && timeRemaining <= 120) {
+
             warningShown = true;
+
             if (timeWarning) {
                 timeWarning.classList.remove('hidden');
             }
         }
 
         timeRemaining--;
+
     }, 1000);
 }
 
 // ================= REVIEW MODAL =================
 reviewBtn.addEventListener('click', async () => {
-    await saveAnswer(); // save latest
+
+    await saveAnswer();
 
     reviewList.innerHTML = '';
+
     questions.forEach((q, idx) => {
-    const li = document.createElement('li');
-    const answerText = studentAnswers[q.id] || '[❌ Not answered]';
 
-    li.dataset.index = idx; // 👈 key line
-    li.style.cursor = 'pointer';
+        const li = document.createElement('li');
 
-    li.innerHTML = `
-      <div class="question">${idx + 1}. ${q.question_text}</div>
-      <div class="answer">${answerText}</div>
-    `;
+        const answerText =
+            studentAnswers[q.id] || `[❌ ${t("NOT_ANSWERED")}]`;
 
-    li.addEventListener('click', async () => {
-        await saveAnswer();               // save current question safely
-        currentIndex = idx;               // jump to clicked question
-        renderQuestionWithProgress();     // reuse existing renderer
-        reviewModal.style.display = 'none';
+        li.dataset.index = idx;
+        li.style.cursor = 'pointer';
+
+        li.innerHTML = `
+          <div class="question">${idx + 1}. ${q.question_text}</div>
+          <div class="answer">${answerText}</div>
+        `;
+
+        li.addEventListener('click', async () => {
+
+            await saveAnswer();
+
+            currentIndex = idx;
+
+            renderQuestionWithProgress();
+
+            reviewModal.style.display = 'none';
+        });
+
+        reviewList.appendChild(li);
     });
-
-    reviewList.appendChild(li);
-});
 
     reviewModal.style.display = 'flex';
 });
 
 window.addEventListener('click', e => {
-    if (e.target === reviewModal) reviewModal.style.display = 'none';
+    if (e.target === reviewModal) {
+        reviewModal.style.display = 'none';
+    }
 });
 
 // ================= FINAL SUBMIT =================
 async function finalSubmit() {
+
     if (testEnded) return;
 
     if (!finalSubmitBtn) return;
 
-    // Show loading
     const originalText = finalSubmitBtn.textContent;
-    finalSubmitBtn.textContent = 'Loading...';
+
+    finalSubmitBtn.textContent = t('LOADING');
     finalSubmitBtn.disabled = true;
 
     try {
+
         await saveAnswer();
 
-        // 🚫 Block final submit if unanswered questions exist
-const unanswered = questions.some(q => {
-    const ans = studentAnswers[q.id];
-    return !ans || ans.trim() === '';
-});
+        const unanswered = questions.some(q => {
+            const ans = studentAnswers[q.id];
+            return !ans || ans.trim() === '';
+        });
 
-if (unanswered) {
+        if (unanswered) {
 
-    const confirmSubmit = confirm(
-        "You still have unanswered questions.\n\nPress OK to submit anyway or Cancel to continue reviewing."
-    );
+            const confirmSubmit = confirm(
+                t('UNANSWERED_CONFIRM')
+            );
 
-    if (!confirmSubmit) {
-        reviewBtn.click();
+            if (!confirmSubmit) {
 
-        finalSubmitBtn.textContent = originalText;
-        finalSubmitBtn.disabled = false;
-        return;
-    }
-}
+                reviewBtn.click();
+
+                finalSubmitBtn.textContent = originalText;
+                finalSubmitBtn.disabled = false;
+
+                return;
+            }
+        }
 
         for (let qid in studentAnswers) {
-            await supabaseClient.from('student_answers').update({ is_final: true })
+
+            await supabaseClient
+                .from('student_answers')
+                .update({ is_final: true })
                 .eq('matric_number', matricNumber)
                 .eq('question_id', qid);
         }
 
-        const { data, error } = await supabaseClient.rpc('grade_student_assessment', {
-            p_student_matric: matricNumber,
-            p_assessment_id: assessmentId
-        });
+        const { data, error } = await supabaseClient.rpc(
+            'grade_student_assessment',
+            {
+                p_student_matric: matricNumber,
+                p_assessment_id: assessmentId
+            }
+        );
 
         if (error) {
-            alert('Error grading exam. Check console.');
+
+            alert(t('GRADING_ERROR'));
+
             console.error(error);
+
             return;
         }
 
         testEnded = true;
 
-if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-}
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
 
-// ✅ CLEAR SAVED EXAM STATE
-localStorage.removeItem(
-    `exam_state_${assessmentId}_${matricNumber}`
-);
+        localStorage.removeItem(
+            `exam_state_${assessmentId}_${matricNumber}`
+        );
 
-reviewModal.style.display = 'none';
-endTestSession();
+        reviewModal.style.display = 'none';
+
+        endTestSession();
 
     } finally {
-        // Restore button
+
         finalSubmitBtn.textContent = originalText;
         finalSubmitBtn.disabled = false;
     }
@@ -565,27 +640,32 @@ endTestSession();
 finalSubmitBtn.addEventListener('click', finalSubmit);
 
 function endTestSession() {
-    // Stop timer
+
     if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
     }
 
-    // Disable controls
     prevBtn.disabled = true;
     nextBtn.disabled = true;
     reviewBtn.disabled = true;
     finalSubmitBtn.disabled = true;
 
-    // Show completion modal
     const completionModal = document.getElementById('completionModal');
+
     completionModal.style.display = 'flex';
 }
 
 // ================= INIT =================
 document.addEventListener('DOMContentLoaded', async () => {
+
     await loadActiveAssessment();
+
     await loadQuestions();
+
+    if (window.translatePage) {
+        translatePage();
+    }
 });
 
 document.getElementById('goDashboardBtn').onclick = () => {
@@ -599,7 +679,10 @@ document.getElementById('closeReviewModal').addEventListener('click', () => {
 document.getElementById('backToExamBtn').addEventListener('click', () => {
     reviewModal.style.display = 'none';
 });
+
 document.getElementById('logoutBtn').onclick = () => {
+
     sessionStorage.clear();
+
     window.location.href = "login.html";
 };
