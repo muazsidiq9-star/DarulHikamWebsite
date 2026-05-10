@@ -14,6 +14,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" href="favicon.ico">
 <link rel="manifest" href="site.webmanifest">
+</head>
 <body>
 
 <!-- Navigation -->
@@ -35,8 +36,8 @@
 <!-- Header / Welcome Section -->
  <div class="page-content">
 <header class="hall-header">
-  <h1 id="examTitle">Loading Test/Exam...</h1>
-  <p id="examMessage">Please wait while we fetch your upcoming test/exam details.</p>
+  <h1 id="examTitle"></h1>
+<p id="examMessage"></p>
 </header>
 
 <!-- Info Section -->
@@ -46,7 +47,7 @@
 
 <!-- Attempt Button -->
 <div style="text-align:center; margin:2rem 0;">
-  <button id="attemptBtn" class="btn-primary" disabled>Loading...</button>
+  <button id="attemptBtn" class="btn-primary" disabled></button>
 </div>
 </div>
 
@@ -71,6 +72,46 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const matric = sessionStorage.getItem("matric");
+
+  function setExamReadyUI(exam, startTime, endTime, now) {
+  const btn = document.getElementById("attemptBtn");
+
+  // Header ALWAYS gets updated here
+  if (now >= startTime && now <= endTime && exam.is_active === true) {
+    examTitle.textContent = `Ongoing ${exam.type}`;
+    examMessage.textContent = "Your assessment is currently ongoing. Click below to begin.";
+
+    btn.disabled = false;
+    btn.setAttribute("data-no-translate", "true");
+btn.innerHTML = "Attempt Test/Exam";
+
+  } else if (now < startTime) {
+    examTitle.textContent = `Upcoming ${exam.type}`;
+    examMessage.textContent = `Scheduled to start on ${startTime.toLocaleString()}.`;
+
+    btn.disabled = true;
+    btn.setAttribute("data-no-translate", "true");
+btn.innerHTML = "Not Yet Available";
+
+  } else if (now >= startTime && exam.is_active === false) {
+    examTitle.textContent = `${exam.type} Not Yet Activated`;
+    examMessage.textContent = "Please wait for your instructor to activate this assessment.";
+
+    btn.disabled = true;
+    btn.setAttribute("data-no-translate", "true");
+btn.innerHTML = "Waiting Activation";
+
+  } else if (now > endTime) {
+    examTitle.textContent = `${exam.type} Ended`;
+    examMessage.textContent = "This assessment has ended.";
+
+    btn.disabled = true;
+    btn.setAttribute("data-no-translate", "true");
+btn.innerHTML = "Closed";
+  }
+
+  btn.style.display = "inline-block";
+}
 
   async function fetchUpcomingExam() {
     if (!matric) {
@@ -141,44 +182,28 @@
 
       const btn = document.getElementById("attemptBtn");
 
-      if (now >= startTime && now <= endTime && exam.is_active === true) {
-        document.getElementById("examTitle").textContent = `Ongoing ${exam.type}`;
-        document.getElementById("examMessage").textContent =
-          "Your assessment is currently ongoing. Click below to begin.";
-        btn.disabled = false;
-        btn.textContent = "Attempt Test/Exam";
-      } else if (now < startTime) {
-        document.getElementById("examTitle").textContent = `Upcoming ${exam.type}`;
-        document.getElementById("examMessage").textContent =
-          `Scheduled to start on ${startTime.toLocaleString()}.`;
-        btn.disabled = true;
-        btn.textContent = "Not Yet Available";
-      } else if (now >= startTime && exam.is_active === false) {
-        document.getElementById("examTitle").textContent = `${exam.type} Not Yet Activated`;
-        document.getElementById("examMessage").textContent =
-          "Please wait for your instructor to activate this assessment.";
-        btn.disabled = true;
-        btn.textContent = "Waiting Activation";
-      } else if (now > endTime) {
-        document.getElementById("examTitle").textContent = `${exam.type} Ended`;
-        document.getElementById("examMessage").textContent =
-          "This assessment has ended.";
-        btn.disabled = true;
-        btn.textContent = "Closed";
-      }
-      reTranslate();
+setExamReadyUI(exam, startTime, endTime, now);
 
-      btn.onclick = async () => {
-        if (btn.disabled) return;
+reTranslate();
+      
 
-        btn.innerHTML = `<span class="spinner" style="margin-right:5px;display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top:2px solid transparent;border-radius:50%;animation:spin 1s linear infinite;"></span> Loading...`;
-        btn.disabled = true;
+btn.onclick = async () => {
 
-        await new Promise(resolve => setTimeout(resolve, 100));
+  if (btn.disabled) return;
 
-        sessionStorage.setItem("examId", exam.id);
-        window.location.href = "test-hall.html";
-      };
+  btn.disabled = true;
+
+  btn.innerHTML = `
+    <span class="spinner" data-no-translate="true"></span>
+    <span data-no-translate="true"> Loading...</span>
+  `;
+
+  await new Promise(resolve => setTimeout(resolve, 100));
+
+  sessionStorage.setItem("examId", exam.id);
+
+  window.location.href = "test-hall.html";
+};
     } catch (err) {
       console.error(err);
       document.getElementById("examTitle").textContent = "Error fetching exam.";
@@ -186,7 +211,19 @@
     }
   }
 
-  fetchUpcomingExam();
+  document.addEventListener("DOMContentLoaded", async () => {
+
+  const btn = document.getElementById("attemptBtn");
+
+btn.setAttribute("data-no-translate", "true");
+btn.innerHTML = "Loading...";
+btn.disabled = true;
+  await fetchUpcomingExam();
+
+  if (window.reTranslate) {
+    reTranslate();
+  }
+});
 </script>
 <script>
   // ===== Hamburger Menu =====

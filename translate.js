@@ -1230,6 +1230,8 @@ const DICT = {
 "Your assessment is currently ongoing. Click below to begin.": "الاختبار جارٍ حاليًا. اضغط أدناه للبدء.",
 
 "Attempt Test/Exam": "بدء الاختبار/الامتحان",
+"ATTEMPT_TEST": "Attempt Test/Exam",
+"ATTEMPT_TEST": "محاولة الاختبار",
 
 "Upcoming Test": "اختبار قادم",
 "Upcoming Exam": "امتحان قادم",
@@ -1506,6 +1508,12 @@ copy: "نسخ",
 
 "FETCH_EXAM_ERROR": "حدث خطأ أثناء تحميل الاختبار",
 "NO_SCHEDULED_ASSESSMENT": "لا يوجد اختبار مجدول حاليًا",
+
+"ATTEMPT_TEST": "Attempt Test/Exam",
+"NOT_YET_AVAILABLE": "Not Yet Available",
+"WAITING_ACTIVATION": "Waiting Activation",
+"CLOSED": "Closed",
+"LOADING": "جارٍ التحميل...",
 
     "Payment Recorded": "تم تسجيل الدفع",
     "Payment Confirmed": "تم تأكيد الدفع",
