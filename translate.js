@@ -807,14 +807,14 @@ const DICT = {
   "Enhance your Arabic vocabulary, grammar, and conversational skills.": "عزز مفرداتك العربية وقواعد اللغة ومهارات المحادثة.",
 
   "Advanced Arabic": "العربية المتقدمة",
-  "Refine your fluency and understanding of complex Arabic texts and conversations.": "قم بتحسين طلاقتك وفهمك للنصوص العربية والمحادثات المعقدة.",
+  "Refine your fluency of complex Arabic texts and conversations.": "قم بتحسين طلاقتك وفهمك للنصوص العربية والمحادثات المعقدة.",
 
   "Tajweedul Qur'an": "تجويد القرآن",
   "Master the rules of Qur’anic recitation and improve pronunciation.": "اتقن قواعد تلاوة القرآن وحسّن النطق.",
 
   // Coming Soon Courses
   "Conversational Arabic": "العربية المحادثة",
-  "Coming soon! Focus on real-life speaking skills.": "قريباً! ركز على مهارات التحدث الواقعية.",
+  "Coming soon! Focus on real-life speaking skills and practical communication.": "قريباً! ركز على مهارات التحدث الواقعية والاتصال العملي.",
 
   "Nahw (Grammar)": "النحو",
   "Coming soon! Learn Arabic sentence structure and grammar rules.": "قريباً! تعلم تركيب الجملة العربية وقواعد اللغة.",
@@ -844,7 +844,7 @@ const DICT = {
   "Coming soon! Study Islamic jurisprudence and practical rulings.": "قريباً! ادرس الفقه الإسلامي والأحكام العملية.",
 
   "Seerah/Taareekh": "السيرة/التاريخ",
-  "Coming soon! Study Islamic stories and histories.": "قريباً! ادرس القصص الإسلامية والتواريخ.",
+  "Coming soon! Study Islamic stories and histories from the life of the Prophet ﷺ.": "قريباً! ادرس القصص الإسلامية والتواريخ من حياة النبي ﷺ.",
 
 
   /* ===== Advanced Arabic Course ===== */

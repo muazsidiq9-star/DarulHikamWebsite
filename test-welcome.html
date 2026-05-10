@@ -34,11 +34,12 @@
 </nav>
 
 <!-- Header / Welcome Section -->
- <div class="page-content">
-<header class="hall-header">
-  <h1 id="examTitle"></h1>
-<p id="examMessage"></p>
-</header>
+ <!-- Header / Welcome Section -->
+<div class="page-content">
+  <header class="hall-header">
+    <h1 id="examTitle" data-no-translate="true">Loading Test/Exam...</h1>
+<p id="examMessage" data-no-translate="true">Please wait while we fetch your upcoming test/exam details.</p>
+  </header>
 
 <!-- Info Section -->
 <section class="exam-info" id="examInfo">
@@ -72,6 +73,9 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const matric = sessionStorage.getItem("matric");
+
+const examTitle = document.getElementById("examTitle");
+const examMessage = document.getElementById("examMessage");
 
   function setExamReadyUI(exam, startTime, endTime, now) {
   const btn = document.getElementById("attemptBtn");
@@ -154,6 +158,7 @@ btn.innerHTML = "Closed";
         exams.find(e => new Date(e.start_time) > now) ||
         exams.find(e => new Date(e.start_time) <= now && new Date(e.end_time) >= now && e.is_active === false) ||
         null;
+        console.log("SELECTED EXAM:", exam);
 
       if (!exam) {
         document.getElementById("examTitle").textContent = "No Active Test / Exam";
@@ -178,13 +183,13 @@ btn.innerHTML = "Closed";
   <p><strong>${t("Start Time:")}</strong> ${startTime.toLocaleString()}</p>
   <p><strong>${t("End Time:")}</strong> ${endTime.toLocaleString()}</p>
 `;
-      reTranslate();
+      if (window.reTranslate) {
+  reTranslate();
+}
 
       const btn = document.getElementById("attemptBtn");
 
 setExamReadyUI(exam, startTime, endTime, now);
-
-reTranslate();
       
 
 btn.onclick = async () => {
