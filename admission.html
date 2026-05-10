@@ -149,7 +149,7 @@ For PDF → Choose "Save as PDF"
 
   function generateDocNumber(matric) {
   const year = new Date().getFullYear();
-  return `ABI-ADM-${year}-${matric}`;
+  return `DUH-ADM-${year}-${matric}`;
 }
 
 async function loadAdmission() {
@@ -195,7 +195,7 @@ async function loadAdmission() {
   const docNumber = generateDocNumber(data.matric_number);
   document.getElementById("docRef").textContent = docNumber;
 
-  const verificationURL = `https://albayan.edu.ng/verify.html?doc=${docNumber}`;
+  const verificationURL = `https://darulhikam.netlify.app/verify.html?doc=${docNumber}`;
 
   QRCode.toDataURL(verificationURL, function(err, url) {
     document.getElementById("qrCode").src = url;

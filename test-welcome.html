@@ -128,15 +128,16 @@
       const endTime = new Date(exam.end_time);
 
       examInfoEl.innerHTML = `
-        <p><strong>Level:</strong> ${exam.level_arabic}</p>
-        <p><strong>Semester:</strong> ${exam.semester}</p>
-        <p><strong>Course:</strong> ${exam.course}</p>
-        <p><strong>Type:</strong> ${exam.type}</p>
-        <p><strong>Duration:</strong> ${exam.duration_minutes} minutes</p>
-        <p><strong>Status:</strong> ${exam.status}</p>
-        <p><strong>Start Time:</strong> ${startTime.toLocaleString()}</p>
-        <p><strong>End Time:</strong> ${endTime.toLocaleString()}</p>
-      `;
+  <p><strong>${t("Level:")}</strong> ${exam.level_arabic}</p>
+  <p><strong>${t("Semester:")}</strong> ${exam.semester}</p>
+  <p><strong>${t("Course:")}</strong> ${exam.course}</p>
+  <p><strong>${t("Type:")}</strong> ${exam.type}</p>
+  <p><strong>${t("Duration:")}</strong> ${exam.duration_minutes} ${t("minutes")}</p>
+  <p><strong>${t("Status:")}</strong> ${exam.status}</p>
+  <p><strong>${t("Start Time:")}</strong> ${startTime.toLocaleString()}</p>
+  <p><strong>${t("End Time:")}</strong> ${endTime.toLocaleString()}</p>
+`;
+      reTranslate();
 
       const btn = document.getElementById("attemptBtn");
 
@@ -165,6 +166,7 @@
         btn.disabled = true;
         btn.textContent = "Closed";
       }
+      reTranslate();
 
       btn.onclick = async () => {
         if (btn.disabled) return;
