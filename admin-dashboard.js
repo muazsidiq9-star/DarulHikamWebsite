@@ -17,6 +17,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // ===========================
+// SESSION TIME LIMIT
+// ===========================
+const SESSION_TIMEOUT = 1000 * 60 * 60 * 6; // 6 hours
+
+const loginTime = localStorage.getItem("loginTime");
+
+if (!loginTime) {
+
+  localStorage.setItem("loginTime", Date.now());
+
+} else {
+
+  const now = Date.now();
+
+  if (now - Number(loginTime) > SESSION_TIMEOUT) {
+
+    await db.auth.signOut();
+
+    sessionStorage.clear();
+    localStorage.removeItem("loginTime");
+
+    window.location.href = "login.html";
+    return;
+  }
+}
+
+    // ===========================
     // GET ROLE
     // ===========================
     const { data: profile, error: roleError } = await db
@@ -33,6 +60,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "login.html";
       return; // ❗ stop execution
     }
+
+    localStorage.setItem("loginTime", Date.now());
 
     // ===========================
     // STORE ROLE
@@ -1909,10 +1938,19 @@ async function sendSingleEmail(student) {
 // Logout
 // ===========================
 const logoutBtn = document.getElementById("logoutBtn");
+
 if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
+  logoutBtn.addEventListener("click", async () => {
+
+    // Proper Supabase logout
+    await db.auth.signOut();
+
+    // Clear storage
     sessionStorage.clear();
     localStorage.removeItem("rememberedEmail");
+    localStorage.removeItem("loginTime");
+
+    // Redirect
     window.location.href = "login.html";
   });
 }
