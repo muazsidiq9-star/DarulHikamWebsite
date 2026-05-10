@@ -146,6 +146,9 @@ async function loadActiveAssessment() {
         timeDisplay.textContent = '00:00';
         countdownBar.style.width = '0%';
     }
+    setTimeout(() => {
+  if (window.translatePage) translatePage();
+}, 200);
 }
 
 // ================= LOAD QUESTIONS =================
@@ -693,7 +696,10 @@ function endTestSession() {
 
     completionModal.style.display = 'flex';
 }
-
+console.log("HEADER UPDATED:", examTitle.textContent);
+setInterval(() => {
+  console.log("TITLE:", examTitle.textContent);
+}, 2000);
 // ================= INIT =================
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -701,9 +707,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await loadQuestions();
 
-    if (window.translatePage) {
-        translatePage();
-    }
+setTimeout(() => {
+  if (window.translatePage) translatePage();
+}, 300);
 });
 
 document.getElementById('goDashboardBtn').onclick = () => {
