@@ -39,7 +39,7 @@
   <header class="hall-header" style="background-image: url('background-main.jpg');">
     <div class="header-overlay">
     <h1 id="examTitle" data-no-translate="true">Loading Test/Exam...</h1>
-<p id="examMessage" data-no-translate="true">Please wait while we fetch your upcoming test/exam details.</p>
+<p id="examMessage" data-no-translate="true">Please wait while we fetch your upcoming test/exam details</p>
   </div>
 </header>
 
@@ -62,7 +62,9 @@
 <footer>
   <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
   <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
-  <p>© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.</p>
+  <p id="footerCopyright">
+  © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
+</p>
 </footer>
 
 <!-- Scripts -->
@@ -85,7 +87,7 @@ const examMessage = document.getElementById("examMessage");
   // Header ALWAYS gets updated here
   if (now >= startTime && now <= endTime && exam.is_active === true) {
     examTitle.textContent = `Ongoing ${exam.type}`;
-    examMessage.textContent = "Your assessment is currently ongoing. Click below to begin.";
+    examMessage.textContent = "Your assessment is currently ongoing. Click below to begin";
 
     btn.disabled = false;
     btn.setAttribute("data-no-translate", "true");
@@ -101,7 +103,7 @@ btn.innerHTML = "Not Yet Available";
 
   } else if (now >= startTime && exam.is_active === false) {
     examTitle.textContent = `${exam.type} Not Yet Activated`;
-    examMessage.textContent = "Please wait for your instructor to activate this assessment.";
+    examMessage.textContent = "Please wait for your instructor to activate this assessment";
 
     btn.disabled = true;
     btn.setAttribute("data-no-translate", "true");
@@ -109,7 +111,7 @@ btn.innerHTML = "Waiting Activation";
 
   } else if (now > endTime) {
     examTitle.textContent = `${exam.type} Ended`;
-    examMessage.textContent = "This assessment has ended.";
+    examMessage.textContent = "This assessment has ended";
 
     btn.disabled = true;
     btn.setAttribute("data-no-translate", "true");
@@ -148,7 +150,7 @@ btn.innerHTML = "Closed";
       if (!exams || exams.length === 0) {
         document.getElementById("examTitle").textContent = "No Test / Exam";
         document.getElementById("examMessage").textContent =
-          "There is no scheduled test or exam at the moment.";
+          "There is no scheduled test or exam at the moment";
         return;
       }
 
@@ -164,7 +166,7 @@ btn.innerHTML = "Closed";
 
       if (!exam) {
         document.getElementById("examTitle").textContent = "No Active Test / Exam";
-        document.getElementById("examMessage").textContent = "Please check back later.";
+        document.getElementById("examMessage").textContent = "Please check back later";
         return;
       }
 
@@ -213,8 +215,8 @@ btn.onclick = async () => {
 };
     } catch (err) {
       console.error(err);
-      document.getElementById("examTitle").textContent = "Error fetching exam.";
-      document.getElementById("examMessage").textContent = "Please try again later.";
+      document.getElementById("examTitle").textContent = "Error fetching exam";
+      document.getElementById("examMessage").textContent = "Please try again later";
     }
   }
 

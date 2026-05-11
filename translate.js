@@ -474,7 +474,7 @@ const DICT = {
   "Access PDFs, videos, and other study materials for your courses":
     "الوصول إلى ملفات PDF والفيديوهات والمواد الدراسية الخاصة بك",
 
-  "📚 Open Full Library": "📚 فتح المكتبة الكاملة",
+    "📚 Open Full Library": "📚 فتح المكتبة الكاملة",
 
   "All Categories": "كل التصنيفات",
   "Madinah": "المدينة",
@@ -526,7 +526,7 @@ const DICT = {
 "Time": "الوقت",
 "Link": "الرابط",
 "Status": "الحالة",
-"Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054": "البريد الإلكتروني: daralulumwalhikam20@gmail.com | الهاتف: +2348110705054",
+"Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054": "البريد الإلكتروني: daralulumwalhikam20@gmail.com | الهاتف: ٠٨١١٠٧٠٥٠٥٤",
 "© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.": "© 2022 معهد دار العلوم والحكم للدراسات العربية والإسلامية عبر الإنترنت. جميع الحقوق محفوظة.",
 "View your Upcoming Test/Exam Schedule": "عرض توقيت الاختبارات / المتحانات القادمة",
 
@@ -567,7 +567,7 @@ const DICT = {
 "Download My Grades (PDF)": "تحميل الدرجات (PDF)",
 
 "Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054":
-"البريد الإلكتروني: daralulumwalhikam20@gmail.com | الهاتف: +2348110705054",
+"البريد الإلكتروني: daralulumwalhikam20@gmail.com | الهاتف: ٠٨١١٠٧٠٥٠٥٤",
 
 // ======= STUDENT GRADES (JS) =======
 
@@ -1326,203 +1326,252 @@ const DICT = {
 
 "Close": "إغلاق",
 "Submit anyway": "إرسال على أي حال",
+"Continue reviewing": "متابعة المراجعة",
 
-/* ===== DYNAMIC TEMPLATES ===== */
+"Auto-save error:": "خطأ في الحفظ التلقائي:",
+"Error saving answer:": "خطأ في حفظ الإجابة:",
+"Check Fees Error:": "خطأ في التحقق من الرسوم:",
+"Load assessment error:": "خطأ في تحميل الاختبار:",
+"Check submission error:": "خطأ في التحقق من الإرسال:",
 
-  en: {
-    PAYMENT_RECORDED: "Payment of ₦{amount} for {month} has been recorded",
-    PAYMENT_CONFIRMED: "Your payment of ₦{amount} for {month} has been confirmed",
-    GRADE_RELEASED: "Your grade for {course} has been released",
-    CLASS_SCHEDULED: "Your {course} class is scheduled on {date} at {time}",
+"© {year} Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.":
+"© {year} دار العلوم والحكم لتعليم العربية والدراسات الإسلامية أونلاين. جميع الحقوق محفوظة.",
 
-    month_payment: "{month} Payment",
-    month_amount: "{month} Amount",
+  /* ===== DYNAMIC TEMPLATES ===== */
 
-    outstanding_payment: "Outstanding Payment",
-outstanding_message: "Please complete your payment of {amount} for {months}",
-pay_now: "Pay Now",
+en: {
 
-payment_reminder: "You have an outstanding payment of {amount} for {months}. Please complete your payment.",
+  ACCESS_DENIED: "Access Denied",
+  PAYMENT_REQUIRED: "Payment Required To Access This Examination",
+  SESSION_EXPIRED: "Session expired",
+  NO_ACTIVE_ASSESSMENT: "No active assessment",
 
-outstanding_payment: "Outstanding Payment",
-outstanding_message: "You have pending payment of {amount} for {months}",
-pay_now: "Pay Now",
+  PAYMENT_RECORDED: "Payment of ₦{amount} for {month} has been recorded",
+  PAYMENT_CONFIRMED: "Your payment of ₦{amount} for {month} has been confirmed",
+  GRADE_RELEASED: "Your grade for {course} has been released",
+  CLASS_SCHEDULED: "Your {course} class is scheduled on {date} at {time}",
 
-level: "Level",
-instructor: "Instructor",
+  month_payment: "{month} Payment",
+  month_amount: "{month} Amount",
 
-register: "Register",
-registered: "✅ Registered",
+  outstanding_payment: "Outstanding Payment",
+  outstanding_message: "You have pending payment of {amount} for {months}",
+  pay_now: "Pay Now",
 
-no_courses: "You have not enrolled in any courses yet.",
+  payment_reminder: "You have an outstanding payment of {amount} for {months}. Please complete your payment.",
 
-view_schedule: "View Schedule",
-unregister: "Unregister",
+  level: "Level",
+  instructor: "Instructor",
 
-paid: "✅ Paid",
-unpaid: "❌ Unpaid",
+  register: "Register",
+  registered: "✅ Registered",
 
-payment_month: "{month} Payment",
-last_paid: "Last paid: {month}",
-no_payment_yet: "No payment yet",
-month_amount: "{month} Amount",
+  no_courses: "You have not enrolled in any courses yet.",
 
-theme_light: "Light",
-theme_dark: "Dark",
-theme_system: "System",
-remember_me: "Remember me",
-login_required_exam: "Please login to view your exam timetable",
+  view_schedule: "View Schedule",
+  unregister: "Unregister",
 
-registration_successful: "Registration successful 🎉",
-matric_info: "Your Matric Number (Default Password): {matric}",
-copy: "Copy",
+  paid: "✅ Paid",
+  unpaid: "❌ Unpaid",
 
-"SCHEDULED_TO_START": "Scheduled to start on {date}",
-"ASSESSMENT_LEVEL": "Level: {level}",
-"ASSESSMENT_DURATION": "Duration: {duration} minutes",
-"ASSESSMENT_STATUS": "Status: {status}",
-"ASSESSMENT_TYPE": "Type: {type}",
-"ASSESSMENT_COURSE": "Course: {course}",
-"ASSESSMENT_SEMESTER": "Semester: {semester}",
+  payment_month: "{month} Payment",
+  last_paid: "Last paid: {month}",
+  no_payment_yet: "No payment yet",
 
-"ONGOING_ASSESSMENT": "Assessment is currently ongoing",
-"WAITING_ACTIVATION": "Waiting for activation",
-"ASSESSMENT_ENDED": "Assessment has ended",
-"ASSESSMENT_CLOSED": "Assessment is closed",
+  theme_light: "Light",
+  theme_dark: "Dark",
+  theme_system: "System",
 
-"CLICK_BELOW_TO_BEGIN": "Click below to begin",
-"WAIT_FOR_INSTRUCTOR": "Please wait for your instructor to activate this assessment",
+  remember_me: "Remember me",
 
-"FETCH_EXAM_ERROR": "Error loading assessment",
-"NO_SCHEDULED_ASSESSMENT": "No scheduled assessment at the moment",
+  login_required_exam: "Please login to view your exam timetable",
 
-SUPABASE_LOADED: "Supabase loaded",
-SESSION_EXPIRED: "Session expired. Please log in again.",
-CHECK_FEES_ERROR: "Check Fees Error:",
-ACCESS_DENIED: "Access Denied",
-PAYMENT_REQUIRED: "You have not completed payment for this month.",
-LOAD_ASSESSMENT_ERROR: "Load assessment error:",
-NO_ACTIVE_ASSESSMENT: "No Active Test / Exam",
-PLEASE_CHECK_LATER: "Please check back later.",
-CHECK_SUBMISSION_ERROR: "Check submission error:",
-ALREADY_ATTEMPTED: "You have already attempted this test/exam. Wait for the next schedule.",
-NO_QUESTIONS_AVAILABLE: "No questions available.",
-AUTO_SAVE_ERROR: "Auto-save error:",
-TYPE_ANSWER_HERE: "Type your answer here...",
-SAVE_ANSWER_ERROR: "Error saving answer:",
-TIME_UP: "Time is up! Your answers will be submitted automatically.",
-NOT_ANSWERED: "Not answered",
-LOADING: "Loading...",
-UNANSWERED_CONFIRM: "You still have unanswered questions.\n\nPress OK to submit anyway or Cancel to continue reviewing.",
-GRADING_ERROR: "Error grading exam. Check console.",
+  registration_successful: "Registration successful 🎉",
 
+  matric_info: "Your Matric Number (Default Password): {matric}",
 
-    "Payment Recorded": "Payment Recorded",
-    "Payment Confirmed": "Payment Confirmed",
-    "New Grade Posted": "New Grade Posted",
-    "New Class Scheduled": "New Class Scheduled"
-  },
+  copy: "Copy",
 
-  ar: {
-    PAYMENT_RECORDED: "تم تسجيل دفعة قدرها ₦{amount} لشهر {month}.",
-    PAYMENT_CONFIRMED: "تم تأكيد دفعتك بقيمة ₦{amount} لشهر {month}.",
-    GRADE_RELEASED: "تم نشر درجتك لمادة {course}.",
-    CLASS_SCHEDULED: "تم تحديد حصة {course} بتاريخ {date} الساعة {time}.",
+  SCHEDULED_TO_START: "Scheduled to start on {date}",
+  ASSESSMENT_LEVEL: "Level: {level}",
+  ASSESSMENT_DURATION: "Duration: {duration} minutes",
+  ASSESSMENT_STATUS: "Status: {status}",
+  ASSESSMENT_TYPE: "Type: {type}",
+  ASSESSMENT_COURSE: "Course: {course}",
+  ASSESSMENT_SEMESTER: "Semester: {semester}",
 
-    month_payment: "دفع {month}",
-    month_amount: "مبلغ {month}",
+  ONGOING_ASSESSMENT: "Assessment is currently ongoing",
+  WAITING_ACTIVATION: "Waiting for activation",
+  ASSESSMENT_ENDED: "Assessment has ended",
+  ASSESSMENT_CLOSED: "Assessment is closed",
 
-    outstanding_payment: "مبلغ مستحق",
-outstanding_message: "يرجى إكمال دفع مبلغ {amount} عن {months}",
-pay_now: "ادفع الآن",
-payment_reminder: "لديك مبلغ مستحق بقيمة {amount} عن {months}. يرجى إكمال الدفع.",
+  CLICK_BELOW_TO_BEGIN: "Click below to begin",
+  WAIT_FOR_INSTRUCTOR: "Please wait for your instructor to activate this assessment",
 
-outstanding_payment: "مبلغ مستحق",
-outstanding_message: "لديك دفعة معلقة بقيمة {amount} عن {months}",
-pay_now: "ادفع الآن",
+  FETCH_EXAM_ERROR: "Error loading assessment",
+  NO_SCHEDULED_ASSESSMENT: "No scheduled assessment at the moment",
 
-level: "المستوى",
-instructor: "المحاضر",
+  ATTEMPT_TEST: "Attempt Test/Exam",
+  NOT_YET_AVAILABLE: "Not Yet Available",
+  CLOSED: "Closed",
 
-register: "تسجيل",
-registered: "✅ تم التسجيل",
+  LOADING: "Loading...",
 
-no_courses: "لم تقم بالتسجيل في أي مادة بعد.",
+  NOT_ANSWERED: "Not answered",
 
-view_schedule: "عرض الجدول",
-unregister: "إلغاء التسجيل",
+  TYPE_ANSWER_HERE: "Type your answer here...",
 
-paid: "✅ مدفوع",
-unpaid: "❌ غير مدفوع",
+  TIME_UP: "Time is up! Your answers will be submitted automatically.",
 
-payment_month: "دفع {month}",
-last_paid: "آخر دفع: {month}",
-no_payment_yet: "لا يوجد دفع بعد",
-month_amount: "مبلغ {month}",
+  UNANSWERED_CONFIRM:
+    "You still have unanswered questions.\n\nPress OK to submit anyway or Cancel to continue reviewing.",
 
-theme_light: "فاتح",
-theme_dark: "داكن",
-theme_system: "تلقائي",
-remember_me: "تذكرني",
-login_required_exam: "يرجى تسجيل الدخول لعرض جدول الاختبارات",
-registration_successful: "تم التسجيل بنجاح 🎉",
-matric_info: "رقمك الجامعي (كلمة المرور الافتراضية): {matric}",
-copy: "نسخ",
+  GRADING_ERROR: "Error grading exam. Check console.",
 
-"Supabase loaded": "تم تحميل Supabase",
-"Session expired. Please log in again.": "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.",
-"Check Fees Error:": "خطأ أثناء التحقق من الرسوم:",
-"Access Denied": "تم رفض الوصول",
-"You have not completed payment for this month.": "لم تقم بإكمال دفع رسوم هذا الشهر.",
-"Load assessment error:": "خطأ أثناء تحميل الاختبار:",
-"No Active Test / Exam": "لا يوجد اختبار نشط حاليًا",
-"Please check back later.": "يرجى العودة لاحقًا.",
-"Check submission error:": "خطأ أثناء التحقق من التسليم:",
-"You have already attempted this test/exam. Wait for the next schedule.": "لقد قمت بأداء هذا الاختبار مسبقًا. انتظر الموعد القادم.",
-"No questions available.": "لا توجد أسئلة متاحة.",
-"Auto-save error:": "خطأ أثناء الحفظ التلقائي:",
-"Type your answer here...": "اكتب إجابتك هنا...",
-"Error saving answer:": "خطأ أثناء حفظ الإجابة:",
-"Time is up! Your answers will be submitted automatically.": "انتهى الوقت! سيتم إرسال إجاباتك تلقائيًا.",
-"Not answered": "لم تتم الإجابة",
-"Loading...": "جارٍ التحميل...",
-"You still have unanswered questions.\n\nPress OK to submit anyway or Cancel to continue reviewing.": "لا تزال هناك أسئلة بدون إجابة.\n\nاضغط موافق للإرسال على أي حال أو إلغاء لمواصلة المراجعة.",
-"Error grading exam. Check console.": "حدث خطأ أثناء تصحيح الاختبار. تحقق من وحدة التحكم.",
+  AUTO_SAVE_ERROR: "Auto-save error:",
 
+  SAVE_ANSWER_ERROR: "Error saving answer:",
 
-"SCHEDULED_TO_START": "من المقرر أن يبدأ بتاريخ {date}",
-"ASSESSMENT_LEVEL": "المستوى: {level}",
-"ASSESSMENT_DURATION": "المدة: {duration} دقيقة",
-"ASSESSMENT_STATUS": "الحالة: {status}",
-"ASSESSMENT_TYPE": "النوع: {type}",
-"ASSESSMENT_COURSE": "المادة: {course}",
-"ASSESSMENT_SEMESTER": "الفصل الدراسي: {semester}",
+  CHECK_FEES_ERROR: "Check Fees Error:",
 
-"ONGOING_ASSESSMENT": "الاختبار جارٍ حاليًا",
-"WAITING_ACTIVATION": "بانتظار التفعيل",
-"ASSESSMENT_ENDED": "انتهى الاختبار",
-"ASSESSMENT_CLOSED": "تم إغلاق الاختبار",
+  LOAD_ASSESSMENT_ERROR: "Load assessment error:",
 
-"CLICK_BELOW_TO_BEGIN": "اضغط أدناه للبدء",
-"WAIT_FOR_INSTRUCTOR": "يرجى انتظار المعلم لتفعيل الاختبار",
+  CHECK_SUBMISSION_ERROR: "Check submission error:",
 
-"FETCH_EXAM_ERROR": "حدث خطأ أثناء تحميل الاختبار",
-"NO_SCHEDULED_ASSESSMENT": "لا يوجد اختبار مجدول حاليًا",
+  NO_QUESTIONS_AVAILABLE: "No questions available.",
 
-"ATTEMPT_TEST": "Attempt Test/Exam",
-"NOT_YET_AVAILABLE": "Not Yet Available",
-"WAITING_ACTIVATION": "Waiting Activation",
-"CLOSED": "Closed",
-"LOADING": "جارٍ التحميل...",
+  ALREADY_ATTEMPTED:
+    "You have already attempted this test/exam. Wait for the next schedule.",
 
-    "Payment Recorded": "تم تسجيل الدفع",
-    "Payment Confirmed": "تم تأكيد الدفع",
-    "New Grade Posted": "تم نشر نتيجة جديدة",
-    "New Class Scheduled": "تم تحديد حصة جديدة",
-  },
+  "Payment Recorded": "Payment Recorded",
+  "Payment Confirmed": "Payment Confirmed",
+  "New Grade Posted": "New Grade Posted",
+  "New Class Scheduled": "New Class Scheduled",
+},
 
+ar: {
+
+  ACCESS_DENIED: "تم رفض الوصول",
+  PAYMENT_REQUIRED: "يجب دفع الرسوم للوصول إلى هذا الاختبار",
+  SESSION_EXPIRED: "انتهت الجلسة",
+  NO_ACTIVE_ASSESSMENT: "لا يوجد اختبار نشط حالياً",
+
+  PAYMENT_RECORDED: "تم تسجيل دفعة قدرها ₦{amount} لشهر {month}.",
+  PAYMENT_CONFIRMED: "تم تأكيد دفعتك بقيمة ₦{amount} لشهر {month}.",
+  GRADE_RELEASED: "تم نشر درجتك لمادة {course}.",
+  CLASS_SCHEDULED: "تم تحديد حصة {course} بتاريخ {date} الساعة {time}.",
+
+  month_payment: "دفع {month}",
+  month_amount: "مبلغ {month}",
+
+  outstanding_payment: "مبلغ مستحق",
+  outstanding_message: "لديك دفعة معلقة بقيمة {amount} عن {months}",
+  pay_now: "ادفع الآن",
+
+  payment_reminder:
+    "لديك مبلغ مستحق بقيمة {amount} عن {months}. يرجى إكمال الدفع.",
+
+  level: "المستوى",
+  instructor: "المحاضر",
+
+  register: "تسجيل",
+  registered: "✅ تم التسجيل",
+
+  no_courses: "لم تقم بالتسجيل في أي مادة بعد.",
+
+  view_schedule: "عرض الجدول",
+  unregister: "إلغاء التسجيل",
+
+  paid: "✅ مدفوع",
+  unpaid: "❌ غير مدفوع",
+
+  payment_month: "دفع {month}",
+  last_paid: "آخر دفع: {month}",
+  no_payment_yet: "لا يوجد دفع بعد",
+
+  theme_light: "فاتح",
+  theme_dark: "داكن",
+  theme_system: "تلقائي",
+
+  remember_me: "تذكرني",
+
+  login_required_exam: "يرجى تسجيل الدخول لعرض جدول الاختبارات",
+
+  registration_successful: "تم التسجيل بنجاح 🎉",
+
+  matric_info: "رقمك الجامعي (كلمة المرور الافتراضية): {matric}",
+
+  copy: "نسخ",
+
+  SCHEDULED_TO_START: "من المقرر أن يبدأ بتاريخ {date}",
+  ASSESSMENT_LEVEL: "المستوى: {level}",
+  ASSESSMENT_DURATION: "المدة: {duration} دقيقة",
+  ASSESSMENT_STATUS: "الحالة: {status}",
+  ASSESSMENT_TYPE: "النوع: {type}",
+  ASSESSMENT_COURSE: "المادة: {course}",
+  ASSESSMENT_SEMESTER: "الفصل الدراسي: {semester}",
+
+  ONGOING_ASSESSMENT: "الاختبار جارٍ حاليًا",
+  WAITING_ACTIVATION: "بانتظار التفعيل",
+  ASSESSMENT_ENDED: "انتهى الاختبار",
+  ASSESSMENT_CLOSED: "تم إغلاق الاختبار",
+
+  CLICK_BELOW_TO_BEGIN: "اضغط أدناه للبدء",
+
+  WAIT_FOR_INSTRUCTOR:
+    "يرجى انتظار المعلم لتفعيل الاختبار",
+
+  FETCH_EXAM_ERROR: "حدث خطأ أثناء تحميل الاختبار",
+
+  NO_SCHEDULED_ASSESSMENT:
+    "لا يوجد اختبار مجدول حاليًا",
+
+  ATTEMPT_TEST: "دخول الاختبار",
+
+  NOT_YET_AVAILABLE: "غير متاح بعد",
+
+  CLOSED: "مغلق",
+
+  LOADING: "جارٍ التحميل...",
+
+  NOT_ANSWERED: "لم تتم الإجابة",
+
+  TYPE_ANSWER_HERE: "اكتب إجابتك هنا...",
+
+  TIME_UP:
+    "انتهى الوقت! سيتم إرسال إجاباتك تلقائيًا.",
+
+  UNANSWERED_CONFIRM:
+    "لا تزال هناك أسئلة بدون إجابة.\n\nاضغط موافق للإرسال على أي حال أو إلغاء لمواصلة المراجعة.",
+
+  GRADING_ERROR:
+    "حدث خطأ أثناء تصحيح الاختبار. تحقق من وحدة التحكم.",
+
+  AUTO_SAVE_ERROR: "خطأ أثناء الحفظ التلقائي:",
+
+  SAVE_ANSWER_ERROR: "خطأ أثناء حفظ الإجابة:",
+
+  CHECK_FEES_ERROR:
+    "خطأ أثناء التحقق من الرسوم:",
+
+  LOAD_ASSESSMENT_ERROR:
+    "خطأ أثناء تحميل الاختبار:",
+
+  CHECK_SUBMISSION_ERROR:
+    "خطأ أثناء التحقق من التسليم:",
+
+  NO_QUESTIONS_AVAILABLE:
+    "لا توجد أسئلة متاحة.",
+
+  ALREADY_ATTEMPTED:
+    "لقد قمت بأداء هذا الاختبار مسبقًا. انتظر الموعد القادم.",
+
+  "Payment Recorded": "تم تسجيل الدفع",
+  "Payment Confirmed": "تم تأكيد الدفع",
+  "New Grade Posted": "تم نشر نتيجة جديدة",
+  "New Class Scheduled": "تم تحديد حصة جديدة",
+},
 };
-
 // ================================
 // STATE (MOVE THIS UP)
 // ================================
@@ -1671,6 +1720,23 @@ if (el.dataset.i18n) {
   if (btn) btn.textContent = lang === "en" ? "AR" : "EN";
 }
 
+function updateYear() {
+  const footer = document.getElementById("footerCopyright");
+
+  if (!footer) return;
+
+  const year = new Date().getFullYear();
+
+  const lang = localStorage.getItem("lang") || "en";
+
+  if (lang === "ar") {
+    footer.textContent =
+      `© ${year} دار العلوم والحكم لتعليم العربية والدراسات الإسلامية أونلاين. جميع الحقوق محفوظة.`;
+  } else {
+    footer.textContent =
+      `© ${year} Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.`;
+  }
+}
 
 // ================================
 // DRAG FUNCTION (USED BY BOTH)
@@ -1797,6 +1863,7 @@ function makeDraggable(el, storageKey) {
 // INIT EVERYTHING
 // ================================
 document.addEventListener("DOMContentLoaded", () => {
+  updateYear();
 
   // ====================
   // LANGUAGE BUTTON
@@ -1893,4 +1960,25 @@ window.translatePage = function () {
 // Alias for other scripts
 window.reTranslate = function () {
   window.translatePage();
+};
+
+// ================================
+// ADMIN INBOX UNREAD COUNTER
+// ================================
+window.updateUnreadCounter = async function () {
+  const counter = document.getElementById("unreadCounter");
+  if (!counter || !window.supabaseClient) return;
+
+  const { count, error } = await window.supabaseClient
+    .from("contact_messages")
+    .select("id", { count: "exact", head: true })
+    .eq("is_read", false)
+    .eq("deleted", false);
+
+  if (error) {
+    console.error("Unread counter error:", error);
+    return;
+  }
+
+  counter.textContent = count || 0;
 };

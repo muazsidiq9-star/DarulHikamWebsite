@@ -10,7 +10,7 @@ const matricNumber = sessionStorage.getItem("matric");
 const studentData = sessionStorage.getItem("currentStudent");
 
 if (role !== "student" || !matricNumber || !studentData) {
-  alert(t("SESSION_EXPIRED"));
+  alert("Session expired");
   window.location.href = "login.html";
   throw new Error("Invalid session");
 }
@@ -71,22 +71,20 @@ async function checkFees() {
       .eq("deleted", false)
       .limit(1);
 
-    if (error) console.error(t("CHECK_FEES_ERROR"), error);
-
     if (!data || data.length === 0) {
-        examTitle.textContent = t("ACCESS_DENIED");
-        examMessage.textContent = t("PAYMENT_REQUIRED");
+    examTitle.textContent = "Access Denied";
+    examMessage.textContent = "Payment required to access this exam";
 
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        reviewBtn.disabled = true;
-        finalSubmitBtn.disabled = true;
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    reviewBtn.disabled = true;
+    finalSubmitBtn.disabled = true;
 
-        return false;
-    }
+    return false;
+}
 
     return true;
-}
+}    
 
 async function loadActiveAssessment() {
     const hasPaid = await checkFees();
@@ -104,15 +102,11 @@ async function loadActiveAssessment() {
 
     console.log(currentStudent);
 
-    if (error) {
-        console.error(t("LOAD_ASSESSMENT_ERROR"), error);
-    }
-
     if (!data || data.length === 0) {
-        examTitle.textContent = t("NO_ACTIVE_ASSESSMENT");
-        examMessage.textContent = t("PLEASE_CHECK_LATER");
-        return;
-    }
+    examTitle.textContent = "No active assessment";
+    examMessage.textContent = "Please check back later";
+    return;
+}
 
     const assessment = data[0];
     assessmentId = assessment.id;
@@ -146,9 +140,6 @@ async function loadActiveAssessment() {
         timeDisplay.textContent = '00:00';
         countdownBar.style.width = '0%';
     }
-    setTimeout(() => {
-  if (window.translatePage) translatePage();
-}, 200);
 }
 
 // ================= LOAD QUESTIONS =================
@@ -162,15 +153,16 @@ async function loadQuestions() {
         .eq('assessment_id', assessmentId)
         .eq('is_final', true);
 
-    if (checkError) console.error(t("CHECK_SUBMISSION_ERROR"), checkError);
+    if (checkError) 
+    console.error("Check submission error:", error);
 
     if (count > 0) {
-        examMessage.textContent = t("ALREADY_ATTEMPTED");
+        examMessage.textContent = "You have already attempted this exam";
 
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        reviewBtn.disabled = true;
-        finalSubmitBtn.disabled = true;
+prevBtn.disabled = true;
+nextBtn.disabled = true;
+reviewBtn.disabled = true;
+finalSubmitBtn.disabled = true;
 
         return;
     }
@@ -183,7 +175,7 @@ async function loadQuestions() {
         .order('question_order', { ascending: true });
 
     if (error || !data || data.length === 0) {
-        examMessage.textContent = t("NO_QUESTIONS_AVAILABLE");
+        examMessage.textContent = "No questions available";
         return;
     }
 
@@ -296,7 +288,7 @@ function renderQuestion() {
                     });
 
                 if (error) {
-                    console.error(t("AUTO_SAVE_ERROR"), error);
+                    
                 }
 
                 saveExamState();
@@ -355,7 +347,7 @@ function renderQuestion() {
                     });
 
                 if (error) {
-                    console.error(t("AUTO_SAVE_ERROR"), error);
+                    console.error("Auto save error:", error);
                 }
 
                 saveExamState();
@@ -366,10 +358,12 @@ function renderQuestion() {
 
     }
 }
-// ================= NAVIGATION =================
+// ================= NAVIGATION ==============
 function renderQuestionWithProgress() {
     renderQuestion();
     updateProgressBar();
+
+    
 
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === questions.length - 1;
@@ -447,7 +441,7 @@ async function saveAnswer() {
         );
 
     if (error) {
-        console.error(t("SAVE_ANSWER_ERROR"), error);
+        console.error("Save answer error:", error);
     }
 }
 
@@ -497,7 +491,7 @@ function startTimer() {
 
             clearInterval(timerInterval);
 
-            alert(t('TIME_UP'));
+            alert("Time is up");
 
             finalSubmit();
 
@@ -559,7 +553,7 @@ reviewBtn.addEventListener('click', async () => {
         const li = document.createElement('li');
 
         const answerText =
-            studentAnswers[q.id] || `[❌ ${t("NOT_ANSWERED")}]`;
+    studentAnswers[q.id] || `[❌ Not answered]`;
 
         li.dataset.index = idx;
         li.style.cursor = 'pointer';
@@ -615,9 +609,7 @@ async function finalSubmit() {
 
         if (unanswered) {
 
-            const confirmSubmit = confirm(
-                t('UNANSWERED_CONFIRM')
-            );
+            alert("Unanswered questions detected. Please review before submitting.");
 
             if (!confirmSubmit) {
 
@@ -649,7 +641,7 @@ async function finalSubmit() {
 
         if (error) {
 
-            alert(t('GRADING_ERROR'));
+            alert('Grading error');
 
             console.error(error);
 
@@ -705,11 +697,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await loadActiveAssessment();
 
-    await loadQuestions();
+    await loadQuestions    ();
 
-setTimeout(() => {
-  if (window.translatePage) translatePage();
-}, 300);
 });
 
 document.getElementById('goDashboardBtn').onclick = () => {

@@ -70,6 +70,7 @@ if (!loginTime) {
     window.currentRole = role;
 
     console.log("Logged in as:", role);
+    
 
     // ===========================
     // UI PERMISSIONS
@@ -117,6 +118,8 @@ if (!loginTime) {
     loadStudentDropdown();
     loadPasswordStudentDropdown();
     updateUnreadCounter();
+
+    
 
     enableTableSearch("searchStudents", "students-table");
     enableTableSearch("searchPayments", "payments-table");
@@ -178,6 +181,22 @@ function setDashboardGreeting() {
   greetingEl.innerText = name
     ? `${welcome}, ${translatedRole} – ${name} 👋`
     : `${welcome}, ${translatedRole} 👋`;
+}
+
+// ================================
+// UNREAD COUNTER
+// ================================
+async function updateUnreadCounter() {
+  const { count, error } = await db
+    .from("contact_messages")
+    .select("id", { count: "exact", head: true })
+    .eq("is_read", false)
+    .eq("deleted", false);
+
+  if (error) return console.error(error);
+
+  const counter = document.getElementById("unreadCounter");
+  if (counter) counter.textContent = count || 0;
 }
 
 function openModal(id) {
@@ -423,20 +442,6 @@ async function loadStats() {
   } catch (e) {
     console.error("Stats error:", e);
   }
-}
-
-// Update unread counter in nav
-async function updateUnreadCounter() {
-  const { count, error } = await db
-    .from("contact_messages")
-    .select("id", { count: "exact", head: true })
-    .eq("is_read", false)
-    .eq("deleted", false);
-
-  if (error) return console.error(error);
-
-  const counter = document.getElementById("unreadCounter");
-  counter.textContent = count || 0;
 }
 
 /* -------------------------------------------------------
@@ -2020,3 +2025,10 @@ closeBtn.onmouseout = () => {
   closeBtn.style.background = "#e74c3c";
 };
 }
+
+window.addEventListener("load", () => {
+  updateUnreadCounter();
+
+  // 🔥 keep it synced (important fix)
+  setInterval(updateUnreadCounter, 10000);
+});

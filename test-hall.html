@@ -35,9 +35,9 @@
 <!-- Header -->
 <header class="hall-header" data-no-translate="true">
   <h1 id="examTitle" data-no-translate="true">Loading Test...</h1>
-  <p id="examMessage" data-no-translate="true">Your test details will appear here once it starts.</p>  <div id="timer">Time Left: <span id="time">--:--</span></div>
+  <p id="examMessage" data-no-translate="true">Your test details will appear here once it starts</p>  <div id="timer">Time Left: <span id="time">--:--</span></div>
   <div id="timeWarning" class="time-warning hidden">
-  ⚠️ Only 2 minutes remaining. Please finalize your answers.
+  ⚠️ Only 2 minutes remaining. Please finalize your answers
 </div>
   <div id="countdownBarContainer">
     <div id="countdownBar"></div>
@@ -88,7 +88,9 @@
 <footer>
   <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
   <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
-  <p>© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.</p>
+  <p id="footerCopyright">
+  © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
+</p>
 </footer>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

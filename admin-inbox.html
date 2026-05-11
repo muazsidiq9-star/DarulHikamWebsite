@@ -135,23 +135,15 @@
 <script>
 const supabaseUrl = "https://ymxuwahcogzbbohdbpgg.supabase.co";
 const supabaseKey = "sb_publishable_oAh_xPW62nDFS9JGh5CUcA_mnHC4t3w";
-const db = supabase.createClient(supabaseUrl, supabaseKey);
+
+window.supabaseClient = supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
+
+const db = window.supabaseClient;
 
 let selectedMessage = null;
-
-// Update unread counter in nav
-async function updateUnreadCounter() {
-  const { count, error } = await db
-    .from("contact_messages")
-    .select("id", { count: "exact", head: true })
-    .eq("is_read", false)
-    .eq("deleted", false);
-
-  if (error) return console.error(error);
-
-  const counter = document.getElementById("unreadCounter");
-  counter.textContent = count || 0;
-}
 
 // ====================
 // LOAD MESSAGES
@@ -216,7 +208,6 @@ messageModal.onclick = e => {
 // ====================
 // Initial load
 loadMessages();
-updateUnreadCounter(); // <- update badge on page load
 
 // After marking read/unread
 markReadBtn.onclick = async () => {

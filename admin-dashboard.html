@@ -622,10 +622,12 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
-    <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
-    <p>© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.</p>
-  </footer>
+  <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
+  <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
+  <p id="footerCopyright">
+  © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
+</p>
+</footer>
   <!-- WHATSAPP -->
   <a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank">
   <img src="whatsapp-icon.png" alt="WhatsApp">
@@ -656,8 +658,6 @@
   <!-- SUPABASE -->
 <!-- 1️⃣ Supabase library -->
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-
-<!-- 2️⃣ Initialize client ONCE -->
 <script>
   const SUPABASE_URL = "https://ymxuwahcogzbbohdbpgg.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_oAh_xPW62nDFS9JGh5CUcA_mnHC4t3w";
@@ -669,9 +669,9 @@
 
   console.log("Supabase client ready:", window.supabaseClient);
 </script>
-<!-- 3️⃣ Your admin dashboard JS -->
 
-<script src="admin-dashboard.js" defer></script>
- <script src="translate.js"></script>
+<script src="translate.js"></script>
+
+<script src="admin-dashboard.js"></script>
 </body>
 </html>

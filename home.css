@@ -329,6 +329,14 @@ section {
   margin-bottom: 60px;
 }
 
+.cta-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  
+}
+
 /* ===========================
    FLOATING WHATSAPP
    =========================== */
