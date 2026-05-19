@@ -1950,7 +1950,7 @@ updateEmailProgress(sent, failed, students.length);
     console.log("Sending email to:", student.email);
 
     const response = await fetch(
-  "https://cjrpjekmqrckozrbtwps.supabase.co/functions/v1/send-welcome-email",
+  "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/send-welcome-email",
   {
     method: "POST",
     headers: {
@@ -2007,7 +2007,7 @@ updateEmailProgress(sent, failed, students.length);
 async function sendSingleEmail(student) {
   try {
     const response = await fetch(
-      "https://cjrpjekmqrckozrbtwps.supabase.co/functions/v1/send-welcome-email",
+      "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/send-welcome-email",
       {
         method: "POST",
         headers: {

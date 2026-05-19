@@ -398,6 +398,11 @@ const DICT = {
 "Click the button below to pay": "انقر على الزر أدناه للدفع",
 "Pay with Selar": "الدفع عبر Selar",
 
+"Payment Details": "تفاصيل الدفع",
+"General": "عام",
+"Premium": "مميز",
+
+
 "Level Payment Form": "نموذج دفع المستوى",
 "Full Name": "الاسم الكامل",
 "Email": "البريد الإلكتروني",

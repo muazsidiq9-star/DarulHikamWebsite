@@ -580,3 +580,6 @@ html, body {
   cursor: pointer;
   line-height: 1;
 }
+.close-passport-viewer:hover {
+  background: #8a0000;
+}

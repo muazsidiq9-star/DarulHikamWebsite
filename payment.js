@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ================= SUPABASE ================= */
-  const SUPABASE_URL = "https://cjrpjekmqrckozrbtwps.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_nR5kvC32lYVX0OflJM8sUA_tBaqRy1b";
+  const SUPABASE_URL = "https://ymxuwahcogzbbohdbpgg.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_oAh_xPW62nDFS9JGh5CUcA_mnHC4t3w";
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
   /* ================= PAYMENT FORM ================= */
@@ -64,6 +64,9 @@ if (currentStudent) {
 
   document.getElementById('country').value =
     currentStudent.country || '';
+
+  document.getElementById('level-arabic').value =
+    currentStudent.level_arabic || '';
 
   // plan type
   if (currentStudent.plan_type) {
