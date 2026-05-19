@@ -426,17 +426,39 @@ async function loadStats() {
       document.getElementById("totalStudents").textContent = studentCount || 0;
     }
 
-    // PAYMENTS COUNT + SUM (optimized)
+    // FETCH LIVE EXCHANGE RATES (base: NGN)
+    let rates = { NGN: 1, USD: 1600, EUR: 1750, GBP: 2000 }; // fallback rates
+
+    try {
+  const ratesRes = await fetch("https://api.exchangerate-api.com/v4/latest/NGN");
+  if (ratesRes.ok) {
+    const ratesData = await ratesRes.json();
+    // Build rates for ALL currencies dynamically
+    rates = { NGN: 1 };
+    for (const [currency, rate] of Object.entries(ratesData.rates)) {
+      rates[currency] = 1 / rate; // convert to NGN equivalent
+    }
+  }
+} catch (rateErr) {
+  console.warn("Could not fetch live rates, using fallback:", rateErr);
+}
+
+    // PAYMENTS COUNT + SUM CONVERTED TO NGN
     const { data: payments, error: pErr } = await db
       .from("payments")
-      .select("amount");
+      .select("amount, currency");
 
     if (!pErr && payments) {
-      const totalAmount = payments.reduce((s, p) => s + Number(p.amount || 0), 0);
-
       document.getElementById("totalPayments").textContent = payments.length;
+
+      const totalNGN = payments.reduce((sum, p) => {
+        const currency = p.currency || "NGN";
+        const rate = rates[currency] || 1;
+        return sum + (Number(p.amount || 0) * rate);
+      }, 0);
+
       document.getElementById("totalAmountPaid").textContent =
-        "₦" + totalAmount.toLocaleString();
+        "₦" + Math.round(totalNGN).toLocaleString();
     }
 
   } catch (e) {
@@ -465,12 +487,16 @@ if (!window.editingStudentId) {
     const tr = document.createElement("tr");
     // inside your data.forEach(s => { ... })
 tr.innerHTML = `
-  <td><img src="${s.passport_url || 'passport-placeholder.png'}" style="width:40px;height:40px;border-radius:50%"></td>
+  <td>
+  ${s.passport_url
+    ? `<img src="${s.passport_url}" class="passport-thumb" onclick="openPassportModal('${s.passport_url}')">`
+    : `<img src="passport-placeholder.png" class="passport-thumb">`}
+</td>
   <td>${s.matric_number}</td>
   <td>${s.fullname}</td>
   <td>${s.email}</td>
   <td>${s.whatsapp}</td>
-  <td>${s.nationality}</td>
+  <td>${s.country}</td>
   <td>${s.gender}</td>
   <td>${s.age}</td>
   <td>${s.level_arabic}</td>
@@ -530,7 +556,7 @@ setLoading(btn, true);
 const fullname = document.getElementById("studentName")?.value.trim();
 const email = document.getElementById("studentEmail")?.value.trim();
 const whatsapp = document.getElementById("studentWhatsApp")?.value.trim();
-const nationality = document.getElementById("studentNationality")?.value.trim();
+const country = document.getElementById("studentCountry")?.value.trim();
 const gender = document.getElementById("studentGender")?.value.trim();
 const age = document.getElementById("studentAge")?.value;
 const level_arabic = document.getElementById("studentLevel")?.value.trim();
@@ -540,7 +566,7 @@ const passportFile = document.getElementById("studentPassport")?.files[0];
 
 
 // Check required fields
-if (!fullname || !email || !whatsapp || !nationality || !gender || !age || !level_arabic || !status || !admission_approved) {
+if (!fullname || !email || !whatsapp || !country || !gender || !age || !level_arabic || !status || !admission_approved) {
   alert(t("Fill all required fields"));
   return;
 }
@@ -590,7 +616,7 @@ if (window.editingStudentId) {
     fullname,
     email,
     whatsapp,
-    nationality,
+    country,
     gender,
     age,
     level_arabic,
@@ -613,7 +639,7 @@ if (window.editingStudentId) {
     fullname,
     email,
     whatsapp,
-    nationality,
+    country,
     gender,
     age,
     level_arabic,
@@ -647,7 +673,7 @@ async function editStudent(id) {
   document.getElementById("studentName").value = s.fullname;
   document.getElementById("studentEmail").value = s.email;
   document.getElementById("studentWhatsApp").value = s.whatsapp;
-  document.getElementById("studentNationality").value = s.nationality;
+  document.getElementById("studentCountry").value = s.country;
   document.getElementById("studentGender").value = s.gender;
   document.getElementById("studentAge").value = s.age;
   document.getElementById("studentLevel").value = s.level_arabic;
@@ -657,6 +683,29 @@ async function editStudent(id) {
   window.editingStudentId = id;
   document.getElementById("studentModal").classList.add("show");
 }
+
+const passportModal = document.getElementById("passportModal");
+const passportPreview = document.getElementById("passportPreview");
+const closePassportModal = document.querySelector(".close-passport-modal");
+
+function openPassportModal(url) {
+  passportPreview.src = url;
+  passportModal.classList.add("show");
+}
+
+if (closePassportModal) {
+  closePassportModal.addEventListener("click", () => {
+    passportModal.classList.remove("show");
+    passportPreview.src = "";
+  });
+}
+
+window.addEventListener("click", (e) => {
+  if (e.target === passportModal) {
+    passportModal.classList.remove("show");
+    passportPreview.src = "";
+  }
+});
 
 /* -------------------------------------------------------
    PAYMENTS
@@ -669,13 +718,14 @@ setLoading(btn, true);
     const matric_number = document.getElementById("paymentStudent")?.value;
     const level_arabic = document.getElementById("paymentLevel")?.value;
     const amount = Number(document.getElementById("paymentAmount")?.value || 0);
+    const currency = document.getElementById("paymentCurrency")?.value;
     const month = document.getElementById("paymentMonth")?.value;
     const payment_method = document.getElementById("paymentMethod")?.value;
     const created_at = document.getElementById("paymentDate")?.value || null;
     const status = document.getElementById("paymentStatus")?.value || "Pending";
 
     
-    if (!matric_number || !amount || !month || !payment_method) {
+    if (!matric_number || !amount || !currency || !month || !payment_method) {
       alert(t("Fill all required fields"));
       return;
     }
@@ -685,6 +735,7 @@ setLoading(btn, true);
         .update({
           level_arabic,
           amount,
+          currency,
           month,
           payment_method,
           created_at,
@@ -699,6 +750,7 @@ setLoading(btn, true);
         matric_number,
         level_arabic,
         amount,
+        currency,
         month,
         payment_method,
         created_at,
@@ -727,12 +779,17 @@ setLoading(btn, true);
 }
 
 async function loadPayments() {
-  const { data } = await db
+const { data } = await db
     .from("payments")
     .select(`
       id,
+      receipt_url,
       matric_number,
+      payer_name,
+      payer_email,
+      level_arabic,
       amount,
+      currency,
       month,
       payment_method,
       status,
@@ -747,17 +804,38 @@ async function loadPayments() {
   // Only reload table if not editing
 if (!window.editingPaymentId) {
   tbody.innerHTML = "";
+  
+const currencies = {
+  NGN: { symbol: "₦", name: "Nigerian Naira", country: "Nigeria" },
+  USD: { symbol: "$", name: "US Dollar", country: "United States" },
+  EUR: { symbol: "€", name: "Euro", country: "European Union" },
+  GBP: { symbol: "£", name: "British Pound", country: "United Kingdom" }
+};
 
-  data?.forEach(p => {
+data?.forEach(p => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${p.students?.fullname || ""}</td>
-      <td>${p.matric_number}</td>
-      <td>${p.students?.level_arabic || ""}</td>
-      <td>₦${Number(p.amount).toLocaleString()}</td>
+    <td>
+  ${p.receipt_url
+    ? `<img 
+        src="${p.receipt_url}" 
+        class="receipt-thumb"
+        onclick="openReceiptModal('${p.receipt_url}')"
+        alt="receipt"
+      />`
+    : "No receipt"}
+</td>
+      <td>${p.students?.fullname || p.payer_name || "Guest"}</td>
+      <td>${p.matric_number || "—"}</td>
+      <td>${p.payer_email || "—"}</td>
+      <td>${p.students?.level_arabic || p.level_arabic || "—"}</td>
+      <td>
+  ${currencies[p.currency]?.symbol || p.currency || ""}
+${Number(p.amount).toLocaleString()}
+</td>
       <td>${p.month}</td>
       <td>${p.payment_method}</td>
-      <td>${p.created_at?.split("T")[0]}</td>
+      <td>${p.created_at?.split("T")[0] || "—"}</td>
       <td>${p.status}</td>
       <td>
   ${p.status === "pending"
@@ -833,6 +911,29 @@ async function editPayment(id) {
     p.created_at.split("T")[0];
 }
 }
+
+const receiptModal = document.getElementById("receiptModal");
+const receiptPreview = document.getElementById("receiptPreview");
+const closeReceiptModal = document.querySelector(".close-receipt-modal");
+
+function openReceiptModal(url) {
+  receiptPreview.src = url;
+  receiptModal.classList.add("show");
+}
+
+if (closeReceiptModal) {
+  closeReceiptModal.addEventListener("click", () => {
+    receiptModal.classList.remove("show");
+    receiptPreview.src = "";
+  });
+}
+
+window.addEventListener("click", (e) => {
+  if (e.target === receiptModal) {
+    receiptModal.classList.remove("show");
+    receiptPreview.src = "";
+  }
+});
 
 // ===========================
 // LOAD ALL FEES
@@ -1849,7 +1950,7 @@ updateEmailProgress(sent, failed, students.length);
     console.log("Sending email to:", student.email);
 
     const response = await fetch(
-  "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/send-welcome-email",
+  "https://cjrpjekmqrckozrbtwps.supabase.co/functions/v1/send-welcome-email",
   {
     method: "POST",
     headers: {
@@ -1906,7 +2007,7 @@ updateEmailProgress(sent, failed, students.length);
 async function sendSingleEmail(student) {
   try {
     const response = await fetch(
-      "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/send-welcome-email",
+      "https://cjrpjekmqrckozrbtwps.supabase.co/functions/v1/send-welcome-email",
       {
         method: "POST",
         headers: {

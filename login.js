@@ -82,7 +82,7 @@ let username = formatRole(profile.role);
       if (role === "student") {
         const { data: student, error } = await supabase
           .from("students")
-          .select("matric_number, fullname, email, level_arabic, password, password_changed")
+          .select("matric_number, fullname, email, level_arabic, country, plan_type, password, password_changed")
           .eq("email", email)
           .single();
 
@@ -108,11 +108,13 @@ let username = formatRole(profile.role);
         }
 
         const currentStudent = {
-          matric_number: student.matric_number,
-          fullname: student.fullname,
-          email: student.email,
-          level: student.level_arabic,
-        };
+  matric_number: student.matric_number,
+  fullname: student.fullname,
+  email: student.email,
+  level: student.level_arabic,
+  country: student.country,
+  plan_type: student.plan_type
+};
 
         sessionStorage.setItem("role", "student");
         sessionStorage.setItem("matric", student.matric_number);

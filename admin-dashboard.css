@@ -1468,3 +1468,76 @@ nav,
   position: relative;
   z-index: 9999;
 }
+
+.receipt-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.receipt-modal.show {
+  display: flex;
+}
+
+.receipt-modal-content {
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.receipt-modal img {
+  max-width: 100%;
+  max-height: 85vh;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
+
+.receipt-link {
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+  display: inline-block;
+  transition: 0.2s ease;
+}
+
+.receipt-link:hover {
+  opacity: 0.8;
+}
+
+.receipt-thumb {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--border-soft);
+  transition: transform 0.2s ease;
+}
+
+.receipt-thumb:hover {
+  transform: scale(1.1);
+}
+
+.passport-thumb {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid var(--border-soft);
+  transition: transform 0.2s ease;
+}
+
+.passport-thumb:hover {
+  transform: scale(1.1);
+}

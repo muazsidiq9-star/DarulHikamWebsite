@@ -5,24 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="google" content="notranslate">
-  <title>Admin Dashboard | Dar Al-Ulum Wal Hikam Arabic And Islamic Institute</title>
+  <title>Admin Dashboard | Dar Al-Ulum Arabic Institute</title>
 
   <!-- MASTER STYLES -->
   <link rel="stylesheet" href="master.css">
   <link rel="stylesheet" href="admin-dashboard.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" href="favicon.ico">
-<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 <body>
 
   <!-- NAVIGATION -->
   <nav class="master-nav">
     <div class="nav-container">
-      <a href="index.html" class="logo">
+      <a href="admin-dashboard.html" class="logo">
         <img src="logo.png" alt="Logo"> Dar Al-Ulum
       </a>
       <button id="sendWelcomeEmails" class="btn btn-email">
@@ -39,7 +38,7 @@
         <a href="register.html">Register</a>
         <a href="students-dashboard.html">Student Dashboard</a>
         <a href="admin-dashboard.html" class="active">Admin Dashboard</a>
-        <a href="admin-inbox.html">Emails <span id="unreadCounter" style="background: red; color: white; font-size: 0.75rem; border-radius: 50%; padding: 2px 6px; margin-left: 4px;">0</span>
+        <a href="admin-inbox.html">Emails<span id="unreadCounter" style="background: red; color: white; font-size: 0.75rem; border-radius: 50%; padding: 2px 6px; margin-left: 4px;">0</span>
 </a>
         <a href="semester-admin.html">Semester Work</a>
         <a href="payment.html">Payments</a>
@@ -94,7 +93,7 @@
       <table id="students-table">
         <thead>
           <tr>
-            <th>Photo</th><th>Matric Number</th><th>Name</th><th>Email</th><th>WhatsApp</th><th>Nationality</th><th>Gender</th><th>Age</th><th>Level</th><th>Status</th><th>Admission</th><th>Actions</th><th>Welcome Email</th><th>Edit</th><th>Delete</th>
+            <th>Photo</th><th>Matric Number</th><th>Name</th><th>Email</th><th>WhatsApp</th><th>Country</th><th>Gender</th><th>Age</th><th>Level</th><th>Status</th><th>Admission</th><th>Actions</th><th>Welcome Email</th><th>Edit</th><th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -115,7 +114,7 @@
       <table id="payments-table">
         <thead>
           <tr>
-            <th>Student Name</th><th>Matric Number</th><th>Level</th><th>Amount</th><th>Month</th><th>Method</th><th>Date</th><th>Status</th><th>Mark</th><th>Edit</th><th>Actions</th>
+            <th>Receipt</th><th>Student Name</th><th>Matric Number</th><th>Email</th><th>Level</th><th>Amount</th><th>Month</th><th>Method</th><th>Date</th><th>Status</th><th>Mark</th><th>Edit</th><th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -266,8 +265,8 @@
       <label for="whatsapp">WhatsApp Phone Number *</label>
       <input type="tel" id="studentWhatsApp" name="whatsapp" placeholder="+234..." required>
 
-      <label>Nationality</label>
-      <input type="nationality" id="studentNationality" placeholder="Nationality">
+      <label>Country</label>
+      <input type="Country" id="studentCountry" placeholder="Country">
 
       <label>Gender</label>
       <input type="Gender" id="studentGender" placeholder="Gender">
@@ -327,6 +326,53 @@
 
       <label>Amount</label>
       <input type="number" id="paymentAmount" placeholder="Amount Paid">
+      
+     
+  <label>Currency</label>
+  <select id="paymentCurrency" required>
+    <option value="NGN">₦ NGN - Nigerian Naira</option>
+
+<option value="USD">$ USD - US Dollar</option>
+<option value="EUR">€ EUR - Euro</option>
+<option value="GBP">£ GBP - British Pound</option>
+
+<option value="GHS">₵ GHS - Ghanaian Cedi</option>
+<option value="XOF">CFA XOF - West African CFA Franc</option>
+<option value="XAF">CFA XAF - Central African CFA Franc</option>
+<option value="ZAR">R ZAR - South African Rand</option>
+<option value="KES">KSh KES - Kenyan Shilling</option>
+
+<option value="EGP">£ EGP - Egyptian Pound</option>
+<option value="MAD">MAD - Moroccan Dirham</option>
+<option value="DZD">DZD - Algerian Dinar</option>
+<option value="TND">TND - Tunisian Dinar</option>
+
+<option value="UGX">UGX - Ugandan Shilling</option>
+<option value="TZS">TZS - Tanzanian Shilling</option>
+<option value="RWF">RWF - Rwandan Franc</option>
+
+<option value="CAD">$ CAD - Canadian Dollar</option>
+<option value="AUD">$ AUD - Australian Dollar</option>
+<option value="NZD">$ NZD - New Zealand Dollar</option>
+
+<option value="JPY">¥ JPY - Japanese Yen</option>
+<option value="CNY">¥ CNY - Chinese Yuan</option>
+<option value="INR">₹ INR - Indian Rupee</option>
+
+<option value="CHF">CHF - Swiss Franc</option>
+<option value="SEK">kr SEK - Swedish Krona</option>
+<option value="NOK">kr NOK - Norwegian Krone</option>
+<option value="DKK">kr DKK - Danish Krone</option>
+
+<option value="AED">د.إ AED - UAE Dirham</option>
+<option value="SAR">﷼ SAR - Saudi Riyal</option>
+<option value="QAR">﷼ QAR - Qatari Riyal</option>
+<option value="KWD">د.ك KWD - Kuwaiti Dinar</option>
+<option value="BHD">د.ب BHD - Bahraini Dinar</option>
+
+<option value="SGD">$ SGD - Singapore Dollar</option>
+<option value="HKD">$ HKD - Hong Kong Dollar</option>
+  </select>
 
       <label>Month</label>
       <select id="paymentMonth" required>
@@ -619,6 +665,22 @@
 </section>
 </div>
 
+<div id="receiptModal" class="receipt-modal">
+  <div class="receipt-modal-content">
+
+    <span class="close-receipt-modal">&times;</span>
+
+    <img id="receiptPreview" src="" alt="Receipt Preview" />
+
+  </div>
+</div>
+
+<div id="passportModal" class="receipt-modal">
+  <div class="receipt-modal-content">
+    <span class="close-passport-modal">&times;</span>
+    <img id="passportPreview" src="" alt="Passport Preview" />
+  </div>
+</div>
 
   <!-- FOOTER -->
   <footer>
@@ -627,6 +689,7 @@
   <p id="footerCopyright">
   © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
 </p>
+<a href="privacy.html">Privacy Policy</a>
 </footer>
   <!-- WHATSAPP -->
   <a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank">

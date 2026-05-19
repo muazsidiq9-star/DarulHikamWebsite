@@ -61,17 +61,17 @@ body {
 }
 
 /* ================= REGISTER NOTE ================= */
+.register-form {
+  max-width: 1200px;
+  margin: 2rem auto 0.5rem;
+  padding: 0 1.5rem;
+  text-align: center;
+}
 
 .register-note {
   font-size: 1rem;
   color: var(--text-color);
   font-weight: 600;
-}
-
-.register-form {
-  grid-column: 1 / -1;
-  text-align: center;
-  margin-bottom: 0.5rem;
 }
 
 /* ================= PAYMENT CARDS GRID ================= */
@@ -273,7 +273,7 @@ body {
 
 /* ================= PAYMENT FORM SECTION ================= */
 .payment-form-section {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto 4rem;
   padding: 0 1.5rem;
 }
@@ -281,7 +281,7 @@ body {
 .payment-form {
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 600px;
   gap: 16px;
   background: var(--card-color);
   padding: 2rem;
@@ -413,7 +413,11 @@ body {
 
   .payment-form {
     padding: 1.25rem;
-    width: 300px;
+    width: 320px;
+  }
+
+  .payment-form h2 {
+   font-size: 1rem;
   }
 
   .payment-header h1 { font-size: 1.5rem; }

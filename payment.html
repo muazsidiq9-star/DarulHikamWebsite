@@ -202,10 +202,10 @@
     </div>
   </section>
 
-  <!-- ================= PAYMENT FORM ================= -->
+ <!-- ================= PAYMENT FORM ================= -->
   <section class="payment-form-section">
     <form class="payment-form">
-      <h2>Level Payment Form</h2>
+      <h2>Please upload your payment receipt here for confirmation.</h2>
 
       <div class="form-group">
         <label for="student-name">Full Name</label>
@@ -216,6 +216,21 @@
         <label for="student-email">Email</label>
         <input type="text" id="student-email" required>
       </div>
+      
+      <div class="form-group">
+  <label for="country">Country</label>
+  <input type="text" id="country">
+</div>
+
+      <div class="form-group" id="planTypeGroup">
+  <label for="plan-type">Plan Type</label>
+
+  <select id="plan-type">
+    <option value="">Select Plan</option>
+    <option value="general">General</option>
+    <option value="private">Premium</option>
+  </select>
+</div>
 
       <div class="form-group">
         <label for="level-arabic">Select Level</label>
@@ -234,9 +249,57 @@
       </div>
 
       <div class="form-group">
-        <label for="amount">Amount (₦)</label>
+        <label for="amount">Amount</label>
         <input type="number" id="amount" required>
       </div>
+      
+      <div class="form-group">
+  <label for="currency">Currency</label>
+  <select id="currency" required>
+    <option value="NGN">₦ NGN - Nigerian Naira</option>
+
+<option value="USD">$ USD - US Dollar</option>
+<option value="EUR">€ EUR - Euro</option>
+<option value="GBP">£ GBP - British Pound</option>
+
+<option value="GHS">₵ GHS - Ghanaian Cedi</option>
+<option value="XOF">CFA XOF - West African CFA Franc</option>
+<option value="XAF">CFA XAF - Central African CFA Franc</option>
+<option value="ZAR">R ZAR - South African Rand</option>
+<option value="KES">KSh KES - Kenyan Shilling</option>
+
+<option value="EGP">£ EGP - Egyptian Pound</option>
+<option value="MAD">MAD - Moroccan Dirham</option>
+<option value="DZD">DZD - Algerian Dinar</option>
+<option value="TND">TND - Tunisian Dinar</option>
+
+<option value="UGX">UGX - Ugandan Shilling</option>
+<option value="TZS">TZS - Tanzanian Shilling</option>
+<option value="RWF">RWF - Rwandan Franc</option>
+
+<option value="CAD">$ CAD - Canadian Dollar</option>
+<option value="AUD">$ AUD - Australian Dollar</option>
+<option value="NZD">$ NZD - New Zealand Dollar</option>
+
+<option value="JPY">¥ JPY - Japanese Yen</option>
+<option value="CNY">¥ CNY - Chinese Yuan</option>
+<option value="INR">₹ INR - Indian Rupee</option>
+
+<option value="CHF">CHF - Swiss Franc</option>
+<option value="SEK">kr SEK - Swedish Krona</option>
+<option value="NOK">kr NOK - Norwegian Krone</option>
+<option value="DKK">kr DKK - Danish Krone</option>
+
+<option value="AED">د.إ AED - UAE Dirham</option>
+<option value="SAR">﷼ SAR - Saudi Riyal</option>
+<option value="QAR">﷼ QAR - Qatari Riyal</option>
+<option value="KWD">د.ك KWD - Kuwaiti Dinar</option>
+<option value="BHD">د.ب BHD - Bahraini Dinar</option>
+
+<option value="SGD">$ SGD - Singapore Dollar</option>
+<option value="HKD">$ HKD - Hong Kong Dollar</option>
+  </select>
+</div>
 
       <div>
         <label>Date</label>
@@ -262,9 +325,14 @@
   <option value="December">December</option>
 </select>
       </div>
+      
+      <div class="form-group">
+  <label for="receipt">Upload Receipt</label>
+  <input type="file" id="receipt" accept="image/*">
+</div>
 
       <div class="form-group">
-        <button type="submit" class="submit-btn">Pay Now <span class="arrow">➔</span></button>
+        <button type="submit" class="submit-btn">Send <span class="arrow">➔</span></button>
       </div>
 
       <p class="success-msg">Payment submitted successfully!</p>
@@ -279,6 +347,7 @@
   <p id="footerCopyright">
   © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
 </p>
+<a href="privacy.html">Privacy Policy</a>
 </footer>
 
   <!-- FLOATING WHATSAPP -->

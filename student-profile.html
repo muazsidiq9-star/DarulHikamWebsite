@@ -47,7 +47,13 @@
 
 <!-- Profile Section -->
 <section class="profile-info">
-  <img src="passport-placeholder.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+  <img 
+  src="passport-placeholder.png" 
+  alt="Profile Picture" 
+  class="profile-pic passport-clickable" 
+  id="profilePic"
+  onclick="openPassportViewer(this.src)"
+>
   <h2 class="fullname">Student Name</h2>
 
   <div class="profile-data">
@@ -118,10 +124,19 @@
 
     <label>Change Passport (optional)</label>
     <input type="file" id="editPassport">
+    <img id="passportEditPreview" class="passport-thumb-preview">
 
     <button onclick="saveProfileChanges()">Save Changes</button>
   </div>
 </div>
+
+<div id="passportViewerModal" class="receipt-modal">
+  <div class="receipt-modal-content">
+    <span class="close-passport-viewer">&times;</span>
+    <img id="passportViewerImg" src="" alt="Passport Preview">
+  </div>
+</div>
+
 
 <!-- FOOTER -->
 <footer>
@@ -130,6 +145,7 @@
   <p id="footerCopyright">
   © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
 </p>
+<a href="privacy.html">Privacy Policy</a>
 </footer>
 
 <!-- Floating WhatsApp Button -->
@@ -173,7 +189,7 @@ const role = sessionStorage.getItem("role");
     }
   })();
 
-  // ===== Load Profile =====
+ // ===== Load Profile =====
   async function loadStudentProfile() {
     const matricNumber = sessionStorage.getItem("matric");
     if (!matricNumber) return;
@@ -215,7 +231,6 @@ const role = sessionStorage.getItem("role");
 function openEditProfileModal() {
   document.getElementById("editProfileModal").style.display = "flex";
 
-  // Pre-fill inputs from current profile
   document.getElementById("editFullname").value =
     document.querySelector(".fullname").textContent;
 
@@ -227,6 +242,10 @@ function openEditProfileModal() {
 
   document.getElementById("editLevel").value =
     document.querySelector(".profile-info .level").textContent;
+
+  // ✅ THIS FIX
+  document.getElementById("passportEditPreview").src =
+    document.getElementById("profilePic").src;
 }
 
 function closeEditProfileModal() {
@@ -344,6 +363,62 @@ if (newPass.length < 6) {
     icon.classList.add("fa-eye");
   }
 }
+
+const profilePicEl = document.getElementById("profilePic");
+const previewEl = document.getElementById("passportEditPreview");
+
+if (profilePicEl && previewEl) {
+  previewEl.src = profilePicEl.src;
+}
+
+function openPassportViewer(url) {
+  const modal = document.getElementById("passportViewerModal");
+  const img = document.getElementById("passportViewerImg");
+
+  if (!modal || !img) return;
+
+  img.src = url;
+  modal.classList.add("show");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const passportViewerModal = document.getElementById("passportViewerModal");
+  const passportViewerImg = document.getElementById("passportViewerImg");
+  const closePassportViewer = document.querySelector(".close-passport-viewer");
+
+  if (closePassportViewer) {
+    closePassportViewer.addEventListener("click", () => {
+      passportViewerModal.classList.remove("show");
+      passportViewerImg.src = "";
+    });
+  }
+
+  window.addEventListener("click", (e) => {
+    if (e.target === passportViewerModal) {
+      passportViewerModal.classList.remove("show");
+      passportViewerImg.src = "";
+    }
+  });
+});
+
+const editPassportInput = document.getElementById("editPassport");
+const previewImg = document.getElementById("passportEditPreview");
+
+if (editPassportInput && previewImg) {
+  editPassportInput.addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      previewImg.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+  
 </script>
 </body>
 </html>
