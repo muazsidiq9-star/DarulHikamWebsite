@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const selarBtn = document.querySelector('.selar-btn');
   if (selarBtn) {
     selarBtn.addEventListener('click', () => {
-      window.open('https://selar.com/al-bayan-institute', '_blank');
+      window.open('https://selar.com/Dar Al-Ulum Wal Hikam-institute', '_blank');
     });
   }
 
@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentStudent = JSON.parse(sessionStorage.getItem('currentStudent'));
   console.log("Current student from session:", currentStudent);
 
+  let detectedStudent = null;
+
   // Auto-fill form if logged in
 if (currentStudent) {
 
@@ -64,9 +66,6 @@ if (currentStudent) {
 
   document.getElementById('country').value =
     currentStudent.country || '';
-
-  document.getElementById('level-arabic').value =
-    currentStudent.level_arabic || '';
 
   // plan type
   if (currentStudent.plan_type) {
@@ -100,6 +99,73 @@ if (currentStudent) {
     }
   }
 }
+
+const emailInput =
+  document.getElementById('student-email');
+
+emailInput?.addEventListener('blur', async () => {
+
+  const email =
+    emailInput.value.trim().toLowerCase();
+
+  if (!email) return;
+
+  try {
+
+    const { data, error } = await supabase
+      .from("students")
+      .select("*")
+      .eq("email", email)
+      .maybeSingle();
+
+    if (error) throw error;
+
+    if (!data) return;
+
+    detectedStudent = data;
+
+    console.log(
+      "Student detected:",
+      detectedStudent
+    );
+
+    // AUTO-FILL FORM
+    document.getElementById('student-name').value =
+      data.fullname || '';
+
+    document.getElementById('country').value =
+      data.country || '';
+
+    // LEVEL
+    const levelSelect =
+      document.getElementById('level-arabic');
+
+    for (let option of levelSelect.options) {
+
+      if (
+        option.value === data.level_arabic
+      ) {
+        option.selected = true;
+        break;
+      }
+    }
+
+    // OPTIONAL SUCCESS MESSAGE
+    successMsg.textContent =
+      t('Student record found automatically.');
+
+    successMsg.style.display = 'block';
+
+  } catch (err) {
+
+    console.error(
+      "Student lookup failed:",
+      err
+    );
+
+  }
+
+});
 
 
 paymentForm.addEventListener('submit', async (e) => {
@@ -136,7 +202,8 @@ paymentForm.addEventListener('submit', async (e) => {
 
       if (receiptFile) {
         const fileExt = receiptFile.name.split('.').pop();
-        const fileName = `${Date.now()}_${Math.random()}.${fileExt}`;
+        const fileName =
+  `${Date.now()}-${Math.floor(Math.random() * 100000)}.${fileExt}`;
 
         const { error: uploadError } = await supabase.storage
           .from('payment_receipts')
@@ -150,7 +217,9 @@ paymentForm.addEventListener('submit', async (e) => {
       }
 
       const insertData = {
-        matric_number: currentStudent?.matric_number || null,
+        matric_number:
+  (detectedStudent || currentStudent)
+    ?.matric_number || null,
         payer_name: fullname || null,
         payer_email: email || null,
         country,
@@ -165,8 +234,47 @@ paymentForm.addEventListener('submit', async (e) => {
         status: "pending"
       };
 
+  
       const { error } = await supabase.from("payments").insert([insertData]);
       if (error) throw error;
+
+      try {
+
+  await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      access_key: "e6381f96-966a-4491-9847-98d0771b48c4",
+
+      subject: "New Payment Submitted 💰",
+
+      message: `
+Payment received:
+
+Name: ${fullname}
+Email: ${email}
+Matric:
+${(detectedStudent || currentStudent)?.matric_number || "N/A"}
+Amount: ${amount} ${currency}
+Plan: ${plan_type}
+Country: ${country}
+Month: ${month}
+Payment Method: ${method}
+Receipt: ${receipt_url || "No receipt uploaded"}
+`
+    })
+  });
+
+} catch (emailError) {
+
+  console.error(
+    "Web3Forms notification failed:",
+    emailError
+  );
+
+}
 
       paymentForm.reset();
 

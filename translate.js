@@ -24,13 +24,13 @@ const DICT = {
     "Pay Now": "ادفع الآن",
 
     // ===== ABOUT PAGE =====
-  "About Al-Bayan Arabic Institute": "عن معهد البيان للغة العربية والعلوم الإسلامية",
+  "About Dar Al-Ulum Wal Hikam Arabic And Islamic Institute": "عن معهد دار العلوم والحكم للغة العربية والعلوم الإسلامية",
   "Dedicated to providing quality Arabic education online for learners worldwide":
     "نكرّس جهودنا لتقديم تعليم عربي عالي الجودة عبر الإنترنت للمتعلمين حول العالم",
 
   "Who We Are": "من نحن",
-  "Al-Bayan Arabic Institute Online is an educational platform committed to teaching the Arabic language through structured and guided online learning. We serve students from different parts of the world who desire to understand Arabic for religious, academic, and conversational purposes.":
-    "معهد البيان للدراسات العربية عبر الإنترنت هو منصة تعليمية تهدف إلى تعليم اللغة العربية والعلوم الإسلامية بأسلوب منظم وموجّه. نخدم طلابًا من مختلف أنحاء العالم الراغبين في تعلّم العربية لأغراض دينية وأكاديمية وتواصلية.",
+  "Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online is an educational platform committed to teaching the Arabic language through structured and guided online learning. We serve students from different parts of the world who desire to understand Arabic for religious, academic, and conversational purposes.":
+    "معهد دار العلوم والحكم للدراسات العربية عبر الإنترنت هو منصة تعليمية تهدف إلى تعليم اللغة العربية والعلوم الإسلامية بأسلوب منظم وموجّه. نخدم طلابًا من مختلف أنحاء العالم الراغبين في تعلّم العربية لأغراض دينية وأكاديمية وتواصلية.",
 
   "Our Mission": "رسالتنا",
   "Our mission is to empower students to understand the Arabic language clearly and confidently, especially the language of the Qur’an. We aim to remove fear and confusion from learning Arabic by using step-by-step methods guided by experienced teachers.":
@@ -219,8 +219,8 @@ const DICT = {
 "Semester Work": "أعمال الفصل",
 "Emails": "الرسائل",
 
-"Al-Bayan Arabic Institute Online":
-"معهد البيان للدراسات العربية عبر الإنترنت",
+"Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online":
+"معهد دار العلوم والحكم للدراسات العربية عبر الإنترنت",
 
 "Admin access only": "الدخول مخصص للمشرف فقط",
 
@@ -298,11 +298,11 @@ const DICT = {
 "Email: albayaninstitute068@gmail.com":
 "البريد الإلكتروني: albayaninstitute068@gmail.com",
 
-"Al-Bayan Arabic Institute Online":
-"معهد البيان للدراسات العربية عبر الإنترنت",
+"Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online":
+"معهد دار العلوم والحكم للدراسات العربية عبر الإنترنت",
 
-"© 2022 Al-Bayan Arabic Institute Online. All rights reserved.":
-"© 2022 معهد البيان للدراسات العربية عبر الإنترنت. جميع الحقوق محفوظة.",
+"© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.":
+"© 2022 معهد دار العلوم والحكم للدراسات العربية عبر الإنترنت. جميع الحقوق محفوظة.",
 
 // Add to your DICT object
 "Forgot Your Password?": "هل نسيت كلمة المرور؟",
@@ -318,7 +318,7 @@ const DICT = {
   "Temporary password copied to clipboard!": "تم نسخ كلمة المرور المؤقتة إلى الحافظة!",
 
   // existing entries...
-  "Welcome to Al-Bayan Arabic Institute": "مرحبا بكم في معهد البيان",
+  "Welcome to Dar Al-Ulum Wal Hikam Arabic And Islamic Institute": "مرحبا بكم في معهد دار العلوم والحكم",
   "Please login to continue to your account": "الرجاء تسجيل الدخول للمتابعة إلى حسابك",
   "LOGIN": "تسجيل الدخول",
   "Select User": "اختر المستخدم",
@@ -330,7 +330,7 @@ const DICT = {
   "Login": "تسجيل الدخول",
   
   "Sign Up": "إنشاء حساب جديد",
-  "Sign In": "الدخول إلى الحساب",
+  "Log In": "الدخول إلى الحساب",
 
 // Alerts / JS messages
 "Please fill all fields": "يرجى ملء جميع الحقول",
@@ -407,6 +407,7 @@ const DICT = {
 "Full Name": "الاسم الكامل",
 "Email": "البريد الإلكتروني",
 "Select Level": "اختر المستوى",
+"Select Plan": "اختر الخطة",
 "-- Choose Level --": "-- اختر المستوى --",
 "Can read the Qur'an only": "يمكنه قراءة القرآن فقط",
 "Beginner": "مبتدئ",
@@ -430,7 +431,7 @@ const DICT = {
 
 // ======= REGISTER.HTML STRINGS =======
 "Online Registration": "التسجيل عبر الإنترنت",
-"Join Al-Bayan Arabic Institute Online Classes": "انضم إلى معهد البيان العربي عبر الإنترنت",
+"Join Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online Classes": "انضم إلى عن معهد دار العلوم والحكم للغة العربية والعلوم الإسلامية عبر الإنترنت",
 "Kindly fill in your details correctly": "يرجى ملء بياناتك بشكل صحيح",
 "KINDLY FILL IN ALL REQUIRED INFORMATIONS CORRECTLY.": "يرجى ملء جميع المعلومات المطلوبة بشكل صحيح",
 "Full Name *": "الاسم الكامل *",
@@ -482,6 +483,7 @@ const DICT = {
 "Processing... ⏳": "جاري المعالجة... ⏳",
 "Registration failed. Check console for details.": "فشل التسجيل. تحقق من وحدة التحكم للحصول على التفاصيل.",
 "Registration successful 🎉\n\nYour Matric Number (Default Password). Save for first login.:": "تم التسجيل بنجاح 🎉\n\nرقم التسجيل الخاص بك (كلمة المرور الافتراضية). احفظها لتسجيل الدخول الأول.:",
+"Unexpected error occurred. Check console.": "حدث خطأ غير متوقع. تحقق من وحدة التحكم.",
 "Unexpected error occurred. Check console.": "حدث خطأ غير متوقع. تحقق من وحدة التحكم.",
 "Register": "تسجيل",
 
@@ -544,7 +546,7 @@ const DICT = {
 "Link": "الرابط",
 "Status": "الحالة",
 "Email: albayaninstitute068@gmail.com | Phone: +2347054711066": "البريد الإلكتروني: albayaninstitute068@gmail.com | الهاتف: ٠٨٠٥٤٧١١٠٦٦",
-"© 2022 Al-Bayan Arabic Institute Online. All rights reserved.": "© 2022 معهد البيان للدراسات العربية والإسلامية عبر الإنترنت. جميع الحقوق محفوظة.",
+"© 2022 Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.": "© 2022 معهد دار العلوم والحكم للدراسات العربية والإسلامية عبر الإنترنت. جميع الحقوق محفوظة.",
 "View your Upcoming Test/Exam Schedule": "عرض توقيت الاختبارات / المتحانات القادمة",
 
 
@@ -594,7 +596,7 @@ const DICT = {
 
 "No grades to download.": "لا توجد درجات للتحميل",
 
-"Al-Bayan Arabic Institute": "معهد البيان للدراسات العربية والإسلامية",
+"Dar Al-Ulum Wal Hikam Arabic And Islamic Institute": "معهد دار العلوم والحكم للدراسات العربية والإسلامية",
 "My Grades Report": "تقرير الدرجات",
 
 "Student Name:": "اسم الطالب:",
@@ -743,13 +745,13 @@ const DICT = {
 
 
   // HEADER / HERO
-  "Al-Bayan Arabic Institute Online": "معهد البيان للدراسات العربية والإسلامية عبر الإنترنت",
+  "Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online": "معهد دار العلوم والحكم للدراسات العربية والإسلامية عبر الإنترنت",
   "Learn Arabic with Confidence Online": "تعتم العربية والإسلامية بثقة عبر الإنترنت",
   "Structured online Arabic classes for beginners, intermediate and advanced learners, guided by qualified teachers.": "دروس عربية منظمة عبر الإنترنت للمبتدئين والمتوسطين والمتقدمين، بإشراف معلمين مؤهلين.",
   "Get Ready": "ابدأ الآن",
 
   // WHY CHOOSE US SECTION
-  "Why Choose Al-Bayan?": "لماذا تختار البيان؟",
+  "Why Choose Dar Al-Ulum?": "لماذا تختار دار العلوم؟",
   "Expert Teachers": "معلمون خبراء",
   "Learn from qualified and passionate Arabic educators.": "تعلم على يد معلمين عرب مؤهلين وشغوفين.",
   "Flexible Online Learning": "تعلم مرن عبر الإنترنت",
@@ -759,7 +761,7 @@ const DICT = {
   "Community Support": "دعم المجتمع",
   "Join a global community of learners and mentors.": "انضم إلى مجتمع عالمي من المتعلمين والمرشدين.",
 
-  // ===== DICT entries for "Why Choose Al-Bayan?" features =====
+  // ===== DICT entries for "Why Choose Dar Al-Ulum?" features =====
 "Expert Teachers": "مدرسون خبراء",
 
 "Global Recognition": "اعتراف عالمي",
@@ -796,7 +798,7 @@ const DICT = {
 
   // VIDEOS SECTION
   "🎬 Watch Our Highlights": "🎬 شاهد أبرز لحظاتنا",
-  "See how Al-Bayan Arabic Institute brings learning to life!": "شاهد كيف يجعل معهد البيان لتعليم العربية التعلم حيًا وشيقًا!",
+  "See how Dar Al-Ulum Wal Hikam Arabic And Islamic Institute brings learning to life!": "شاهد كيف يجعل معهد دار العلوم والحكم لتعليم العربية التعلم حيًا وشيقًا!",
   "Institute Tour": "جولة في المعهد",
   "Take a tour of our institute and facilities": "قم بجولة في معهدنا ومرافقه",
   "Class Experience": "تجربة الدروس",
@@ -912,7 +914,7 @@ const DICT = {
   "تحسين النطق، وتنمية مهارة الاستماع، والطلاقة في المحادثة.",
 
 
-  "Al-Bayan": "البيان",
+  "Dar Al-Ulum Wal Hikam": "دار العلوم والحكم",
   "Learn how to read and write Arabic letters confidently from scratch.": "تعلم قراءة وكتابة حروف اللغة العربية والعلوم الإسلامية بثقة من البداية.",
   "Register Now": "سجل الآن",
   "This course is designed for absolute beginners who want to learn Arabic reading and writing step by step, with clarity and ease.": "تم تصميم هذه الدورة للمبتدئين تمامًا الذين يرغبون في تعلم القراءة والكتابة العربية خطوة بخطوة بوضوح وسهولة.",
@@ -1188,7 +1190,7 @@ const DICT = {
 "Latest Grade": "أحدث نتيجة",
 "Outstanding Payment": "دفعة مستحقة",
 "Please complete your payment of": "يرجى إكمال الدفع بقيمة",
-"Failed to load stats": "فشل تحميل البيانات",
+"Failed to load stats": "فشل تحميل دار العلوم والحكمات",
 "Failed to load notifications": "فشل تحميل الإشعارات",
 "No notifications yet.": "لا توجد إشعارات بعد",
 "Payment Reminder": "تذكير بالدفع",
@@ -1214,7 +1216,7 @@ const DICT = {
 "Submit Registration": "إرسال التسجيل",
 "Please login to view your exam timetable": "يرجى تسجيل الدخول لعرض جدول الاختبارات",
 
-"Test/Exam Welcome - Al-Bayan": "مرحبًا بكم في الاختبار/الامتحان - البيان",
+"Test/Exam Welcome - Dar Al-Ulum Wal Hikam": "مرحبًا بكم في الاختبار/الامتحان - دار العلوم والحكم",
 "Home": "الرئيسية",
 "Courses": "الدورات",
 "Student Dashboard": "لوحة الطالب",
@@ -1276,7 +1278,7 @@ const DICT = {
 
 "Student login required": "يجب تسجيل دخول الطالب",
 
-"Al-Bayan Arabic Institute Online": "معهد البيان العربي والإسلامي عبر الإنترنت",
+"Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online": "عن معهد دار العلوم والحكم للغة العربية والعلوم الإسلامية والإسلامي عبر الإنترنت",
 
 "All rights reserved.": "جميع الحقوق محفوظة.",
 
@@ -1285,7 +1287,7 @@ const DICT = {
 "Assessment closed": "تم إغلاق الاختبار",
 "Assessment ended": "انتهى الاختبار",
 
-"Test Hall - Al-Bayan": "قاعة الاختبار - البيان",
+"Test Hall - Dar Al-Ulum Wal Hikam": "قاعة الاختبار - دار العلوم والحكم",
 
 "Home": "الرئيسية",
 "Courses": "الدورات",
@@ -1312,7 +1314,7 @@ const DICT = {
 "Go to Dashboard": "الذهاب إلى اللوحة",
 "Logout": "تسجيل الخروج",
 
-"Al-Bayan Arabic Institute Online": "البيان العربية والإسلامية عبر الإنترنت",
+"Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online": "دار العلوم والحكم العربية والإسلامية عبر الإنترنت",
 
 "All rights reserved.": "جميع الحقوق محفوظة.",
 
@@ -1351,8 +1353,8 @@ const DICT = {
 "Load assessment error:": "خطأ في تحميل الاختبار:",
 "Check submission error:": "خطأ في التحقق من الإرسال:",
 
-"© {year} Al-Bayan Arabic Institute Online. All rights reserved.":
-"© {year} البيان لتعليم العربية والدراسات الإسلامية أونلاين. جميع الحقوق محفوظة.",
+"© {year} Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.":
+"© {year} دار العلوم والحكم لتعليم العربية والدراسات الإسلامية أونلاين. جميع الحقوق محفوظة.",
 
   /* ===== DYNAMIC TEMPLATES ===== */
 
@@ -1748,10 +1750,10 @@ function updateYear() {
 
   if (lang === "ar") {
     footer.textContent =
-      `© ${year} البيان لتعليم العربية والدراسات الإسلامية أونلاين. جميع الحقوق محفوظة.`;
+      `© ${year} دار العلوم والحكم لتعليم العربية والدراسات الإسلامية أونلاين. جميع الحقوق محفوظة.`;
   } else {
     footer.textContent =
-      `© ${year} Al-Bayan Arabic Institute Online. All rights reserved.`;
+      `© ${year} Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.`;
   }
 }
 
