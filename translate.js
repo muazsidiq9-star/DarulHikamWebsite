@@ -331,6 +331,7 @@ const DICT = {
   
   "Sign Up": "إنشاء حساب جديد",
   "Log In": "الدخول إلى الحساب",
+  "Log in": "الدخول إلى الحساب",
 
 // Alerts / JS messages
 "Please fill all fields": "يرجى ملء جميع الحقول",
@@ -1343,6 +1344,8 @@ const DICT = {
 "Loading Test...": "جارٍ تحميل الاختبار...",
 "Review Modal": "نافذة المراجعة",
 
+"Remember me": "تذكرني",
+
 "Close": "إغلاق",
 "Submit anyway": "إرسال على أي حال",
 "Continue reviewing": "متابعة المراجعة",
@@ -1678,7 +1681,7 @@ function translate(lang) {
   // TEXT ELEMENTS
   // =========================
   document.querySelectorAll(
-    "[data-i18n], p, h1, h2, h3, span, a, button, label"
+    "[data-i18n], p, h1, h2, h3, span, a, li, button, label, data-i18n"
   ).forEach(el => {
 if (el.dataset.noTranslate === "true") return;
 if (el.dataset.i18n) {
@@ -1897,7 +1900,7 @@ document.addEventListener("DOMContentLoaded", () => {
     right: 20px;
     width: 52px;
     height: 52px;
-    background: #1a237e;
+    background: #028523;
     color: #fff;
     border-radius: 50%;
     display: flex;

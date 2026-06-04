@@ -104,7 +104,7 @@ html, body {
 
   border-radius: 999px;
 
-  background: #1a73e8;
+  background: #028523;
   color: #fff;
 
   text-decoration: none;
@@ -114,7 +114,7 @@ html, body {
 }
 
 .cta-btn:hover {
-  background: #1558b0;
+  background: #00350d;
   transform: translateY(-2px);
 }
 
@@ -130,12 +130,12 @@ html, body {
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(26,115,232,0.55);
+    box-shadow: 0 0 0 0 rgba(2,85,23,0.68);
   }
 
   70% {
     transform: scale(1.04);
-    box-shadow: 0 0 0 14px rgba(26,115,232,0);
+    box-shadow: 0 0 0 14px rgba(2,88,66,0);
   }
 
   100% {
@@ -206,7 +206,7 @@ section {
 
 section h2 {
   font-size: 2.1rem;
-  color: #1f6fe5;
+  color: #028523;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -256,7 +256,7 @@ section {
 
 .feature-card i {
   font-size: 42px;
-  color: #1f6fe5;
+  color: #028523;
   margin-bottom: 14px;
 }
 
@@ -316,7 +316,7 @@ section {
 
 .testimonial-card h4 {
   font-size: 14px;
-  color: #1f6fe5;
+  color: #028523;
   font-weight: 600;
   text-align: center
 }
@@ -347,7 +347,7 @@ section {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -435,27 +435,27 @@ section {
   background: linear-gradient(135deg, #e8f0fe, #dbe9ff);
 
   /* subtle depth */
-  box-shadow: 0 8px 18px rgba(31, 111, 229, 0.15);
+  box-shadow: 0 8px 18px rgba(0, 66, 17, 0.15);
 
   transition: all 0.3s ease;
 }
 
 .icon-circle i {
   font-size: 30px;
-  color: #1f6fe5;
+  color: #004211;
 }
 
 /* HOVER EFFECT */
 .feature-card:hover .icon-circle {
   transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 12px 25px rgba(31, 111, 229, 0.25);
+  box-shadow: 0 12px 25px rgba(0, 66, 17, 0.25);
 }
 
 .icon-circle.green {
   background: linear-gradient(135deg, #e6f9f0, #ccf2e0);
 }
 .icon-circle.green i {
-  color: #1abc9c;
+  color: #004211;
 }
 
 .icon-circle.orange {
@@ -581,7 +581,7 @@ section {
 
   /* optional fallback overlay clarity */
   .home-header::before {
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.45);
   }
 
   .header-logo {

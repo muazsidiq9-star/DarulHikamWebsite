@@ -28,7 +28,7 @@ body {
 }
 
 .header-overlay {
-  background: rgba(16, 97, 178, 0.4);
+  background: rgba(32, 252, 197, 0.33);
   width: 100%;
   height: 100%;
   text-align: center;
@@ -169,7 +169,7 @@ body {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 5px;
-  color: #2d8cff;
+  color: #028523;
 }
 
 .register-hub p {
@@ -196,7 +196,7 @@ body {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 600;
-  border-left: 5px solid #2d8cff;
+  border-left: 5px solid #028523;
   transition: 0.3s;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
@@ -211,7 +211,7 @@ body {
 }
 
 .hub-card .arrow {
-  color: #2d8cff;
+  color: #028523;
   font-size: 18px;
   transition: 0.3s;
 }
@@ -284,7 +284,7 @@ body {
   background: var(--card-color);
   padding: 12px;
   border-radius: 10px;
-  border-left: 4px solid #2d8cff;
+  border-left: 4px solid #028523;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -353,7 +353,7 @@ background: #a56301; }
 
 .whatsapp-btn {
   flex: 1;
-  background: #25D366;
+  background: #01ac2c;
   color: white;
   padding: 8px;
   border-radius: 6px;
@@ -381,16 +381,7 @@ background: #a56301; }
   font-size: 18px; 
 } 
 
-/* ===============================
-   FOOTER
-================================ */
-footer {
-  background: #0a4d92;
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.8rem;
-}
+
 
 /* ===============================
    MOBILE (SMART STACK)
@@ -437,7 +428,7 @@ footer {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -572,7 +563,7 @@ footer {
 
   /* optional fallback overlay clarity */
   .home-header::before {
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.45);
   }
 
   .header-logo {

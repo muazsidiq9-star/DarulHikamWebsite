@@ -118,7 +118,7 @@ body { font-family: Arial, sans-serif; background: var(--bg-color); color: var(-
   transition: all 0.3s ease;
 }
 .btn-explore {
-  background-color: #1a73e8;
+  background-color: #1365a8;
   color: white;
 }
 .btn-explore i {
@@ -127,7 +127,7 @@ body { font-family: Arial, sans-serif; background: var(--bg-color); color: var(-
 }
 .btn-explore:hover { animation: pulse 0.8s infinite; }
 .btn-register {
-  background-color: #25d366;
+  background-color: #018030;
   color: white;
   margin-left: 6px;
 }
@@ -153,14 +153,6 @@ body { font-family: Arial, sans-serif; background: var(--bg-color); color: var(-
   50% { transform: scale(1.08); }
 }
 
-/* ===== FOOTER ===== */
-footer {
-  background-color: #1a73e8;
-  color: white;
-  text-align: center;
-  padding: 25px 10px;
-  font-size: 14px;
-}
 
 /* ===== WHATSAPP FLOAT ===== */
 .whatsapp-float {
@@ -170,7 +162,7 @@ footer {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -210,22 +202,22 @@ footer {
 
 /* REGISTER (default) */
 .register-btn[data-registered="false"] {
-  background: #0d6efd;
+  background: #01ac2c;
   color: #fff;
 }
 
 .register-btn[data-registered="false"]:hover {
-  background: #0b5ed7;
+  background: #0055f1;
 }
 
 /* REGISTERED */
 .register-btn[data-registered="true"] {
   background: #acf9ff;
-  color: #0055f1;
+  color: #018030;
   border: 1px solid #0d6efd;
 }
 
 .register-btn[data-registered="true"]:hover {
-  background: #0d6efd;
+  background: #0055f1;
   color: #fff;
 }

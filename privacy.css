@@ -11,9 +11,9 @@
 ============================================================ */
 
 :root {
-  --accent:        #0d9488;
-  --accent-dark:   #0f766e;
-  --accent-light:  #14b8a6;
+  --accent:        #0d9414;
+  --accent-dark:   #0f7618;
+  --accent-light:  #14b81c;
   --accent-glow:   rgba(13,148,136,0.15);
   --accent-subtle: rgba(13,148,136,0.06);
 
@@ -27,8 +27,8 @@
   --faint:         #5a7066;
 
   --border:        rgba(13,148,136,0.10);
-  --border-mid:    rgba(13,148,136,0.20);
-  --border-strong: rgba(13,148,136,0.40);
+  --border-mid:    rgba(13, 148, 58, 0.2);
+  --border-strong: rgba(13, 148, 80, 0.4);
 
   --shadow-sm:  0 4px 16px rgba(0,0,0,0.30);
   --shadow-md:  0 10px 40px rgba(0,0,0,0.40);
@@ -52,7 +52,7 @@ body.light-mode {
   --faint:      #7a9a8a;
   --border:        rgba(13,148,136,0.12);
   --border-mid:    rgba(13,148,136,0.22);
-  --border-strong: rgba(13,148,136,0.45);
+  --border-strong: rgba(13, 148, 92, 0.45);
 }
 
 /* ============================================================
@@ -397,6 +397,21 @@ body.light-mode .privacy-header {
   color: var(--accent-light);
 }
 
+.footer-link {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-link a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.90rem;
+  transition: 0.25s ease;
+}
+
+.footer-link a:hover {
+  color: var(--accent-light);
+}
 /* ============================================================
    RESPONSIVE
 ============================================================ */

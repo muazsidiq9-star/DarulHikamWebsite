@@ -61,7 +61,7 @@ header.courses-header p { font-size: 1.1rem; }
 
 .resources-controls input:focus,
 .resources-controls select:focus {
-  border-color: #1f6fe5;
+  border-color: #01741d;
 }
 
 /* Resources Grid */
@@ -94,7 +94,7 @@ header.courses-header p { font-size: 1.1rem; }
 
 .resource-card i {
   font-size: 36px;
-  color: #1f6fe5;
+  color: #cf7e04;
   margin-bottom: 10px;
 }
 .resource-card h3 {
@@ -106,7 +106,7 @@ header.courses-header p { font-size: 1.1rem; }
 .btn-primary {
   display: inline-block;
   text-decoration: none;
-  background: #1f6fe5;
+  background: #01741d;
   color: #fff;
   padding: 10px 18px;
   border-radius: 999px;
@@ -116,12 +116,12 @@ header.courses-header p { font-size: 1.1rem; }
 
 .btn-primary:hover {
   transform: scale(1.05);
-  background: #1558c0;
+  background: #004211;
 }
 .download-btn {
   display: inline-block;
   padding: 8px 16px;
-  background-color: #0a74da;
+  background-color: #004211;
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
@@ -130,7 +130,7 @@ header.courses-header p { font-size: 1.1rem; }
 }
 
 .download-btn:hover {
-  background-color: #0759a3;
+  background-color: #004211;
   transform: scale(1.05);
 }
 /* ===========================
@@ -143,7 +143,7 @@ header.courses-header p { font-size: 1.1rem; }
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -192,7 +192,7 @@ header.courses-header p { font-size: 1.1rem; }
 .subject-toggle {
   width: 100%;
   padding: 16px 18px;
-  background: #1f6fe5;
+  background: #01741d;
   color: white;
   border: none;
   text-align: left;

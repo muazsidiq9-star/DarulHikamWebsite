@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   banner.style.top = "0";
   banner.style.left = "0";
   banner.style.width = "100%";
-  banner.style.background = "#4CAF50";
+  banner.style.background = "#01ac2c";
   banner.style.color = "#fff";
   banner.style.fontSize = "1.2rem";
   banner.style.fontWeight = "bold";
@@ -319,7 +319,7 @@ async function loadNotifications(matric) {
     else if (t.includes("grade")) { typeClass = "grades"; borderColor = "#0011ff"; icon="⭐"; }
     else { 
       const hash = Array.from(t).reduce((acc, char) => acc + char.charCodeAt(0), 0);
-      const colors = ["#9b59b6", "#1abc9c", "#e74c3c", "#f1c40f", "#34495e"];
+      const colors = ["#9b59b6", "#004211", "#e74c3c", "#f1c40f", "#34495e"];
       borderColor = colors[hash % colors.length]; 
       icon="🔔";
     }
@@ -346,7 +346,7 @@ async function loadNotifications(matric) {
         else if (t.includes("grade")) { typeClass = "grades"; borderColor = "#0011ff"; icon="⭐"; }
         else { 
           const hash = Array.from(t).reduce((acc, char) => acc + char.charCodeAt(0), 0);
-          const colors = ["#9b59b6", "#1abc9c", "#e74c3c", "#f1c40f", "#34495e"];
+          const colors = ["#9b59b6", "#004211", "#e74c3c", "#f1c40f", "#34495e"];
           borderColor = colors[hash % colors.length]; 
           icon="🔔";
         }

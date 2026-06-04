@@ -19,6 +19,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 /* =====================================================
    HEADER
 ===================================================== */
@@ -92,7 +93,7 @@ form {
 label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #1f6fe5;
+  color: #019709;
 }
 
 input,
@@ -136,18 +137,38 @@ textarea {
   font-size: 0.9rem;
   color: var(--text-color);
   margin-top: 1px;
+  font-style: Italic;
 }
 .register-note {
-  color: #1a73e8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background: #fff4e5;
+  border: 1px solid #ffcc80;
+  
+  color: #028809;
   text-align: center;
   margin-bottom: 10px;
   font-size: 1.3rem;
   font-weight: bold;
 }
-.register-note1 {
-  font-size: 1.1rem;
+
+/* ================= WARNING BADGE ================= */
+.register-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background: #fff4e5;
+  border: 1px solid #ffcc80;
   color: #ff0000;
-  margin-top: 8px;
+  font-size: 15px;
+  font-style: Italic;
   text-align: center;
 }
 
@@ -159,7 +180,7 @@ button[type="submit"] {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  background: #1f6fe5;
+  background: #004211;
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -176,23 +197,6 @@ button[type="submit"]:hover {
 }
 
 /* =====================================================
-   FOOTER
-===================================================== */
-footer {
-  background: #1f6fe5;
-  color: #eaf4f4;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.85rem;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-footer p {
-  margin-bottom: 0.4rem;
-}
-
-/* =====================================================
    WHATSAPP FLOAT
 ===================================================== */
 .whatsapp-float {
@@ -202,7 +206,7 @@ footer p {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -271,4 +275,14 @@ footer p {
 }
 .success-toast button:hover {
   background: white;
+}
+
+@media (max-width: 768px) {
+.register-note {
+  font-size: 1rem;
+ }
+ 
+.register-warning {
+  text-align: center;
+}
 }

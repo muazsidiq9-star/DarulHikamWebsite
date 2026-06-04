@@ -33,6 +33,41 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (error) throw error;
+      
+      const emailData = new FormData();
+
+emailData.append(
+  "access_key",
+  "e6381f96-966a-4491-9847-98d0771b48c4"
+);
+
+emailData.append(
+  "name",
+  name
+);
+
+emailData.append(
+  "email",
+  email
+);
+
+emailData.append(
+  "subject",
+  subject
+);
+
+emailData.append(
+  "message",
+  message
+);
+
+await fetch(
+  "https://api.web3forms.com/submit",
+  {
+    method: "POST",
+    body: emailData
+  }
+);
 
       alert("Message sent successfully ✅");
 

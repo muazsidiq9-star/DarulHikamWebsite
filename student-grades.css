@@ -84,7 +84,7 @@ main, .grades-section {
 }
 
 .grades-table th {
-  background-color: #1a73e8;
+  background-color: #004211;
   color: #f1f7ff;
   padding: 12px 15px;
   text-align: center;
@@ -104,14 +104,7 @@ main, .grades-section {
   background-color: #c1d9f82d;
 }
 
-/* ================= FOOTER ================= */
-footer {
-  background-color: #1a73e8;
-  color: #fff;
-  text-align: center;
-  padding: 25px 15px;
-  font-size: 14px;
-}
+
 
 /* ================= WHATSAPP ================= */
 .whatsapp-float {
@@ -121,7 +114,7 @@ footer {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -163,7 +156,7 @@ footer {
 .download-btn {
   margin-top: 20px;
   padding: 10px 22px;
-  background: linear-gradient(135deg, #1a73e8, #155ab5);
+  background: linear-gradient(135deg, #004211, #155ab5);
   color: #fff;
   border: none;
   border-radius: 25px;

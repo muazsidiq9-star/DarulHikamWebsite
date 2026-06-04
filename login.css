@@ -23,7 +23,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.50);
 }
 
 .login-overlay {
@@ -114,8 +114,8 @@ select {
 
 .form-group input:focus,
 select:focus {
-  border-color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(96,165,250,0.2);
+  border-color: #018030;
+  box-shadow: 0 0 0 3px rgba(96, 250, 129, 0.2);
 }
 
 /* ===============================
@@ -147,11 +147,11 @@ select:focus {
   align-items: center;
   font-size: 0.85rem;
   margin: 10px 0 18px;
-  color: #0a7cff;;
+  color: #018030;
 }
 
 .options a {
-  color: #60a5fa;
+  color: #018030;
   text-decoration: none;
 }
 
@@ -173,7 +173,7 @@ select:focus {
   padding: 12px;
   border-radius: 10px;
 
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #018030, #028523);
   border: none;
 
   color: #fff;
@@ -185,19 +185,11 @@ select:focus {
 }
 
 .submit-btn:hover {
+  background-color:  linear-gradient(135deg, #03f838, #015215);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+  box-shadow: 0 3px 8px rgba(96, 250, 173, 0.4);
 }
 
-/* ===============================
-   FOOTER
-================================ */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.7);
-}
 
 /* ===============================
    ANIMATION

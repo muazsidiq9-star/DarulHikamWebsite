@@ -115,7 +115,7 @@ a {
   border-radius: 50%;
   object-fit: cover;
 
-  border: 2px solid #4CAF50;
+  border: 2px solid #01ac2c;
   display: block;
 }
 
@@ -129,7 +129,7 @@ a {
 
 .profile-info h2 {
   font-size: 1.8rem;
-  color: #00ac78;
+  color: #01ac2c;
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -165,7 +165,7 @@ a {
 ========================= */
 .view-profile-btn {
   margin-top: 1.5rem;
-  background: #1f6fe5;
+  background: #01ac2c;
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 30px;
@@ -187,7 +187,7 @@ a {
 
 .view-profile-btn:hover {
   transform: translateY(-2px);
-  background: #1051b7;
+  background: #017c20;
 }
 
 /* =========================
@@ -382,16 +382,6 @@ a {
   color: #ff0000;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  background: #1f6fe5;
-  color: #eaf4f4;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.85rem;
-}
 
 /* =========================
    WHATSAPP FLOAT
@@ -403,7 +393,7 @@ footer {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;

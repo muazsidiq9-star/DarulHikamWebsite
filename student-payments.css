@@ -171,14 +171,7 @@ margin: 30px auto 0px;
   border-left: 5px solid #e74c3c;
 }
 
-/* ========== FOOTER ========== */
-footer {
-  background-color: #0a4d92;
-  color: #fff;
-  text-align: center;
-  padding: 25px 15px;
-  font-size: 14px;
-}
+
 
 /* ========== WHATSAPP FLOAT ========== */
 .whatsapp-float {
@@ -188,7 +181,7 @@ footer {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;

@@ -34,7 +34,7 @@
   padding: 0 20px;
 }
 
-.courses-section h2 { text-align: center; color: #1a73e8; margin-bottom: 30px; }
+.courses-section h2 { text-align: center; color: #01ac2c; margin-bottom: 30px; }
 
 .courses-container {
   display: grid;
@@ -56,7 +56,7 @@
 
 .course-card h3 {
   font-size: 1.2rem;
-  color: #1a73e8;
+  color: #01ac2c;
   margin-bottom: 10px;
 }
 
@@ -64,7 +64,7 @@
 .view-schedule-btn {
   display: inline-block;
   padding: 8px 18px;
-  background: linear-gradient(135deg, #1a73e8, #155ab5);
+  background: linear-gradient(135deg, #01ac2c, #155ab5);
   color: var(--text-color);
   border-radius: 25px;
   font-weight: 600;
@@ -74,7 +74,7 @@
 }
 .view-schedule-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(26,115,232,0.45);
+  box-shadow: 0 6px 15px rgba(26, 232, 136, 0.45);
 }
 
 .remove-btn {

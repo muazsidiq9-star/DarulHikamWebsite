@@ -60,7 +60,7 @@ nav .logo {
 .register-btn {
   display: inline-block;
   padding: 12px 28px;
-  background-color: #1a73e8;
+  background-color: #01741d;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -104,7 +104,7 @@ nav .logo {
   top: 0;
   width: 6px;
   height: 100%;
-  background: #1a73e8;
+  background: #01741d;
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
 }
@@ -113,7 +113,7 @@ nav .logo {
 .content-card h2,
 .module-card h2 {
   text-align: center;
-  color: #1a73e8;
+  color: #01741d;
   margin-bottom: 12px;
   font-size: 26px;
 }
@@ -140,14 +140,6 @@ nav .logo {
   transform: translateY(0);
 }
 
-/* ================= FOOTER ================= */
-footer {
-  background-color: #1a73e8;
-  color: white;
-  text-align: center;
-  padding: 25px 20px;
-  font-size: 14px;
-}
 
 /* ================= WHATSAPP FLOAT ================= */
 .whatsapp-float {
@@ -157,7 +149,7 @@ footer {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;

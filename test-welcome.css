@@ -140,7 +140,7 @@ html, body {
   right: 20px;
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -149,18 +149,7 @@ html, body {
   z-index: 9999;
 }
 
-/* ==========================
-   FOOTER
-========================== */
 
-footer {
-  background-color: #222;
-  color: #fff;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  margin-top: auto;
-  font-size: 0.9rem;
-}
 
 /* ==========================
    RESPONSIVE

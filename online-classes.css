@@ -100,20 +100,6 @@ body {
   opacity: 0.85;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
-footer {
-  background: #0a4d92;
-  color: #eaf4f4;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.85rem;
-}
-
-footer p {
-  margin-bottom: 0.4rem;
-}
 
 /* =====================================================
    WHATSAPP FLOAT
@@ -125,7 +111,7 @@ footer p {
 
   width: 55px;
   height: 55px;
-  background-color: #25D366;
+  background-color: #01ac2c;
   border-radius: 50%;
 
   display: flex;
@@ -199,13 +185,13 @@ footer p {
 /* ===== PLATFORM COLORS ===== */
 .hub-card.zoom { color: #2d8cff; border-left: 6px solid #2d8cff; }
 .hub-card.telegram { color: #0088cc; border-left: 6px solid #0088cc; }
-.hub-card.whatsapp { color: #25D366; border-left: 6px solid #25D366; }
+.hub-card.whatsapp { color: #01ac2c; border-left: 6px solid #01ac2c; }
 .hub-card.meet { color: #0f9d58; border-left: 6px solid #0f9d58; }
 
 /* Arrow colors match platform */
 .hub-card.zoom .arrow { color: #2d8cff; }
 .hub-card.telegram .arrow { color: #0088cc; }
-.hub-card.whatsapp .arrow { color: #25D366; }
+.hub-card.whatsapp .arrow { color: #01ac2c; }
 .hub-card.meet .arrow { color: #0f9d58; }
 
 /* ===== KEYFRAMES ===== */
