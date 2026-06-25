@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const country = formData.get("country")?.trim();
       const whatsapp = formData.get("whatsapp")?.trim();
       const levelArabic = formData.get("levelArabic");
+      const planType = formData.get("planType");
       const readQuran = formData.get("readQuran");
       const attendOnline = formData.get("attendOnline");
       const hearAbout = formData.get("hearAbout");
@@ -125,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
             country: country,
             whatsapp: whatsapp,
             level_arabic: levelArabic,
+            plan_type: planType,
             read_quran: readQuran,
             attend_online: attendOnline,
             hear_about: hearAbout,
@@ -162,6 +164,7 @@ Email: ${email}
 WhatsApp: ${whatsapp}
 Country: ${country}
 Level: ${levelArabic}
+Plan: ${planType}
 Matric: ${data.matric_number}
     `
   })
@@ -183,10 +186,22 @@ function showSuccessNotification(matricNumber) {
   const toast = document.createElement("div");
   toast.className = "success-toast";
   toast.innerHTML = `
-    <p>${tmpl("registration_successful")}</p>
-    <p>${tmpl("matric_info", { matric: `<strong>${matricNumber}</strong>` })}</p>
-    <button id="copyMatricBtn">${tmpl("copy")}</button>
-  `;
+  <p>
+    <i class="fa-solid fa-circle-check"></i>
+    ${tmpl("registration_successful")}
+  </p>
+
+  <p>
+    ${tmpl("matric_info", {
+      matric: `<strong>${matricNumber}</strong>`
+    })}
+  </p>
+
+  <button id="copyMatricBtn">
+    <i class="fa-solid fa-copy"></i>
+    ${tmpl("copy")}
+  </button>
+`;
 
   document.body.appendChild(toast);
 

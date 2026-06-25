@@ -1,219 +1,363 @@
-/* learning-resources.css */
+/* ============================================================
+   Dar Al-Ulum — RESOURCES PAGE  (resources.css)
+   Matches students-dashboard design system
+============================================================ */
 
-/* Page Header Fix - Applies to Grades and Resources pages */
-
-/* ===== HEADER ===== */
-header.courses-header {
+/* ============================================================
+   HERO — mirrors .sd-hero pattern
+============================================================ */
+.res-hero {
   position: relative;
-  background: url('background-resources.jpg') center/cover no-repeat;
-  height: 300px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff;
-}
-header.courses-header .header-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  padding: 20px;
-}
-header.courses-header img { width: 100px; margin-bottom: 10px; }
-header.courses-header h1 { font-size: 2rem; margin-bottom: 5px; }
-header.courses-header p { font-size: 1.1rem; }
-
-.resource-top-bar {
-  max-width: 1100px;
-  margin: 20px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.resource-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.resources-controls {
-  max-width: 1100px;
-  margin: 20px auto;
-  padding: 0 20px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.resources-controls input,
-.resources-controls select {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  outline: none;
-  font-size: 14px;
-  min-width: 220px;
-}
-
-.resources-controls input:focus,
-.resources-controls select:focus {
-  border-color: #01741d;
-}
-
-/* Resources Grid */
-.resources-grid {
-  max-width: 1100px;
-  margin: 20px auto 60px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  padding: 0 20px;
-}
-
-.resource-card {
-  background: var(--card-color);
-  padding: 24px 20px;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: all 0.25s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 170px;
-}
-
-.resource-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
-}
-
-.resource-card i {
-  font-size: 36px;
-  color: #cf7e04;
-  margin-bottom: 10px;
-}
-.resource-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 14px;
-  color: var(--text-color);
-}
-
-.btn-primary {
-  display: inline-block;
-  text-decoration: none;
-  background: #01741d;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: all 0.25s ease;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05);
-  background: #004211;
-}
-.download-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #004211;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.download-btn:hover {
-  background-color: #004211;
-  transform: scale(1.05);
-}
-/* ===========================
-   FLOATING WHATSAPP
-   =========================== */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-
-  width: 55px;
-  height: 55px;
-  background-color: #01ac2c;
-  border-radius: 50%;
-
+  min-height: 46vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  z-index: 9999;
-
-  cursor: grab;
-}
-
-.whatsapp-float img {
-  width: 28px;
-  height: 28px;
-}
-
-.floating-whatsapp:hover {
-  transform: scale(1.1);
-}
-
-@media (max-width: 600px) {
-  header.courses-header {
-    height: 240px;
-  }
-
-  header.courses-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .resource-card {
-    min-height: 150px;
-  }
-}
-
-/* SUBJECT CONTAINER */
-.subject {
-  margin-bottom: 18px;
-  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  background: var(--card-color);
+  background: url('background-resources.jpg') center/cover no-repeat;
 }
 
-/* BUTTON HEADER */
+.res-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(63, 8, 107, 0.774) 0%,
+    rgba(46, 6, 78, 0.72) 45%,
+    rgba(46, 6, 78, 0.3) 100%
+  );
+  z-index: 1;
+}
+
+.res-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 52px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 680px;
+  width: 100%;
+}
+
+.res-hero-content .header-logo {
+  width: 76px;
+  height: auto;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.4));
+  animation: gentlePulse 3.5s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.06); }
+}
+
+.res-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #dd86ef;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  padding: 6px 16px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(6px);
+}
+
+.res-hero-content h1 {
+  font-size: clamp(1.7rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.12;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.res-hero-content p {
+  font-size: clamp(0.88rem, 2vw, 1rem);
+  color: rgba(255,255,255,0.80);
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .res-hero { min-height: 38vh; }
+  .res-hero-content { padding: 36px 20px 40px; }
+  .res-hero-content .header-logo { width: 60px; }
+  .res-hero-content h1 { font-size: 1.55rem; }
+}
+
+
+/* ============================================================
+   MAIN WRAPPER
+============================================================ */
+.resources-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .resources-page { padding: 32px 16px 56px; gap: 28px; }
+}
+
+
+/* ============================================================
+   TOP BAR — library link + controls
+============================================================ */
+.res-top-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.res-library-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  align-self: center;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 14px rgba(163, 22, 151, 0.25);
+}
+
+.res-library-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.res-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.res-controls input,
+.res-controls select {
+  flex: 1;
+  min-width: 200px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.res-controls input:focus,
+.res-controls select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+}
+
+@media (max-width: 540px) {
+  .res-controls { flex-direction: column; }
+  .res-controls input,
+  .res-controls select { min-width: 0; width: 100%; }
+}
+
+
+/* ============================================================
+   SUBJECT ACCORDION — matches sd-hub card aesthetic
+============================================================ */
+.subject {
+  background: var(--card-color);
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: box-shadow 0.25s;
+}
+
+.subject:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+}
+
+/* Toggle button */
 .subject-toggle {
   width: 100%;
-  padding: 16px 18px;
-  background: #01741d;
-  color: white;
+  padding: 18px 22px;
+  background: transparent;
+  color: var(--text-color);
   border: none;
   text-align: left;
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: inherit;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  border-left: 4px solid var(--primary);
+  transition: background 0.2s, border-color 0.2s;
+  position: relative;
 }
 
-/* CONTENT AREA */
+.subject-toggle::after {
+  content: "\f078"; /* fa-chevron-down */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.78rem;
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1);
+}
+
+.subject-toggle:hover {
+  background: var(--primary-xlight);
+}
+
+.subject.active .subject-toggle {
+  background: var(--primary-xlight);
+  border-left-color: var(--primary-dark);
+}
+
+.subject.active .subject-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Collapse / expand */
 .subject-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.3s ease;
   padding: 0 18px;
+  border-top: 0px solid var(--border-light);
 }
 
-/* OPEN STATE */
 .subject.active .subject-content {
-  padding: 18px;
-  max-height: 2000px; /* enough for all books */
+  max-height: 3000px;
+  padding: 20px 20px 24px;
+  border-top: 1px solid var(--border-light);
+}
+
+
+/* ============================================================
+   RESOURCE CARDS GRID — inside each accordion
+============================================================ */
+.subject-content .resources-grid,
+.subject-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Override: when closed the grid shouldn't paint */
+.subject-content:not(.visible) {
+  display: block; /* keep it block for the max-height animation */
+}
+
+.subject.active .subject-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Resource card */
+.resource-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  padding: 22px 18px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 160px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), #bc4ade);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  border-radius: 14px 14px 0 0;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.10);
+  border-color: var(--primary);
+}
+
+.resource-card:hover::before {
+  transform: scaleX(1);
+}
+
+.resource-card i {
+  font-size: 2rem;
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.resource-card i.fa-video {
+  color: #2d8cff;
+}
+
+.resource-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Open PDF / Watch button */
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  background: var(--primary);
+  color: #fff;
+  padding: 9px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .subject-toggle { padding: 15px 16px; font-size: 0.93rem; }
+  .subject.active .subject-content { padding: 14px 14px 18px; gap: 12px; }
+  .resource-card { min-height: 140px; padding: 18px 14px 14px; }
 }

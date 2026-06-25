@@ -3,244 +3,386 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="google" content="notranslate">
-  <title>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute - Home</title>
-  <!-- MASTER CSS -->
+  <title>Dar Al-Ulum Wal Hikam Institute Online - Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="master.css">
-  <!-- HOME PAGE SPECIFIC CSS -->
   <link rel="stylesheet" href="home.css">
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" href="favicon.ico">
-<link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+</head>
 <body>
 
   <!-- NAVIGATION -->
   <nav class="master-nav">
     <div class="nav-container">
       <a href="index.html" class="logo">
-        <img src="logo.png" alt="Dar Al-Ulum Logo"> Dar Al-Ulum
+        <img src="logo.png" alt="Dar Al-Ulum Logo">
+        <span>Dar Al-Ulum</span>
       </a>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
       <div class="nav-links" id="navLinks">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="courses.html">Courses</a>
-        <a href="register.html">Register</a>
-        <a href="students-dashboard.html">Dashboard</a>
-        
-        <a href="payment.html">Payment</a>
-        <a href="schedule.html">Schedule</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html" class="login-btn">Log in</a>
+        <a href="index.html" class="active" data-translate="Home">Home</a>
+        <a href="about.html" data-translate="About">About</a>
+        <a href="courses.html" data-translate="Courses">Courses</a>
+        <a href="register.html" data-translate="Register">Register</a>
+        <a href="students-dashboard.html" data-translate="Dashboard">Dashboard</a>
+        <a href="payment.html" data-translate="Payment">Payment</a>
+        <a href="contact.html" data-translate="Contact">Contact</a>
+        <a href="login.html" class="login-btn" data-translate="Log in">Log in</a>
       </div>
     </div>
   </nav>
 
-  <!-- HEADER / HERO -->
-<header class="home-header">
+  <!-- ================================================
+       HERO SECTION
+  ================================================ -->
+  <header class="home-header">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="background-all.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
 
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="background-all.mp4" type="video/mp4">
-  </video>
-    
-  <div class="header-overlay">
-
-    <img src="logo.png" alt="Logo" class="header-logo">
-
-    <h1>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</h1>
-
-    <h2>Structured online Arabic classes for beginners, intermediate and advanced learners, guided by qualified teachers.</h2>
-
-    <div class="cta-group">
-  <a href="login.html" class="cta-btn pulse">
-    Log In
-  </a>
-
-  <a href="register.html" class="cta-btn pulse">
-    Sign Up
-  </a>
-</div>
-  </div>
-
-</header>
-
-  <!-- WHY CHOOSE US SECTION -->
-<section class="features">
-  <h2>Why Choose Dar Al-Ulum?</h2>
-  <div class="cards-grid">
-    <div class="feature-card">
-      <div class="icon-circle green">
-      <i class="fa-solid fa-chalkboard-user"></i>
-      </div>
-      <h3>Expert Teachers</h3>
-      <p>Learn from qualified and passionate Arabic educators.</p>
+    <!-- Signature watermark: Arabic word for "Knowledge" -->
+    <div class="hero-watermark" aria-hidden="true">
+      <span class="hero-watermark-text">العِلم</span>
     </div>
 
-    <div class="feature-card">
-      <div class="icon-circle orange">
-      <i class="fa-solid fa-laptop-code"></i>
+    <div class="hero-content">
+      <img src="logo.png" alt="Dar Al-Ulum Logo" class="header-logo">
+
+      <p class="hero-eyebrow" data-translate="Online • Arabic • Islamic Sciences">
+        Online &bull; Arabic &bull; Islamic Sciences
+      </p>
+
+      <h1 data-translate="Dar Al-Ulum Wal Hikam Institute Online">
+        Dar Al-Ulum Wal Hikam Institute Online
+      </h1>
+
+      <p class="hero-sub" data-translate="Structured online Arabic classes for beginners, intermediate and advanced learners, guided by qualified teachers.">
+        Structured online Arabic classes for beginners, intermediate and advanced learners, guided by qualified teachers.
+      </p>
+
+      <div class="cta-group">
+        <a href="register.html" class="cta-btn pulse"> <span data-translate="GET STARTED">Get Started</span><i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="courses.html" class="cta-btn cta-outline" data-translate="Browse Courses">Browse Courses</a>
       </div>
-      <h3>Flexible Online Learning</h3>
-      <p>Access courses anytime, anywhere, on your schedule.</p>
     </div>
 
-    <div class="feature-card">
-      <div class="icon-circle">
-      <i class="fa-solid fa-book-open"></i>
-      </div>
-      <h3>Comprehensive Courses</h3>
-      <p>From Qur'anic Arabic to conversational fluency, all levels covered.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="icon-circle green">
-      <i class="fa-solid fa-users"></i>
-      </div>
-      <h3>Community Support</h3>
-      <p>Join a global community of learners and mentors.</p>
-    </div>
-
-    <!-- New feature cards -->
-    <div class="feature-card">
-      <div class="icon-circle orange">
-      <i class="fa-solid fa-globe"></i>
-      </div>
-      <h3>Global Recognition</h3>
-      <p>Certificates recognized internationally for Arabic proficiency.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="icon-circle">
-      <i class="fa-solid fa-brain"></i>
+    <!-- Stats float at the base of the hero -->
+    <div class="hero-stats-bar">
+      <div class="hero-stats-inner">
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">1200+</span>
+          <span class="hero-stat-label" data-translate="Students Enrolled">Students Enrolled</span>
         </div>
-      <h3>Innovative Teaching Methods</h3>
-      <p>Interactive lessons designed to boost retention and confidence.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="icon-circle green">
-      <i class="fa-solid fa-clock"></i>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">4</span>
+          <span class="hero-stat-label" data-translate="Levels of Study">Levels of Study</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">100%</span>
+          <span class="hero-stat-label" data-translate="Online & Flexible">Online &amp; Flexible</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">10+</span>
+          <span class="hero-stat-label" data-translate="Countries Represented">Countries Represented</span>
+        </div>
       </div>
-      <h3>Self-Paced Options</h3>
-      <p>Learn at your own speed with recorded lessons and practice materials.</p>
     </div>
+  </header>
 
-    <div class="feature-card">
-      <div class="icon-circle orange">
-      <i class="fa-solid fa-award"></i>
+  <!-- ================================================
+       HIGHLIGHT VIDEOS
+  ================================================ -->
+  <section class="home-videos">
+    <div class="section-label" data-translate="See Us in Action">See Us in Action</div>
+    <h2 data-translate="Watch Our Highlights">Watch Our Highlights</h2>
+    <p data-translate="See how Dar Al-Ulum brings learning to life for students across the globe.">
+      See how Dar Al-Ulum brings learning to life for students across the globe.
+    </p>
+    <div class="videos-grid">
+      <div class="video-card fade-up">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/90bn6gFRaq"
+                  title="Institute Tour" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p data-translate="Institute Tour">Institute Tour</p>
       </div>
-      <h3>Proven Success</h3>
-      <p>Thousands of students have successfully mastered Arabic with us.</p>
+      <div class="video-card fade-up">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/Vc1B5ZXfu7"
+                  title="Class Experience" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p data-translate="Experience Our Arabic Classes">Experience Our Arabic Classes</p>
+      </div>
+      <div class="video-card fade-up">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/3ekiKUc5o0"
+                  title="Student Testimonials" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p data-translate="Hear from Our Students">Hear from Our Students</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <!-- TESTIMONIALS -->
-<section class="testimonials">
-  <h2>What Our Students Say</h2>
+  <!-- ================================================
+       WHY CHOOSE US — asymmetric layout
+  ================================================ -->
+  <section class="features">
+    <div class="features-layout">
 
-  <div class="testimonial-grid">
+      <!-- Left sticky column -->
+      <div class="features-sidebar fade-up">
+        <div class="section-label" data-translate="Our Strengths">Our Strengths</div>
+        <h2 data-translate="Why Choose Dar Al-Ulum?">Why Choose Dar Al-Ulum?</h2>
+        <p data-translate="We combine classical Islamic scholarship with modern teaching to give every student a rigorous, flexible, and meaningful education.">
+          We combine classical Islamic scholarship with modern teaching to give every student a rigorous, flexible, and meaningful education.
+        </p>
+        <a href="courses.html" class="sidebar-cta">
+  <span data-translate="Explore our courses">Explore our courses</span>
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+      </div>
 
-    <div class="testimonial-card">
-      <p>"I improved my Arabic in just 3 months! The teachers are amazing."</p>
-      <h4>- Hafsah, Nigeria</h4>
+      <!-- Right cards grid -->
+      <div class="features-grid">
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle green"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Expert Teachers">Expert Teachers</h3>
+            <p data-translate="Qualified educators with deep Islamic knowledge and modern teaching skills.">
+              Qualified educators with deep Islamic knowledge and modern teaching skills.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle orange"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Flexible Online Learning">Flexible Online Learning</h3>
+            <p data-translate="Access courses anytime, anywhere, on your own schedule.">
+              Access courses anytime, anywhere, on your own schedule.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle teal"><i class="fa-solid fa-book-open"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Comprehensive Curriculum">Comprehensive Curriculum</h3>
+            <p data-translate="From Qur'anic Arabic to conversational fluency — all levels covered.">
+              From Qur'anic Arabic to conversational fluency — all levels covered.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle purple"><i class="fa-solid fa-users"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Global Community">Global Community</h3>
+            <p data-translate="Join a worldwide community united by a love for Arabic and Islam.">
+              Join a worldwide community united by a love for Arabic and Islam.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle green"><i class="fa-solid fa-globe"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Internationally Recognised">Internationally Recognised</h3>
+            <p data-translate="Earn certificates respected across borders for Arabic and Islamic studies.">
+              Earn certificates respected across borders for Arabic and Islamic studies.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle orange"><i class="fa-solid fa-brain"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Modern Teaching Methods">Modern Teaching Methods</h3>
+            <p data-translate="Interactive lessons designed to boost retention and confidence.">
+              Interactive lessons designed to boost retention and confidence.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle teal"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Learn at Your Own Pace">Learn at Your Own Pace</h3>
+            <p data-translate="Recorded lessons and practice materials always available to revisit.">
+              Recorded lessons and practice materials always available to revisit.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="icon-circle purple"><i class="fa-solid fa-award"></i></div>
+          <div class="feature-card-text">
+            <h3 data-translate="Proven Results">Proven Results</h3>
+            <p data-translate="Hundreds of students have successfully mastered Arabic with us.">
+              Hundreds of students have successfully mastered Arabic with us.
+            </p>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <div class="testimonial-card">
-      <p>"Flexible classes and practical lessons make learning fun and easy."</p>
-      <h4>- Omar, UAE</h4>
+  <!-- ================================================
+       TESTIMONIALS — quote wall
+  ================================================ -->
+  <section class="testimonials">
+    <div class="section-label" data-translate="Student Voices">Student Voices</div>
+    <h2 data-translate="What Our Students Say">What Our Students Say</h2>
+
+    <div class="quotes-grid">
+
+      <div class="quote-card fade-up">
+        <div class="quote-icon-big"><i class="fa-solid fa-quote-left"></i></div>
+        <p class="quote-text" data-translate="I improved my Arabic in just 3 months! The teachers are amazing and very patient.">
+          I improved my Arabic in just 3 months! The teachers are amazing and very patient.
+        </p>
+        <div class="quote-footer">
+          <img class="quote-avatar" src="student3.jpg" 
+     alt="Hanifah"
+     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+<div class="quote-avatar quote-avatar--fallback">H</div>
+          <div class="quote-meta">
+            <span class="quote-name">Hanifah <span>🇪🇬</span></span>
+            <span class="quote-role" data-translate="Student">Student</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card fade-up">
+        <div class="quote-icon-big"><i class="fa-solid fa-quote-left"></i></div>
+        <p class="quote-text" data-translate="Flexible classes and practical lessons make learning fun and easy.">
+          Flexible classes and practical lessons make learning fun and easy.
+        </p>
+        <div class="quote-footer">
+          <img class="quote-avatar" src="student4.jpg" 
+     alt="Yusuf"
+     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+<div class="quote-avatar quote-avatar--fallback">Y</div>
+          <div class="quote-meta">
+            <span class="quote-name">Yusuf <span>🇦🇪</span></span>
+            <span class="quote-role" data-translate="Student">Student</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card fade-up">
+        <div class="quote-icon-big"><i class="fa-solid fa-quote-left"></i></div>
+        <p class="quote-text" data-translate="The community and support kept me motivated throughout my learning journey.">
+          The community and support kept me motivated throughout my learning journey.
+        </p>
+        <div class="quote-footer">
+          <img class="quote-avatar" src="student5.jpg" 
+     alt="Muaz"
+     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+<div class="quote-avatar quote-avatar--fallback">M</div>
+          <div class="quote-meta">
+            <span class="quote-name">Muaz <span>🇳🇬</span></span>
+            <span class="quote-role" data-translate="Student">Student</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card fade-up">
+        <div class="quote-icon-big"><i class="fa-solid fa-quote-left"></i></div>
+        <p class="quote-text" data-translate="The Qur'an and Arabic lessons are well-structured. I now feel confident understanding Islamic texts.">
+          The Qur'an and Arabic lessons are well-structured. I now feel confident understanding Islamic texts.
+        </p>
+        <div class="quote-footer">
+          <img class="quote-avatar" src="student1.jpg" 
+     alt="Ahmad"
+     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+<div class="quote-avatar quote-avatar--fallback">A</div>
+          <div class="quote-meta">
+            <span class="quote-name">Ahmad <span>🇬🇧</span></span>
+            <span class="quote-role" data-translate="Student">Student</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <div class="testimonial-card">
-      <p>"The community and support kept me motivated to keep learning."</p>
-      <h4>- Fatima, Egypt</h4>
-    </div>
-
-    <!-- NEW TESTIMONIAL -->
-    <div class="testimonial-card">
-      <p>"The Qur'an and Arabic lessons are well-structured and easy to follow. I now feel more confident understanding Islamic texts."</p>
-      <h4>- Ahmad, United Kingdom</h4>
-    </div>
-
-  </div>
-</section>
-
-  <!-- ===== Advertising / Highlight Videos ===== -->
-<section class="home-videos">
-  <div class="container">
-    <h2 data-translate="🎬 Watch Our Highlights">🎬 Watch Our Highlights</h2>
-<p data-translate="See how Dar Al-Ulum Wal Hikam Arabic And Islamic Institute brings learning to life!">
-  See how Dar Al-Ulum Wal Hikam Arabic And Islamic Institute brings learning to life!
-</p>
-
-<div class="videos-grid">
-  <div class="video-card">
-    <iframe src="https://www.youtube.com/embed/90bn6gFRaq"
-            title="Institute Tour" allowfullscreen></iframe>
-    <p data-translate="Take a tour of our institute and facilities">
-      Take a tour of our institute and facilities
-    </p>
-  </div>
-  <div class="video-card">
-    <iframe src="https://www.youtube.com/embed/Vc1B5ZXfu7" 
-            title="Class Experience" allowfullscreen></iframe>
-    <p data-translate="Experience our interactive Arabic classes">
-      Experience our interactive Arabic classes
-    </p>
-  </div>
-  <div class="video-card">
-    <iframe src="https://www.youtube.com/embed/3ekiKUc5o0" 
-            title="Student Testimonials" allowfullscreen></iframe>
-    <p data-translate="Hear from our happy students">Hear from our happy students</p>
-  </div>
-</div>
-  </div>
-</section>
-
-  <!-- CALL TO ACTION -->
-  <section class="cta">
-    <h2>Ready to Start Your Arabic Journey?</h2>
-    <p>Sign up today and join our growing family of learners worldwide.</p>
-    <div class="cta-center">
-      <a href="register.html" class="cta-btn pulse">Register Now</a>
+  </section>
+  <!-- ================================================
+       CALL TO ACTION
+  ================================================ -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 data-translate="Begin Your Arabic Journey Today">Begin Your Arabic Journey Today</h2>
+      <p data-translate="Join thousands of learners worldwide and take the first step towards understanding the Qur'an and Islamic sciences.">
+        Join thousands of learners worldwide and take the first step towards understanding the Qur'an and Islamic sciences.
+      </p>
+      <a href="register.html" class="cta-btn pulse" data-translate="Register Now — It's Free">
+        Register Now &mdash; It's Free <i class="fa-solid fa-arrow-right"></i>
+      </a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-  <p>Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online</p>
-  <p>Email: daralulumwalhikam20@gmail.com | Phone: +2348110705054</p>
-  <p id="footerCopyright">
-  © <span id="year"></span> Dar Al-Ulum Wal Hikam Arabic And Islamic Institute Online. All rights reserved.
-</p>
-<a href="privacy.html">Privacy Policy</a>
-</footer>
+    <p data-translate="Dar Al-Ulum Wal Hikam Institute Online">Dar Al-Ulum Wal Hikam Institute Online</p>
+    <p>
+      <span data-translate="Email">Email</span>: daralulumwalhikam20@gmail.com &nbsp;|&nbsp;
+      <span data-translate="Phone: +234 811 070 5054">Phone: +234 811 070 5054</span>
+    </p>
+    <p id="footerCopyright"></p>
+    <a href="privacy.html" data-translate="Privacy Policy">Privacy Policy</a>
+  </footer>
 
- <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank">
-  <img src="whatsapp-icon.png" alt="WhatsApp">
-</a>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="whatsapp-icon.png" alt="WhatsApp">
+  </a>
 
-  <!-- HAMBURGER & PAGE JS -->
   <script>
     function toggleMenu() {
-      const nav = document.getElementById('navLinks');
-      nav.classList.toggle('show');
+      document.getElementById('navLinks').classList.toggle('show');
     }
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       const nav = document.getElementById('navLinks');
       const hamburger = document.querySelector('.hamburger');
       if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
         nav.classList.remove('show');
       }
     });
+
+    /* Scroll-reveal */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up, .quote-card, .feature-card, .video-card')
+      .forEach(el => observer.observe(el));
+
+    /* Footer year */
+    const yr = document.getElementById('footerCopyright');
+    if (yr) yr.textContent = '© ' + new Date().getFullYear() + ' Dar Al-Ulum Wal Hikam Institute Online. All rights reserved.';
   </script>
-<script src="translate.js"></script>
+  <script src="translate.js"></script>
 </body>
 </html>
