@@ -307,11 +307,11 @@ function renderQuestion() {
                         answer_text: input.value,
                         is_final: false
                     }, {
-                        onConflict: ['matric_number', 'question_id']
+                        onConflict: 'matric_number,assessment_id,question_id'
                     });
 
                 if (error) {
-                    
+                    console.error("MCQ autosave error:", error);
                 }
 
                 saveExamState();
@@ -366,7 +366,7 @@ function renderQuestion() {
                         answer_text: answer,
                         is_final: false
                     }, {
-                        onConflict: ['matric_number', 'question_id']
+                        onConflict: 'matric_number,assessment_id,question_id'
                     });
 
                 if (error) {
@@ -745,13 +745,18 @@ async function finalSubmit() {
             // proceedAnyway === true: fall through and submit despite gaps
         }
 
-        for (let qid in studentAnswers) {
+        const { error: finalizeError } = await supabaseClient
+            .from('student_answers')
+            .update({ is_final: true })
+            .eq('matric_number', matricNumber)
+            .eq('assessment_id', assessmentId);
 
-            await supabaseClient
-                .from('student_answers')
-                .update({ is_final: true })
-                .eq('matric_number', matricNumber)
-                .eq('question_id', qid);
+        if (finalizeError) {
+            alert('Submission error');
+            console.error(finalizeError);
+            finalSubmitBtn.textContent = originalText;
+            finalSubmitBtn.disabled = false;
+            return;
         }
 
         const { data, error } = await supabaseClient.rpc(
