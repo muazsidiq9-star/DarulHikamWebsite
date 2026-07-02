@@ -19,8 +19,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const passportPreview = document.getElementById("passport-preview");
   const passportWarning = document.getElementById("passport-warning");
   const submitBtn = document.querySelector('.submit-btn');
+  const planTypeSelect = document.getElementById("planType");
+  const planPriceCards = document.querySelectorAll(".plan-price-card");
 
   if (!form) return;
+
+  // ===========================
+  // Plan Price Highlight
+  // ===========================
+  if (planTypeSelect && planPriceCards.length) {
+    const highlightSelectedPlan = () => {
+      const selected = planTypeSelect.value;
+      planPriceCards.forEach((card) => {
+        card.classList.toggle("selected", card.dataset.plan === selected);
+      });
+    };
+
+    planTypeSelect.addEventListener("change", highlightSelectedPlan);
+
+    planPriceCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        planTypeSelect.value = card.dataset.plan;
+        highlightSelectedPlan();
+      });
+    });
+
+    highlightSelectedPlan();
+  }
 
   // ===========================
   // 3️⃣ Form Submit

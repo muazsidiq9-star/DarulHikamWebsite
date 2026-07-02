@@ -194,11 +194,22 @@
             <label for="planType">
               <span data-translate="Plan Type">Plan Type</span> <span class="req">*</span>
             </label>
-            <select id="levelArabic" name="levelArabic" required>
+            <select id="planType" name="planType" required>
               <option value="" data-translate="Select">Select</option>
               <option value="General" data-translate="General">General</option>
               <option value="Premium" data-translate="Premium">Premium</option>
             </select>
+
+            <div class="plan-price-strip">
+              <div class="plan-price-card" data-plan="General">
+                <span class="plan-price-name" data-translate="General">General</span>
+                <span class="plan-price-amount">₦30,000<small data-translate="/month">/month</small></span>
+              </div>
+              <div class="plan-price-card" data-plan="Premium">
+                <span class="plan-price-name" data-translate="Premium">Premium</span>
+                <span class="plan-price-amount">₦50,000<small data-translate="/month">/month</small></span>
+              </div>
+            </div>
           </div>
 
           <div class="form-group full">
