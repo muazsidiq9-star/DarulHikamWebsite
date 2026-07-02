@@ -3184,6 +3184,7 @@ NEW FILES START HERE
   "Select Course First":  "اختر الكورس أولاً",
   "No books yet":         "لا توجد كتب بعد",
   "No videos yet":        "لا توجد فيديوهات بعد",
+  "/month":               "/شهر",
 
   // ===== DYNAMIC TEMPLATES ===== 
 
