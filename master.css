@@ -210,10 +210,10 @@ main {
 /* Login button in nav */
 .nav-links a.login-btn {
   margin: 12px 16px 0;
-  background: var(--primary);
-  color: #1a1000;
+  background: var(--primary-dark);
+  color: #fff;
   border-radius: 6px;
-  border: none;
+  border: 1px solid var(--primary);
   text-align: center;
   font-weight: 700;
   width: calc(100% - 32px);
@@ -222,7 +222,7 @@ main {
 }
 
 .nav-links a.login-btn:hover {
-  background: var(--primary-dark);
+  background: var(--primary);
   color: #fff;
 }
 
