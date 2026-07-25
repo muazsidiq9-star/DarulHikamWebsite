@@ -301,7 +301,7 @@
 .remember-label input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  accent-color: var(--primary);
+  accent-color: var(--primary-dark);
   cursor: pointer;
 }
 

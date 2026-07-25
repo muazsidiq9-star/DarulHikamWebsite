@@ -16,14 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ================= SELAR PAYMENT ================= */
-  const selarBtn = document.querySelector('.selar-btn');
-  if (selarBtn) {
-    selarBtn.addEventListener('click', () => {
-      window.open('https://selar.com/Dar Al-Ulum-institute', '_blank');
-    });
-  }
-
   /* ================= COPY TO CLIPBOARD ================= */
   window.copyText = function (text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -84,6 +76,39 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ================= HELPERS ================= */
+
+  // Same list used in register.js — keep these in sync if either changes
+  const WEST_AFRICA_COUNTRIES = [
+    "nigeria", "ghana", "benin", "togo", "niger", "cameroon",
+    "senegal", "mali", "burkina faso", "guinea", "guinea-bissau",
+    "sierra leone", "liberia", "ivory coast", "gambia",
+    "cape verde", "mauritania"
+  ];
+
+  function isWestAfrica(countryRaw) {
+    if (!countryRaw) return null; // unknown — caller decides fallback behaviour
+    return WEST_AFRICA_COUNTRIES.includes(countryRaw.trim().toLowerCase());
+  }
+
+  // Shows/hides local bank cards vs international cards based on country.
+  // Flutterwave card and the manual receipt form always stay visible —
+  // they work for either local or international payments.
+  function applyCountrySectionVisibility(countryRaw) {
+    const localCards = document.querySelectorAll('.local-card');
+    const intlCards  = document.querySelectorAll('.intl-card');
+    const westAfrica = isWestAfrica(countryRaw);
+
+    if (westAfrica === null) {
+      // No country known yet — show everything so nothing looks broken
+      // before the student's email/session resolves their country.
+      localCards.forEach(el => el.style.display = '');
+      intlCards.forEach(el => el.style.display = '');
+      return;
+    }
+
+    localCards.forEach(el => el.style.display = westAfrica ? '' : 'none');
+    intlCards.forEach(el => el.style.display = westAfrica ? 'none' : '');
+  }
 
   function resolveFromMap(map, rawValue) {
     if (!rawValue) return null;
@@ -154,12 +179,142 @@ document.addEventListener('DOMContentLoaded', () => {
     setLevel(currentStudent.level);
   }
 
+  applyCountrySectionVisibility(currentStudent?.country);
+
+  /* ================= FLUTTERWAVE ================= */
+  const FLUTTERWAVE_PUBLIC_KEY = "FLWPUBK-34b2c1c3c94fc67ab94089b5ec2f28a8-X";
+  const VERIFY_PAYMENT_ENDPOINT = "https://ymxuwahcogzbbohdbpgg.supabase.co/functions/v1/verify-flutterwave-payment";
+
+  const flutterwaveAmountEl = document.getElementById('flutterwaveAmount');
+  const flutterwavePayBtn   = document.getElementById('flutterwavePayBtn');
+
+  // Resolves amount/currency due, preferring live DB record over session data
+  function getAmountDue() {
+    const source = detectedStudent || currentStudent;
+    if (!source) return { amount: null, currency: null };
+    return {
+      amount: source.amount_due ?? null,
+      currency: source.currency_due ?? null
+    };
+  }
+
+  function refreshFlutterwaveAmount() {
+    const { amount, currency } = getAmountDue();
+    if (!amount || !currency) {
+      flutterwaveAmountEl.textContent = t('Enter your email above to see your amount due.');
+      flutterwavePayBtn.disabled = true;
+      return;
+    }
+    const symbol = currency === 'NGN' ? '₦' : currency === 'USD' ? '$' : currency + ' ';
+    flutterwaveAmountEl.textContent = `${symbol}${Number(amount).toLocaleString()} ${currency}`;
+    flutterwavePayBtn.disabled = false;
+  }
+
+  refreshFlutterwaveAmount();
+
+
+  flutterwavePayBtn?.addEventListener('click', () => {
+  console.log("Flutterwave button clicked");
+  
+    const student = detectedStudent || currentStudent;
+    const { amount, currency } = getAmountDue();
+
+    if (!student || !student.email || !amount || !currency) {
+      showError(t('We could not find your amount due. Please enter your email above first.'));
+      return;
+    }
+
+    if (typeof FlutterwaveCheckout !== 'function') {
+      showError(t('Payment system failed to load. Please refresh and try again.'));
+      return;
+    }
+
+    const txRef = `daralulum-${student.matric_number || 'nomatric'}-${Date.now()}`;
+
+    FlutterwaveCheckout({
+      public_key: FLUTTERWAVE_PUBLIC_KEY,
+      tx_ref: txRef,
+      amount: Number(amount),
+      currency: currency,
+      payment_options: "card, banktransfer, ussd",
+      customer: {
+        email: student.email,
+        name: student.fullname || ''
+      },
+      customizations: {
+        title: "Dar Al-Ulum Wal Hikam Institute",
+        description: `${student.plan_type || 'Course'} Registration Payment`,
+        logo: "logo.png"
+      },
+      callback: async (response) => {
+        // NEVER trust this client-side response alone — always verify server-side
+        await verifyAndRecordPayment(response.transaction_id, txRef, student, amount, currency);
+      },
+      onclose: () => {
+        console.log("Flutterwave checkout closed by user.");
+      }
+    });
+  });
+
+  async function verifyAndRecordPayment(transactionId, txRef, student, expectedAmount, expectedCurrency) {
+    flutterwavePayBtn.disabled = true;
+    const originalText = flutterwavePayBtn.innerHTML;
+    flutterwavePayBtn.innerHTML = t('Verifying payment... ⏳');
+
+    try {
+      const res = await fetch(VERIFY_PAYMENT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          transaction_id: transactionId,
+          tx_ref: txRef,
+          matric_number: student.matric_number || null,
+          payer_name: student.fullname || '',
+          payer_email: student.email,
+          expected_amount: expectedAmount,
+          expected_currency: expectedCurrency,
+          plan_type: student.plan_type || null,
+          country: student.country || null
+        })
+      });
+
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || t('Payment verification failed.'));
+      }
+
+      // Redirect to the dedicated result page only after OUR OWN server-side
+      // verification has already succeeded — this doesn't change the security
+      // model at all, it's just a nicer landing screen than an inline toast.
+      const successParams = new URLSearchParams({
+        status: "success",
+        amount: expectedAmount,
+        currency: expectedCurrency,
+        tx: txRef
+      });
+      window.location.href = `payment-result.html?${successParams.toString()}`;
+
+    } catch (err) {
+      console.error("Payment verification error:", err);
+      const failParams = new URLSearchParams({
+        status: "failed",
+        tx: txRef,
+        reason: err.message || t('Payment verification failed.')
+      });
+      window.location.href = `payment-result.html?${failParams.toString()}`;
+    } finally {
+      flutterwavePayBtn.disabled = false;
+      flutterwavePayBtn.innerHTML = originalText;
+    }
+  }
+
   /* ================= EMAIL LOOKUP ================= */
   const emailInput = document.getElementById('student-email');
 
-  emailInput?.addEventListener('blur', async () => {
-
-    const email = emailInput.value.trim().toLowerCase();
+  // Shared lookup used both by manual email blur AND the automatic
+  // on-load re-check below, so both paths stay in sync with each other.
+  async function lookupStudentByEmail(email, { silent = false } = {}) {
     if (!email) return;
 
     try {
@@ -181,13 +336,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setPlan(data.plan_type);
       setLevel(data.level_arabic);
+      refreshFlutterwaveAmount();
+      applyCountrySectionVisibility(data.country);
 
-      showSuccess(t('Student record found automatically.'));
+      // Silent mode is for the automatic background re-check on page load —
+      // we don't want a "Student record found" toast popping up for
+      // something the student didn't initiate themselves.
+      if (!silent) {
+        showSuccess(t('Student record found automatically.'));
+      }
 
     } catch (err) {
       console.error("Student lookup failed:", err);
     }
+  }
+
+  emailInput?.addEventListener('blur', async () => {
+    const email = emailInput.value.trim().toLowerCase();
+    await lookupStudentByEmail(email);
   });
+
+  // ================= AUTO-REFRESH FOR STALE SESSION DATA =================
+  // If sessionStorage.currentStudent exists but is missing amount_due /
+  // currency_due (e.g. an older registration made before these columns
+  // existed, later corrected only in the database), the Flutterwave
+  // button would otherwise stay disabled forever — the student never
+  // manually clicks in/out of the email field since it's auto-filled by
+  // JS, not typed. So: proactively re-fetch from the database once on
+  // load whenever that gap is detected.
+  if (currentStudent?.email && (!currentStudent.amount_due || !currentStudent.currency_due)) {
+    console.log("Session data missing amount_due/currency_due — re-checking database…");
+    lookupStudentByEmail(currentStudent.email.trim().toLowerCase(), { silent: true });
+  }
 
   /* ================= PAYMENT SUBMIT ================= */
   paymentForm.addEventListener('submit', async (e) => {

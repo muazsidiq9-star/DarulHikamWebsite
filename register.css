@@ -199,6 +199,47 @@ html, body { overflow-x: hidden; }
 
 
 /* ============================================================
+   TERMS AGREEMENT CHECKBOX
+============================================================ */
+.terms-agreement {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-light);
+  margin-top: 16px;
+}
+
+.terms-agreement input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.terms-agreement label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.terms-agreement label a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.terms-agreement label a:hover {
+  color: var(--primary-dark);
+}
+
+
+/* ============================================================
    FORM STEPS
 ============================================================ */
 .form-step {
@@ -321,13 +362,21 @@ html, body { overflow-x: hidden; }
 }
 
 .plan-price-card.selected {
-  background: var(--primary-xlight);
+  background: var(--primary-dark);
   border-color: var(--primary);
 }
 
 .plan-price-card.selected .plan-price-name,
 .plan-price-card.selected .plan-price-amount {
-  color: var(--primary-dark);
+  color: var(--primary);
+}
+
+.plan-price-hint {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 8px 2px;
+  margin: 0;
 }
 
 @media (max-width: 640px) {
@@ -386,7 +435,7 @@ html, body { overflow-x: hidden; }
   gap: 9px;
   padding: 12px 32px;
   border-radius: 8px;
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
@@ -395,7 +444,7 @@ html, body { overflow-x: hidden; }
   transition: background 0.2s, transform 0.15s;
 }
 
-.submit-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.submit-btn:hover { background: var(--primary); transform: translateY(-1px); }
 
 
 /* ============================================================
@@ -436,7 +485,7 @@ html, body { overflow-x: hidden; }
   border-radius: 8px;
   background: var(--primary-xlight);
   border: 1px solid var(--primary);
-  color: var(--primary-dark);
+  color: var(--primary);
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;

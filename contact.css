@@ -299,6 +299,7 @@ html, body { overflow-x: hidden; }
 .contact-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 26px rgba(0,0,0,0.09);
+  background: fixed var(--primary-dark);
 }
 
 /* Card icon circles */
