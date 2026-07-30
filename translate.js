@@ -3413,7 +3413,7 @@ NEW FILES START HERE
 
 "Dar Al-Ulum Arabic Institute": "معهد دار العلوم للدراسات العربية",
 
-"Join Dar Al-Ulum Wal Hikam Institute Online, fill in your details carefully.": "انضم إلى معهد دار العلوم والحكم أونلاين، وقم بملء بياناتك بعناية.",
+"Join Dar Al-Ulum Wal Hikam Institute Online, fill in your details carefully.": "انضم إلى معهد دار العلوم والحكم عبر الإنترنت، وقم بملء بياناتك بعناية.",
 
   // ===== DYNAMIC TEMPLATES ===== 
 

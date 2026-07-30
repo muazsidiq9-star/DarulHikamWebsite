@@ -216,7 +216,7 @@ html, body { overflow-x: hidden; }
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: var(--primary-dark);
+  accent-color: var(--primary);
   flex-shrink: 0;
   cursor: pointer;
 }
@@ -229,13 +229,13 @@ html, body { overflow-x: hidden; }
 }
 
 .terms-agreement label a {
-  color: var(--primary-dark);
+  color: var(--primary);
   font-weight: 600;
   text-decoration: underline;
 }
 
 .terms-agreement label a:hover {
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 
@@ -362,13 +362,21 @@ html, body { overflow-x: hidden; }
 }
 
 .plan-price-card.selected {
-  background: var(--primary-xlight);
+  background: var(--primary-dark);
   border-color: var(--primary);
 }
 
 .plan-price-card.selected .plan-price-name,
 .plan-price-card.selected .plan-price-amount {
-  color: var(--primary-dark);
+  color: var(--primary);
+}
+
+.plan-price-hint {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 8px 2px;
+  margin: 0;
 }
 
 .plan-price-hint {
@@ -485,7 +493,7 @@ html, body { overflow-x: hidden; }
   border-radius: 8px;
   background: var(--primary-xlight);
   border: 1px solid var(--primary);
-  color: var(--primary-dark);
+  color: var(--primary);
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;

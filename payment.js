@@ -212,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   refreshFlutterwaveAmount();
 
- console.log("Flutterwave button found:", flutterwavePayBtn);
   flutterwavePayBtn?.addEventListener('click', () => {
   console.log("Flutterwave button clicked");
   

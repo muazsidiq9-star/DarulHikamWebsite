@@ -100,7 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
             email: student.email,
             level: student.level_arabic,
             country: student.country,
-            plan_type: student.plan_type
+            plan_type: student.plan_type,
+            amount_due: student.amount_due
           })
         );
 
@@ -114,7 +115,8 @@ const studentSession = {
     email: student.email,
     level: student.level_arabic,
     country: student.country,
-    plan_type: student.plan_type
+    plan_type: student.plan_type,
+    amount_due: student.amount_due
   }),
   expiresAt: Date.now() + (14 * 24 * 60 * 60 * 1000) // 14 days
 };

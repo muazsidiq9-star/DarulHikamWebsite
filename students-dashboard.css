@@ -844,7 +844,7 @@ html, body { overflow-x: hidden; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -856,7 +856,7 @@ html, body { overflow-x: hidden; }
   white-space: nowrap;
 }
 
-.sd-restore-btn:hover { background: var(--primary-dark); }
+.sd-restore-btn:hover { background: var(--primary); }
 
 .sd-notif-list {
   display: flex;

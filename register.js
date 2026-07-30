@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // ----- Passport Upload -----
       let passportUrl = null;
+      let passportPath = null;
       const passportFile = passportInput.files[0];
 
       if (passportFile) {
@@ -205,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .getPublicUrl(fileName);
 
         passportUrl = urlData.publicUrl;
+        passportPath = fileName; // just the filename, e.g. "passport_1780496792148.jpeg"
       }
 
 
@@ -232,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reason_arabic: reasonArabic,
             additional: additional,
             passport_url: passportUrl,
+            passport_path: passportPath,
             payment_status: "unpaid",
             amount_due: amountDue,
             currency_due: currencyDue
