@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 </head>
-<body>
+<body class="light-mode">
 
   <!-- HEADER -->
   <header class="privacy-header">
@@ -21,10 +21,10 @@
 
       <a href="index.html" class="logo">
         <img src="logo.png" alt="Dar Al-Ulum Logo">
-        <span>Dar Al-Ulum Institute</span>
+        <span>Dar Al-Ulum Arabic Institute</span>
       </a>
 
-      <button id="themeToggle" class="theme-btn">🌙</button>
+      <button id="themeToggle" class="theme-btn">☀️</button>
 
     </div>
   </header>
@@ -38,9 +38,7 @@
       <h1>Privacy Policy</h1>
 
       <p class="hero-text">
-        At Dar Al-Ulum Arabic Institute, we respect your privacy and are committed
-        to protecting your personal information. This page explains how we collect,
-        use, and safeguard your information when you use our website or enroll in our programs.
+        At Dar Al-Ulum Arabic Institute, we respect your privacy and are committed to protecting your personal information. This page explains how we collect, use, and safeguard your information when you use our website or enroll in our programs.
       </p>
 
     </div>
@@ -53,8 +51,7 @@
       <div class="policy-section">
         <h2>Information We Collect</h2>
         <p>
-          We may collect the following information during registration,
-          enrollment, or payment verification:
+          We may collect the following information during registration, enrollment, or payment verification:
         </p>
         <ul>
           <li>Full name</li>
@@ -83,8 +80,7 @@
       <div class="policy-section">
         <h2>Payment Processing</h2>
         <p>
-          Some payments may be processed through trusted third-party payment platforms.
-          Dar Al-Ulum Arabic Institute does not store your debit or credit card information.
+          Some payments may be processed through trusted third-party payment platforms. Dar Al-Ulum Arabic Institute does not store your debit or credit card information.
         </p>
         <p>
           Payment receipts submitted by students are used strictly for payment verification purposes.
@@ -94,12 +90,10 @@
       <div class="policy-section">
         <h2>Data Protection</h2>
         <p>
-          We take reasonable measures to protect student information against
-          unauthorized access, misuse, or disclosure.
+          We take reasonable measures to protect student information against unauthorized access, misuse, or disclosure.
         </p>
         <p>
-          However, while we strive to protect your information, no online system
-          can guarantee absolute security.
+          However, while we strive to protect your information, no online system can guarantee absolute security.
         </p>
       </div>
 
@@ -109,17 +103,16 @@
           We may use trusted external services to support our platform and payment operations.
         </p>
         <ul>
-          <li>Selar (payment processing)</li>
+          <li>Flutterwave (card and bank payment processing)</li>
           <li>Supabase (database/storage)</li>
-          <li>EmailJS (email communication)</li>
+          <li>Web3Forms (email notifications)</li>
         </ul>
       </div>
 
       <div class="policy-section">
         <h2>Student Responsibility</h2>
         <p>
-          Students are responsible for ensuring that the information
-          submitted during registration and payment confirmation is accurate.
+          Students are responsible for ensuring that the information submitted during registration and payment confirmation is accurate.
         </p>
       </div>
 
@@ -129,13 +122,15 @@
           <p>
             If you have any questions regarding this Privacy Policy, please contact us:
           </p>
-          <p>
-            Email:
-            <a href="mailto:daralulumwalhikam20@gmail.com">daralulumwalhikam20@gmail.com</a>
-          </p>
+          
           <p>
             WhatsApp:
             <a href="https://wa.me/2348110705054" target="_blank">+234 811 070 5054</a>
+          </p>
+          
+          <p>
+            Email:
+            <a href="mailto:daralulumwalhikam20@gmail.com">daralulumwalhikam20@gmail.com</a>
           </p>
         </div>
       </div>
@@ -147,7 +142,9 @@
   <footer class="footer">
     <div class="footer-inner">
 
-      <p>© 2025 - <span id="year"></span> Dar Al-Ulum Arabic Institute. All rights reserved.</p>
+      <div class="footer-bottom">
+      <small id="footerYear"></small>
+    </div>
 
       <div class="footer-links">
         <a href="index.html">Home</a>
@@ -156,13 +153,11 @@
       </div>
 
     </div>
-    <div class="footer-link">
-  <a href="privacy.html">Privacy Policy</a>
-</footer>
+  </footer>
 
   <!-- JS -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("footerYear").textContent = `© 2026 - ${new Date().getFullYear()} Dar Al-Ulum Arabic Institute. All rights reserved.`;
 
     const toggle = document.getElementById("themeToggle");
     toggle.addEventListener("click", () => {
@@ -170,6 +165,6 @@
       toggle.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
     });
   </script>
-
+<script src="translate.js"></script>
 </body>
 </html>

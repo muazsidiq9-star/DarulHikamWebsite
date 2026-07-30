@@ -1,7 +1,14 @@
 /* ==============================================
-   Dar Al-Ulum Wal Hikam — PRIVACY POLICY PAGE
-   Matches master.css academic teal theme
-   Font: Cormorant Garamond (display) + DM Sans (body)
+   darulHikam — PRIVACY POLICY PAGE (PURPLE VARIANT)
+   For the Dar Al-Ulum Wal Hikam site (register/payment pages).
+   Same structure/classes as privacy.css — colors only differ.
+
+   NOTE: register.css doesn't centralize its colors into :root
+   tokens (they're hardcoded per component), so these purple values
+   are inferred from the hex codes actually found there (#6e1580,
+   #7b16a3-ish, #e4bbf7). If your real --primary / --primary-dark
+   values differ, just swap the hex codes below — everything else
+   in this file stays the same.
 ============================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -11,24 +18,24 @@
 ============================================================ */
 
 :root {
-  --accent:        #b8a502;
-  --accent-dark:   #4e064e;
-  --accent-light:  #ecc9fa;
-  --accent-glow:   rgba(13,148,136,0.15);
-  --accent-subtle: rgba(13,148,136,0.06);
+  --accent:        #7b16a3;
+  --accent-dark:   #6e1580;
+  --accent-light:  #a3229c;
+  --accent-glow:   rgba(123,22,163,0.15);
+  --accent-subtle: rgba(123,22,163,0.06);
 
-  --bg:            #0c0f0e;
-  --bg-2:          #111614;
+  --bg:            #0f0a14;
+  --bg-2:          #140f1a;
   --card:          rgba(255,255,255,0.025);
   --card-hover:    rgba(255,255,255,0.04);
 
-  --text:          #e8ede9;
-  --muted:         #a28fa8;
-  --faint:         #6c5a70;
+  --text:          #ede8f2;
+  --muted:         #a892b8;
+  --faint:         #6e5a80;
 
-  --border:        rgba(137, 13, 148, 0.1);
-  --border-mid:    rgba(137, 13, 148, 0.2);
-  --border-strong: rgba(125, 13, 148, 0.4);
+  --border:        rgba(123,22,163,0.10);
+  --border-mid:    rgba(123,22,163,0.20);
+  --border-strong: rgba(123,22,163,0.40);
 
   --shadow-sm:  0 4px 16px rgba(0,0,0,0.30);
   --shadow-md:  0 10px 40px rgba(0,0,0,0.40);
@@ -43,16 +50,16 @@
 }
 
 body.light-mode {
-  --bg:         #f5f3ef;
-  --bg-2:       #edeae4;
+  --bg:         #f7f3fa;
+  --bg-2:       #efe9f5;
   --card:       rgba(255,255,255,0.75);
   --card-hover: rgba(255,255,255,0.95);
-  --text:       #1a2420;
-  --muted:      #5f4a63;
-  --faint:      #967a9a;
-  --border:        rgba(13,148,136,0.12);
-  --border-mid:    rgba(148, 13, 148, 0.22);
-  --border-strong: rgba(137, 13, 148, 0.45);
+  --text:       #241a2c;
+  --muted:      #5a4a68;
+  --faint:      #9a7ab0;
+  --border:        rgba(123,22,163,0.12);
+  --border-mid:    rgba(123,22,163,0.22);
+  --border-strong: rgba(123,22,163,0.45);
 }
 
 /* ============================================================
@@ -85,14 +92,14 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 9000;
-  background: rgba(12,15,14,0.88);
+  background: rgba(15,10,20,0.88);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 body.light-mode .privacy-header {
-  background: rgba(245,243,239,0.88);
+  background: rgba(247,243,250,0.88);
 }
 
 .header-inner {
@@ -124,11 +131,11 @@ body.light-mode .privacy-header {
 }
 
 .logo span {
-  font-family: var(--font-display);
+  font-family: none;
   color: var(--accent);
   font-weight: 700;
   font-size: 1.15rem;
-  font-style: italic;
+  font-style: none;
 }
 
 .logo:hover { transform: translateY(-1px); }
@@ -166,7 +173,7 @@ body.light-mode .privacy-header {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(13,148,136,0.07), transparent),
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(123,22,163,0.07), transparent),
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: auto, 60px 60px, 60px 60px;
@@ -196,10 +203,10 @@ body.light-mode .privacy-header {
 }
 
 .privacy-hero h1 {
-  font-family: var(--font-display);
+  font-family: none;
   font-size: clamp(2.8rem, 6vw, 5rem);
   font-weight: 700;
-  font-style: italic;
+  font-style: none;
   line-height: 1.08;
   color: var(--text);
   margin-bottom: 22px;
@@ -263,8 +270,8 @@ body.light-mode .privacy-header {
 }
 
 .policy-section h2 {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: none;
+  font-style: none;
   font-size: 1.7rem;
   font-weight: 600;
   color: var(--text);
@@ -343,6 +350,7 @@ body.light-mode .privacy-header {
 
 .contact-box a {
   color: var(--accent-light);
+  font-size: 0.85rem;
   text-decoration: none;
   font-weight: 500;
   transition: 0.2s ease;
@@ -361,7 +369,7 @@ body.light-mode .privacy-header {
   margin-top: 0;
   border-top: 1px solid var(--border);
   padding: 32px 24px;
-  background: #070c0b;
+  background: #0a0610;
 }
 
 .footer-inner {
@@ -397,21 +405,6 @@ body.light-mode .privacy-header {
   color: var(--accent-light);
 }
 
-.footer-link {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.footer-link a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.90rem;
-  transition: 0.25s ease;
-}
-
-.footer-link a:hover {
-  color: var(--accent-light);
-}
 /* ============================================================
    RESPONSIVE
 ============================================================ */
@@ -454,7 +447,7 @@ body.light-mode .privacy-header {
 
 body.light-mode .policy-card {
   background: #ffffff;
-  border-color: rgba(13,148,136,0.15);
+  border-color: rgba(123,22,163,0.15);
 }
 
 body.light-mode .policy-section p,
@@ -467,8 +460,8 @@ body.light-mode .policy-section h2 {
 }
 
 body.light-mode .contact-box {
-  background: rgba(13,148,136,0.05);
-  border-color: rgba(13,148,136,0.18);
+  background: rgba(123,22,163,0.05);
+  border-color: rgba(123,22,163,0.18);
 }
 
 body.light-mode .contact-box p {
@@ -476,5 +469,5 @@ body.light-mode .contact-box p {
 }
 
 body.light-mode .footer {
-  background: #ede9e3;
+  background: #ede4f2;
 }

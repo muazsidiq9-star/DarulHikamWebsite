@@ -283,22 +283,29 @@ html, body { overflow-x: hidden; }
 
 .payment-warning i { color: #f59e0b; flex-shrink: 0; }
 
-/* Selar card */
-.selar-card {
+/* Flutterwave card */
+.flutterwave-card {
   border: 2px solid var(--primary);
   text-align: center;
 }
 
-.selar-card .payment-card-header { justify-content: center; }
+.flutterwave-card .payment-card-header { justify-content: center; }
 
-.selar-desc {
+.flutterwave-desc {
   font-size: 0.88rem;
   color: var(--text-muted);
   margin: 4px 0 16px;
   line-height: 1.6;
 }
 
-.selar-btn {
+.flutterwave-amount {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 4px 0 14px;
+}
+
+.flutterwave-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -314,7 +321,8 @@ html, body { overflow-x: hidden; }
   transition: background 0.2s, transform 0.15s;
 }
 
-.selar-btn:hover { background: var(--primary); transform: translateY(-2px); }
+.flutterwave-btn:hover { background: var(--primary); transform: translateY(-2px); }
+.flutterwave-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 
 /* ============================================================

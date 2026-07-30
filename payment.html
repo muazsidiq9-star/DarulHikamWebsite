@@ -84,7 +84,7 @@
   <section class="payment-details">
 
     <!-- Sterling Bank -->
-    <div class="payment-card">
+    <div class="payment-card local-card">
       <div class="payment-card-header">
         <div class="bank-icon sterling">
           <img src="Sterling.png" alt="Sterling Bank">
@@ -116,7 +116,7 @@
     </div>
 
     <!-- GTBank -->
-    <div class="payment-card">
+    <div class="payment-card local-card">
       <div class="payment-card-header">
         <div class="bank-icon gtbank">
           <img src="gtbank.png" alt="GTBank">
@@ -148,7 +148,7 @@
     </div>
 
     <!-- Opay -->
-    <div class="payment-card">
+    <div class="payment-card local-card">
       <div class="payment-card-header">
         <div class="bank-icon opay">
           <img src="opay.png" alt="Opay">
@@ -243,24 +243,28 @@
       </div>
     </div>
 
-    <!-- Selar Online -->
-    <div class="payment-card selar-card">
+    <!-- Flutterwave -->
+    <div class="payment-card flutterwave-card">
       <div class="payment-card-header">
-        <div class="bank-icon selar">
-          <img src="selar.png" alt="Selar">
+        <div class="bank-icon flutterwave">
+          <img src="flutterwave.png" alt="Flutterwave">
         </div>
         <div>
           <span class="bank-name" data-translate="Pay Online">Pay Online</span>
-          <span class="bank-type">Selar</span>
+          <span class="bank-type">Flutterwave</span>
         </div>
       </div>
-      <p class="selar-desc" data-translate="Click below to pay securely via Selar's online payment platform.">
-        Click below to pay securely via Selar's online payment platform.
+      <p class="flutterwave-desc" data-translate="Pay instantly by card, bank transfer, or USSD. Your enrollment is confirmed automatically.">
+        Pay instantly by card, bank transfer, or USSD. Your enrollment is confirmed automatically.
       </p>
-      <button type="button" class="selar-btn" data-translate="Pay with Selar">Pay with Selar</button>
+      <p class="flutterwave-amount" id="flutterwaveAmount">—</p>
+      <button type="button" class="flutterwave-btn" id="flutterwavePayBtn">
+        <i class="fa-solid fa-bolt"></i>
+        <span data-translate="Pay with Flutterwave">Pay with Flutterwave</span>
+      </button>
       <p class="payment-note">
         <i class="fa-solid fa-circle-info"></i>
-        <span data-translate="After payment, keep your receipt for confirmation.">After payment, keep your receipt for confirmation.</span>
+        <span data-translate="Payment is verified automatically — no receipt upload needed.">Payment is verified automatically — no receipt upload needed.</span>
       </p>
     </div>
 
@@ -314,7 +318,7 @@
           <label for="level-arabic" data-translate="Level">Level</label>
           <select id="level-arabic" required>
             <option value="" data-translate="Choose Level">-- Choose Level --</option>
-            <option value="Can read the Qur'an only" data-translate="Can read the Qur'an only">Can read the Qur'an only</option>
+            <option value="Preliminary" data-translate="Preliminary">Preliminary</option>
             <option value="Beginner" data-translate="Beginner">Beginner</option>
             <option value="Intermediate" data-translate="Intermediate">Intermediate</option>
             <option value="Advanced" data-translate="Advanced">Advanced</option>
@@ -421,19 +425,23 @@
 
   <!-- FOOTER -->
   <footer>
-    <p data-translate="Dar Al-Ulum Wal Hikam Institute Online">Dar Al-Ulum Wal Hikam Institute Online</p>
-    <p>
-      <span data-translate="Email">Email</span>: daralulumwalhikam20@gmail.com &nbsp;|&nbsp;
-      <span data-translate="Phone: +234 811 070 5054">Phone: +234 811 070 5054</span>
-    </p>
-    <p id="footerCopyright"></p>
-    <a href="privacy.html" data-translate="Privacy Policy">Privacy Policy</a>
-  </footer>
+  <p data-translate="Dar Al-Ulum Wal Hikam Institute Online">Dar Al-Ulum Wal Hikam Institute Online</p>
+  <p>
+    <span data-translate="Email">Email</span>: daralulumwalhikam20@gmail.com &nbsp;|&nbsp;
+    <span data-translate="Phone: +234 811 070 5054">Phone: +234 811 070 5054</span>
+  </p>
+  <p id="footerCopyright"></p>
+  <a href="privacy.html" data-translate="Privacy Policy">Privacy Policy</a>
+  <a href="refund-policy.html" data-translate="Refund Policy">Refund Policy</a>
+  <a href="terms.html" data-translate="Terms & Conditions">Terms & Conditions</a>
+  <a href="contact.html" data-translate="Contact">Contact</a>
+</footer>
 
   <a href="https://wa.me/2348110705054" class="whatsapp-float" target="_blank" rel="noopener">
     <img src="whatsapp-icon.png" alt="WhatsApp">
   </a>
 
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script>
     

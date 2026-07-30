@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Result | Dar Al-Ulum Wal Hikam</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /*
+      Self-contained styling for this page. register.css doesn't centralize
+      colors into :root tokens (they're hardcoded per component), so these
+      purple values match the same inferred palette used in privacy-purple.css
+      built earlier for this site. Swap the hex codes below if your real
+      brand purple differs.
+    */
+    :root {
+      --accent: #7b16a3;
+      --accent-dark: #6e1580;
+      --bg: #f7f3fa;
+      --card: #ffffff;
+      --text: #241a2c;
+      --muted: #5a4a68;
+      --border: rgba(123,22,163,0.18);
+      --danger: #dc2626;
+      --danger-bg: rgba(220,38,38,0.10);
+      --danger-border: rgba(220,38,38,0.30);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      padding: 16px;
+    }
+
+    .result-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 26px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(123,22,163,0.12);
+    }
+
+    .result-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(123,22,163,0.08);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 1.9rem;
+    }
+
+    .result-icon.failed {
+      background: var(--danger-bg);
+      border-color: var(--danger-border);
+      color: var(--danger);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      margin: 0 0 12px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 8px;
+    }
+
+    .tx-ref {
+      font-size: 0.75rem;
+      color: var(--muted);
+      word-break: break-all;
+      margin-top: 4px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .btn {
+      text-decoration: none;
+      display: inline-block;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    Expected query params (all optional except status):
+      ?status=success|failed
+      &amount=12000
+      &currency=NGN
+      &matric=DUH/26/003
+      &tx=daralulum-DUH26003-172000000
+      &reason=Payment%20could%20not%20be%20verified (only for failed)
+  -->
+
+  <div class="result-card">
+    <div class="result-icon" id="resultIcon">✔</div>
+    <h1 id="resultTitle">Payment Verified 🎉</h1>
+    <p id="resultMessage">Your enrollment is now confirmed. Welcome to Dar Al-Ulum Wal Hikam!</p>
+    <p class="tx-ref" id="resultTxRef"></p>
+
+    <div class="actions">
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+      <a href="payment.html" id="retryLink" class="btn btn-secondary" style="display:none;">Try Again</a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const status   = params.get("status");
+    const amount   = params.get("amount");
+    const currency = params.get("currency");
+    const tx       = params.get("tx");
+    const reason   = params.get("reason");
+
+    const icon    = document.getElementById("resultIcon");
+    const title   = document.getElementById("resultTitle");
+    const message = document.getElementById("resultMessage");
+    const txRefEl = document.getElementById("resultTxRef");
+    const retryLink = document.getElementById("retryLink");
+
+    if (status === "failed") {
+      icon.classList.add("failed");
+      icon.textContent = "✕";
+
+      title.textContent = "Payment Not Confirmed";
+      message.textContent = reason
+        ? decodeURIComponent(reason)
+        : "We could not confirm this payment. If an amount was deducted from your account, please contact support with your transaction reference below.";
+
+      retryLink.style.display = "inline-block";
+
+    } else if (status === "success") {
+      title.textContent = "Payment Verified 🎉";
+
+      if (amount && currency) {
+        message.textContent = `Your payment of ${currency} ${Number(amount).toLocaleString()} has been confirmed. Your enrollment is now active.`;
+      } else {
+        message.textContent = "Your enrollment is now confirmed. Welcome to Dar Al-Ulum Wal Hikam!";
+      }
+
+    } else {
+      // No valid status param at all (e.g. someone navigated here directly,
+      // bookmarked the page, or a param got dropped). Never assume success —
+      // show a neutral state instead.
+      icon.textContent = "?";
+      icon.style.background = "rgba(90,74,104,0.10)";
+      icon.style.borderColor = "rgba(90,74,104,0.30)";
+      icon.style.color = "var(--muted)";
+
+      title.textContent = "Payment Status Unavailable";
+      message.textContent = "We couldn't determine your payment status from this link. Please check your dashboard, or contact support with any transaction reference you have.";
+
+      retryLink.style.display = "inline-block";
+    }
+
+    if (tx) {
+      txRefEl.textContent = `Reference: ${tx}`;
+    }
+  </script>
+
+</body>
+</html>

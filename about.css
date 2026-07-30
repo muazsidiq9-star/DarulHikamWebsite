@@ -15,8 +15,9 @@ html, body {
   min-height: 420px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   overflow: hidden;
+  text-align: center;
 }
 
 .hero-video {
@@ -45,29 +46,24 @@ html, body {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
+  align-items: center;
   gap: 0;
-  padding: 0 0 0 6vw;
-  max-width: 860px;
+  padding: 0 20px;
+  max-width: 720px;
   width: 100%;
 }
 
-/* The vertical gold line signature */
+/* Accent line no longer used in the centered layout */
 .banner-accent-line {
-  width: 3px;
-  background: var(--primary);
-  border-radius: 3px;
-  margin-right: 28px;
-  flex-shrink: 0;
-  align-self: stretch;
-  min-height: 160px;
+  display: none;
 }
 
 .banner-inner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 32px 0;
+  align-items: center;
+  padding: 0;
 }
 
 .header-logo {
