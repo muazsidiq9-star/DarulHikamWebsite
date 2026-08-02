@@ -190,7 +190,7 @@ html, body {
 
 .schedule-table td:nth-child(1) {
   font-weight: 700;
-  color: var(--primary-dark);
+  color: var(--primary);
 }
 
 .schedule-table td:nth-child(4) {

@@ -212,7 +212,7 @@ html, body { overflow-x: hidden; }
   gap: 8px;
   padding: 11px 26px;
   border-radius: 999px;
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
   border: none;
   font-size: 0.9rem;
@@ -222,7 +222,7 @@ html, body { overflow-x: hidden; }
 }
 
 .sp-edit-btn:hover {
-  background: var(--primary-dark);
+  background: var(--primary);
   transform: translateY(-2px);
 }
 
@@ -316,7 +316,7 @@ html, body { overflow-x: hidden; }
   gap: 8px;
   padding: 11px 24px;
   border-radius: 8px;
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
   border: none;
   font-size: 0.9rem;
@@ -326,7 +326,7 @@ html, body { overflow-x: hidden; }
   align-self: flex-start;
 }
 
-.sp-update-btn:hover { background: var(--primary-dark); }
+.sp-update-btn:hover { background: var(--primary); }
 
 .sp-password-msg {
   font-size: 0.88rem;
@@ -433,7 +433,7 @@ html, body { overflow-x: hidden; }
   gap: 8px;
   padding: 11px 24px;
   border-radius: 8px;
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
   border: none;
   font-size: 0.9rem;
@@ -443,7 +443,7 @@ html, body { overflow-x: hidden; }
   margin-top: 6px;
 }
 
-.sp-save-btn:hover { background: var(--primary-dark); }
+.sp-save-btn:hover { background: var(--primary); }
 
 
 /* ============================================================

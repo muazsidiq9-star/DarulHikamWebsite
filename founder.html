@@ -45,25 +45,33 @@
        FOUNDER HERO — left-aligned, gold accent line
   ================================================ -->
   <header class="founder-hero">
-    <div class="founder-hero-watermark" aria-hidden="true">
-      <span>المؤسس</span>
-    </div>
-    <div class="founder-hero-inner">
-      <div class="founder-hero-accent-line"></div>
-      <div class="founder-hero-photo">
-        <div class="founder-photo-placeholder">
-          <img src="gallery.jpg" alt="Founder Name">
+    <div class="founder-hero-grid">
+      <div class="founder-hero-photo-panel" id="founderHeroPhotoPanel">
+        <div class="founder-hero-watermark" aria-hidden="true">
+          <span>المؤسس</span>
         </div>
+        <div class="founder-hero-photo-frame-outer">
+          <div class="founder-hero-photo-frame">
+            <img src="gallery.jpg" alt="Mufti Hassan (Mauzu Hassan)">
+            <div class="founder-hero-photo-placeholder">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
+        </div>
+        <div class="founder-hero-medallion"><i class="fa-solid fa-certificate"></i></div>
       </div>
-      <div class="founder-hero-text">
-        <p class="founder-eyebrow" data-translate="Meet Our Founder">Meet Our Founder</p>
+      <div class="founder-hero-info">
+        <p class="founder-eyebrow"><i class="fa-solid fa-star"></i> <span data-translate="Meet Our Founder">Meet Our Founder</span></p>
         <h1 data-translate="Mufti Hassan (Mauzu Hassan)">Mufti Hassan (Mauzu Hassan)</h1>
         <p class="founder-hero-title" data-translate="Founder & Chief Instructor, Dar Al-Ulum Wal Hikam Arabic & Islamic Institute Online">
           Founder &amp; Chief Instructor, Dar Al-Ulum Wal Hikam Arabic &amp; Islamic Institute Online
         </p>
-        <p class="founder-quote" data-translate="Knowledge is a trust from Allah. Our mission is to make authentic Arabic and Islamic education accessible to every student, wherever they may be, while nurturing faith, character, and excellence.">
-          Knowledge is a trust from Allah. Our mission is to make authentic Arabic and Islamic education accessible to every student, wherever they may be, while nurturing faith, character, and excellence.
-        </p>
+        <div class="founder-quote-card">
+          <i class="fa-solid fa-quote-left"></i>
+          <p data-translate="Knowledge is a trust from Allah. Our mission is to make authentic Arabic and Islamic education accessible to every student, wherever they may be, while nurturing faith, character, and excellence.">
+            Knowledge is a trust from Allah. Our mission is to make authentic Arabic and Islamic education accessible to every student, wherever they may be, while nurturing faith, character, and excellence.
+          </p>
+        </div>
         <div class="founder-hero-links">
           <a href="https://darulhikam-institute.netlify.app/" class="founder-social-link" aria-label="Website" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a>
           <a href="https://wa.me/2348110705054" class="founder-social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
@@ -191,9 +199,12 @@
             <i class="fa-solid fa-eye"></i>
           </div>
           <h2 data-translate="Vision">Vision</h2>
-          <p data-translate="Our vision is to establish Dar Al-Ulum Wal Hikam as a globally recognized center of excellence for Arabic language and authentic Islamic education. We aspire to nurture knowledgeable, confident, and morally upright Muslims who will serve their communities with wisdom, sincerity, and compassion. Through quality teaching and accessible online learning, we aim to empower students worldwide to connect deeply with the Qur'an, the Sunnah, and the Arabic language.">
-            Our vision is to establish Dar Al-Ulum Wal Hikam as a globally recognized center of excellence for Arabic language and authentic Islamic education. We aspire to nurture knowledgeable, confident, and morally upright Muslims who will serve their communities with wisdom, sincerity, and compassion. Through quality teaching and accessible online learning, we aim to empower students worldwide to connect deeply with the Qur'an, the Sunnah, and the Arabic language.
-          </p>
+          <div class="vision-callout">
+            <div class="vision-callout-icon"><i class="fa-solid fa-compass"></i></div>
+            <p data-translate="Our vision is to establish Dar Al-Ulum Wal Hikam as a globally recognized center of excellence for Arabic language and authentic Islamic education. We aspire to nurture knowledgeable, confident, and morally upright Muslims who will serve their communities with wisdom, sincerity, and compassion. Through quality teaching and accessible online learning, we aim to empower students worldwide to connect deeply with the Qur'an, the Sunnah, and the Arabic language.">
+              Our vision is to establish Dar Al-Ulum Wal Hikam as a globally recognized center of excellence for Arabic language and authentic Islamic education. We aspire to nurture knowledgeable, confident, and morally upright Muslims who will serve their communities with wisdom, sincerity, and compassion. Through quality teaching and accessible online learning, we aim to empower students worldwide to connect deeply with the Qur'an, the Sunnah, and the Arabic language.
+            </p>
+          </div>
         </div>
         <div class="founder-pull founder-pull--alt" style="border-top-color: var(--primary-dark);">
           <span class="pull-arabic" aria-hidden="true">لِكُلِّ رِسَالَةٍ رُؤيَة</span>
@@ -474,7 +485,7 @@
       // Wire up any gallery item or hero photo that has a real <img> inside it.
       // Duplicate (aria-hidden) gallery items are skipped so each photo only
       // opens once, regardless of which copy in the loop was clicked.
-      document.querySelectorAll('.gallery-item:not([aria-hidden="true"]), .founder-hero-photo')
+      document.querySelectorAll('.gallery-item:not([aria-hidden="true"]), #founderHeroPhotoPanel')
         .forEach(el => {
           const img = el.querySelector('img');
           if (!img) return; // still a placeholder — nothing to preview yet
