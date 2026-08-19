@@ -3414,7 +3414,7 @@ NEW FILES START HERE
 "Dar Al-Ulum Arabic Institute": "معهد دار العلوم للدراسات العربية",
 
 "Join Dar Al-Ulum Wal Hikam Institute Online, fill in your details carefully.": "انضم إلى معهد دار العلوم والحكم عبر الإنترنت، وقم بملء بياناتك بعناية.",
-
+"Practice Quizzes": "اختبارات تجريبية",
   // ===== DYNAMIC TEMPLATES ===== 
 
 en: {
