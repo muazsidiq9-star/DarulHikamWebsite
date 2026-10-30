@@ -72,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Premium" data-translate="Premium">Premium</option>
       `;
       planPriceStrip.innerHTML = `
-        <div class="plan-price-card" data-plan="General" data-amount="12000" data-currency="NGN">
+        <div class="plan-price-card" data-plan="General" data-amount="10000" data-currency="NGN">
           <span class="plan-price-name" data-translate="General">General</span>
-          <span class="plan-price-amount">₦12,000<small data-translate="/month">/month</small></span>
+          <span class="plan-price-amount">₦10,000<small data-translate="/month">/month</small></span>
         </div>
         <div class="plan-price-card" data-plan="Premium" data-amount="35000" data-currency="NGN">
           <span class="plan-price-name" data-translate="Premium">Premium</span>
